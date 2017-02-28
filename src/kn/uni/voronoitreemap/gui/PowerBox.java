@@ -34,13 +34,13 @@ import kn.uni.voronoitreemap.j2d.Point2D;
 import kn.uni.voronoitreemap.j2d.PolygonSimple;
 import kn.uni.voronoitreemap.j2d.Site;
 
-
-
-
 /**
- * JPanel where you can place and move sites around. The weightings can be increased too.
+ * JPanel where you can place and move sites around. The weights can be changed,
+ * too. Clicking a site with the left mouse button increases its weight and
+ * clicking a site with the right mouse button decreases it. Press and drag a
+ * site to move its location.
+ * 
  * @author Arlind Nocaj
- *
  */
 public class PowerBox extends JPanel {
 	OpenList sites=new OpenList();

@@ -27,7 +27,7 @@ import kn.uni.voronoitreemap.extension.VoroCellObject;
  * @author Arlind Nocaj
  *
  */
-public class ASite extends JVertex implements Comparable<Site>, iSite {
+public class ASite extends JVertex implements Comparable<Site>, ISite {
 
 	protected static final double nearlyZero = 1E-10;
 	protected double weight=nearlyZero;

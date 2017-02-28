@@ -14,6 +14,7 @@ package kn.uni.voronoitreemap.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -37,11 +38,11 @@ import kn.uni.voronoitreemap.j2d.Site;
 
 
 /**
- * JFrame where you can place and move sites around. The weightings can be increased too.
+ * JPanel where you can place and move sites around. The weightings can be increased too.
  * @author Arlind Nocaj
  *
  */
-public class PowerBox extends JFrame {
+public class PowerBox extends JPanel {
 	OpenList sites=new OpenList();
 	PolygonSimple clipPoly=new PolygonSimple();
 	
@@ -55,15 +56,8 @@ public class PowerBox extends JFrame {
 		clipPoly.add(800,800);
 		clipPoly.add(800,50);
 		this.powerBox=this;
-		getContentPane().setLayout(new BorderLayout());
-		getContentPane().setBackground(Color.BLACK);
-		getContentPane().add(panel);
-		panel.setVisible(true);
-		panel.setLayout(null);
-		panel.addMouseListener(mouseAdapter);
-		panel.addMouseMotionListener(mouseAdapter);
-		setVisible(true);
-		setSize(500, 400);
+		addMouseListener(mouseAdapter);
+		addMouseMotionListener(mouseAdapter);
 	}
 
 	private MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -154,7 +148,6 @@ public class PowerBox extends JFrame {
 		PowerDiagram diagram = new PowerDiagram(sites, clipPoly);
 		diagram.computeDiagram();
 		setPreferredSize(getSize());
-		pack();
 		repaint();
 	}
 
@@ -162,8 +155,18 @@ public class PowerBox extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		PowerBox frame = new PowerBox();
+		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		PowerBox powerBox = new PowerBox();
+
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(new BorderLayout());
+		contentPane.setBackground(Color.BLACK);
+		contentPane.add(powerBox);
+
+		frame.setVisible(true);
+		frame.setSize(500, 400);
 	}
 	
 	@Override
@@ -172,7 +175,6 @@ public class PowerBox extends JFrame {
 //		paintComponents(g2);
 
 		Graphics2D g=(Graphics2D)g2;
-		g2.translate(2,22);
 		g.setColor(Color.red);
 		Site[] array = sites.array;
 		int size=sites.size;

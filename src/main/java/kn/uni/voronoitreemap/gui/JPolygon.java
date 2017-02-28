@@ -276,21 +276,6 @@ public void calculateFittingFont(){
 			return polygon.contains(p.x+getLocation().x,p.y+getLocation().y);
 		}else return false;
 	}
-	
-	
-	public static void main(String[] args){
-//		JFrame frame=new JFrame();
-//		frame.setBounds(50, 50, 600, 700);
-//		JPolygon polygon=new JPolygon(1);
-//		NPolygon2D p=new NPolygon2D();
-//		p.addPoint2D(new NPoint(30,50));
-//		p.addPoint2D(new NPoint(300, 30));
-//		p.addPoint2D(new NPoint(150,100));
-//		p.addPoint2D(new NPoint(30, 50));
-//		polygon.setPolygon(p);
-//		frame.add(polygon);
-//		frame.setVisible(true);
-	}
 
 	@Override
 	public void doFinalWork() {

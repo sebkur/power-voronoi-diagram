@@ -23,8 +23,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 import kn.uni.voronoitreemap.convexClip.ConvexClip;
-import kn.uni.voronoitreemap.convexClip.cVertex;
-import kn.uni.voronoitreemap.convexClip.cVertexList;
+import kn.uni.voronoitreemap.convexClip.CVertex;
+import kn.uni.voronoitreemap.convexClip.CVertexList;
 import kn.uni.voronoitreemap.helper.Geometry;
 
 
@@ -444,15 +444,15 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		//bounding boxes intersect 
 
 		// to vertexList
-		cVertexList list1 = this.getVertexList();
-		cVertexList list2 = poly.getVertexList();
+		CVertexList list1 = this.getVertexList();
+		CVertexList list2 = poly.getVertexList();
 		ConvexClip clipper = new ConvexClip();
 //		list1.PrintVertices();
 //		list2.PrintVertices();
 		clipper.Start(list1, list2);
 		PolygonSimple res = new PolygonSimple();
 		if (clipper.inters != null && clipper.inters.n > 0) {
-			cVertex node = clipper.inters.head;
+			CVertex node = clipper.inters.head;
 			double firstX = node.v.x;
 			double firstY = node.v.y;
 			res.add(node.v.x, node.v.y);
@@ -500,10 +500,10 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			return null;
 	}
 
-	private cVertexList getVertexList() {
-		cVertexList list = new cVertexList();
+	private CVertexList getVertexList() {
+		CVertexList list = new CVertexList();
 		for (int i = length - 1; i >= 0; i--) {
-			cVertex vertex = new cVertex(x[i], y[i]);
+			CVertex vertex = new CVertex(x[i], y[i]);
 			list.InsertBeforeHead(vertex);
 		}
 		return list;

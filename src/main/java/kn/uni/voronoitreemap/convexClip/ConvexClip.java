@@ -24,16 +24,16 @@ public class ConvexClip {
 	/**
 	 * Vertex List of the final intersection with the result of the computation 
 	 */
-	public cVertexList inters;
+	public CVertexList inters;
 	/**
 	 * 
 	 * @param list1 first polygon for the intersection
 	 * @param list2	second polygon for the intersection
 	 * @throws RuntimeException  if one of the two polygons is not convex 
 	 */
-	public void Start(cVertexList list1, cVertexList list2) {
-		cVertexList p = list1.copyList();
-		cVertexList q = list2.copyList();
+	public void Start(CVertexList list1, CVertexList list2) {
+		CVertexList p = list1.copyList();
+		CVertexList q = list2.copyList();
 		if(!isConvex(p)){ //Check for convexity
 			p.ReverseList(); //If list is not oriented counterclockwise
 			if(!isConvex(p)){
@@ -48,7 +48,7 @@ public class ConvexClip {
 				throw new RuntimeException("Polygons are not Convex...");
 			}
 		}
-		inters = new cVertexList(); //result list
+		inters = new CVertexList(); //result list
 		ConvexIntersection(p,q,p.n,q.n);
 	}
 	/**
@@ -58,8 +58,8 @@ public class ConvexClip {
 	 * @param n number of vertices of the first polygon
 	 * @param m number of vertices of the second polygon
 	 */
-	private void ConvexIntersection(cVertexList p, cVertexList q, int n, int m) {
-		cVertex currp = p.head, currq = q.head; //current vertex of both polygons
+	private void ConvexIntersection(CVertexList p, CVertexList q, int n, int m) {
+		CVertex currp = p.head, currq = q.head; //current vertex of both polygons
 		InsideFlag flg = InsideFlag.UNKNOWN; //Information flag whether p or q is on the inside (or if it is unknown)
 		int ap = 0, aq = 0;		// counter for the termination condition(ap = advance p,aq = advance q)
 		Point2D nil = new Point2D(); // (0,0) Vertex
@@ -77,7 +77,7 @@ public class ConvexClip {
 					FirstPoint = false;
 					ap = aq = 0;
 				}
-				inters.InsertBeforeHead(new cVertex(c.erg)); //Adding the intersection to the result
+				inters.InsertBeforeHead(new CVertex(c.erg)); //Adding the intersection to the result
 				//Flag update
 				if(pInQ > 0){
 					flg = InsideFlag.PIN;
@@ -88,8 +88,8 @@ public class ConvexClip {
 			//Advance Rules:
 			// vP and vQ overlap and oppositely oriented
 			if(c.code == 'e' && dot(vP,vQ) < 0){ //Shared SEQUENCE
-				inters.InsertBeforeHead(new cVertex(c.erg));
-				inters.InsertBeforeHead(new cVertex(c.snd));
+				inters.InsertBeforeHead(new CVertex(c.erg));
+				inters.InsertBeforeHead(new CVertex(c.snd));
 				return;
 				
 			}
@@ -116,24 +116,24 @@ public class ConvexClip {
 			}else if(cross >= 0){
 				if(qInP> 0){
 					if(flg == InsideFlag.PIN)
-						inters.InsertBeforeHead(new cVertex(currp.v));
+						inters.InsertBeforeHead(new CVertex(currp.v));
 					++ap;
 					currp = currp.next;
 				}else{
 					if(flg == InsideFlag.QIN)
-						inters.InsertBeforeHead(new cVertex(currq.v));
+						inters.InsertBeforeHead(new CVertex(currq.v));
 					++aq;
 					currq = currq.next;
 				}
 			}else {//cross < 0
 				if(pInQ > 0){
 					if(flg == InsideFlag.QIN)
-						inters.InsertBeforeHead(new cVertex(currq.v));
+						inters.InsertBeforeHead(new CVertex(currq.v));
 					++aq;
 					currq = currq.next;
 				}else{
 					if(flg == InsideFlag.PIN)
-						inters.InsertBeforeHead(new cVertex(currp.v));
+						inters.InsertBeforeHead(new CVertex(currp.v));
 					++ap;
 					currp = currp.next;
 				}
@@ -158,11 +158,11 @@ public class ConvexClip {
 	 * @param p2 VertexList 
 	 * @return returns whether p2 is convex and counterclockwise oriented
 	 */
-	private static boolean isConvex(cVertexList p2) {
+	private static boolean isConvex(CVertexList p2) {
 		if(p2.n < 3){
 			return false;
 		}
-		cVertex curr = p2.head;
+		CVertex curr = p2.head;
 		curr = curr.next;
 		while(curr != p2.head){
 			if(AreaSign(curr.v, curr.next.v, curr.next.next.v) < 0){

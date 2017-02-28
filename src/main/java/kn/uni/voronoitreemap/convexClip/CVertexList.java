@@ -15,11 +15,11 @@ package kn.uni.voronoitreemap.convexClip;
 import kn.uni.voronoitreemap.j2d.Point2D;
 
 
-public class cVertexList {
+public class CVertexList {
 	private double epsilon = 0.00000001;
 	public int n;
-	public cVertex head;
-	public void InsertBeforeHead(cVertex vertex) {
+	public CVertex head;
+	public void InsertBeforeHead(CVertex vertex) {
 		if(head == null){
 			head = vertex;
 			vertex.next = vertex;
@@ -34,7 +34,7 @@ public class cVertexList {
 				++n;
 			}
 		}
-		
+
 	}
 	private double abs(double a, double b){
 		double i = b - a;
@@ -44,7 +44,7 @@ public class cVertexList {
 			return -i;
 		}
 	}
-	private boolean checkForIdentiy(cVertex vertex) {
+	private boolean checkForIdentiy(CVertex vertex) {
 		Point2D c = vertex.v;
 		Point2D comp = head.prev.v;
 		if(abs(c.x,comp.x)< epsilon && abs(c.y,comp.y) < epsilon)
@@ -53,11 +53,11 @@ public class cVertexList {
 			return true;
 		return false;
 	}
-	public cVertexList copyList() {
-		cVertex temp1 = head, temp2;
-		cVertexList erg = new cVertexList();
+	public CVertexList copyList() {
+		CVertex temp1 = head, temp2;
+		CVertexList erg = new CVertexList();
 		do{
-			temp2 = new cVertex();
+			temp2 = new CVertex();
 			temp2.v  = temp1.v;
 			erg.InsertBeforeHead(temp2);
 			temp1 = temp1.next;
@@ -69,7 +69,7 @@ public class cVertexList {
 			return "";
 		}
 		String erg = "";
-		cVertex curr = head;
+		CVertex curr = head;
 		do{
 			erg += " " + curr.toString();
 			curr = curr.next;
@@ -78,15 +78,15 @@ public class cVertexList {
 	}
 	public void ReverseList()
 	  {
-	    cVertexList listcopy = copyList();
-	    cVertex temp1, temp2;
+	    CVertexList listcopy = copyList();
+	    CVertex temp1, temp2;
 	    head = null;
 	    n = 0;
 
 	    //Fill this list in proper order:
 	    temp1 = listcopy.head;
 	    do {
-	      temp2 = new cVertex();
+	      temp2 = new CVertex();
 	      temp2.v = temp1.v;
 	      InsertBeforeHead( temp2 );
 	      temp1 = temp1.prev;

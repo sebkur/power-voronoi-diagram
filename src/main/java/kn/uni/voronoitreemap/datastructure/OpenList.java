@@ -34,21 +34,23 @@ public class OpenList implements Iterable<Site>{
 	public int size=0;
 	
 	private static Random rand=new Random(1985);
+
 	public OpenList(){
 		this(10);
 	}
+
 	@SuppressWarnings("unchecked")
 	public OpenList(int capacity){
 		
 		array=new Site[capacity];
 
 	}
-	
+
 	private void increaseCapacity(){
 			int newCapacity = (array.length * 3)/2 + 1;
 			array = Arrays.copyOf(array, newCapacity);
 	}
-	
+
 	public boolean add(Site e) {
 		if (size>(array.length-1)){
 			increaseCapacity();
@@ -58,18 +60,14 @@ public class OpenList implements Iterable<Site>{
 		return true;
 	}
 
-
 //	public void add(int index, E element) {
 //		// TODO Auto-generated method stub
 //		
 //	}
 
-
 	public void clear() {
-		size=0;		
+		size=0;
 	}
-
-
 
 	public Site get(int index) {
 		if (index<size){
@@ -89,11 +87,10 @@ public class OpenList implements Iterable<Site>{
 		return element;
 	}
 
-	
 	/**
 	 * Clones the list of sites but with zero weights
 	 */
-	public OpenList cloneWithZeroWeights()  {
+	public OpenList cloneWithZeroWeights() {
 		OpenList neu=new OpenList(size+1);
 		neu.size=size;
 		for (int i=0;i<size;i++){
@@ -101,10 +98,9 @@ public class OpenList implements Iterable<Site>{
 			neu.array[i]=s.cloneZeroWeight();
 		}
 		return neu;
-		
 	}
-	
-	public OpenList clone()  {
+
+	public OpenList clone() {
 		OpenList neu=new OpenList(size+1);
 		neu.size=size;
 		for (int i=0;i<size;i++){
@@ -112,11 +108,10 @@ public class OpenList implements Iterable<Site>{
 			neu.array[i]=s.clone();
 		}
 		return neu;
-		
 	}
-	
+
 	public void permutate(){
-		
+
 		for(int i = 0; i < size; ++i){
 			int ra = rand.nextInt(size);
 			Site temp = array[ra];
@@ -124,35 +119,35 @@ public class OpenList implements Iterable<Site>{
 			array[i]=temp;
 		}
 	}
-	
-	
+
+
 	@Override
 	public Iterator<Site> iterator() {
 		return new Iterator<Site>() {
-			
+
 			int i=0;
 			@Override
 			public boolean hasNext() {
-			return i<size;			
+				return i<size;
 			}
 
 			@Override
-			public Site next() {				
-				return array[i++];				
+			public Site next() {
+				return array[i++];
 			}
 
 			@Override
 			public void remove() {
-				
+
 			}
 		};
 	}
-	
+
 	public PolygonSimple getBoundsPolygon(double offset){
 		if(offset<0) return null;
-		
+
 		Rectangle2D rect = getBounds();
-		
+
 		double x=rect.getMinX();
 		double y=rect.getMinY();
 		double w=rect.getWidth();
@@ -161,21 +156,21 @@ public class OpenList implements Iterable<Site>{
 		y-=offset;
 		w+=offset;
 		h+=offset;
-		
+
 		PolygonSimple poly=new PolygonSimple(4);
 		poly.add(x,y);
 		poly.add(x+w,y);
 		poly.add(x+w,y+h);
 		poly.add(x,y+h);
-			return poly;
+		return poly;
 	}
-	
+
 	public Rectangle2D getBounds(){
 		PolygonSimple simple=new PolygonSimple(this.size);
 		for(Site s:this)
 			simple.add(s.x,s.y);
-		
-		return simple.getBounds2D();		
+
+		return simple.getBounds2D();
 	}
 
 }

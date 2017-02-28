@@ -33,7 +33,7 @@ public class TestHull{
 //	}
 //	public void testExample1(){
 //		JConvexHull hull=new JConvexHull();
-//		
+//
 //		JVertex vertexMiddle = new JVertex(0, 0, 0);
 //		JVertex v1 = new JVertex(-1, 0, 1);
 //		JVertex v2 = new JVertex(0,-1,1);
@@ -44,7 +44,7 @@ public class TestHull{
 //		hull.addPoint(v2);
 //		hull.addPoint(v3);
 //		hull.addPoint(v4);
-//		
+//
 //		hull.computeHull();
 //		List<JFace> list = hull.getHull();
 //		for (JFace face:list){
@@ -55,23 +55,23 @@ public class TestHull{
 ////		assertTrue(existsFacet(list, vertexMiddle, v3, v4));
 ////		assertTrue(existsFacet(list, vertexMiddle, v4, v1));
 ////		assertTrue(existsFacet(list, vertexMiddle, v1, v2));
-////		
+////
 ////		assertTrue(existsFacet(list, v1, v2, v3));
 ////		assertTrue(existsFacet(list, v1, v3, v4));
 ////		assertTrue((existsFacet(list, v1, v2, v3) && existsFacet(list, v1, v3, v4))||(existsFacet(list, v2, v3, v4) && existsFacet(list, v2, v4, v3)));
-//	
+//
 //	}
-//	
-//	
+//
+//
 //	public void testExample2(){
 //		JConvexHull hull=new JConvexHull();
-//		
+//
 //		JVertex vertexMiddle = new JVertex(0, 0, 1);
 //		JVertex v1 = new JVertex(-1, 0, 1);
 //		JVertex v2 = new JVertex(0,-1,1);
 //		JVertex v3 =new JVertex(1,0,1);
 //		JVertex v4 =new JVertex(0,1,1);
-//		
+//
 //		JVertex v5=new JVertex(1, 1, 2);
 //		hull.addPoint(vertexMiddle);
 //		hull.addPoint(v1);
@@ -89,20 +89,20 @@ public class TestHull{
 ////		assertTrue(existsFacet(list, vertexMiddle, v3, v4));
 ////		assertTrue(existsFacet(list, vertexMiddle, v4, v1));
 ////		assertTrue(existsFacet(list, vertexMiddle, v1, v2));
-////		
+////
 ////		assertTrue(existsFacet(list, v1, v2, v3));
 ////		assertTrue(existsFacet(list, v1, v3, v4));
 ////		assertTrue((existsFacet(list, v1, v2, v3) && existsFacet(list, v1, v3, v4))||(existsFacet(list, v2, v3, v4) && existsFacet(list, v2, v4, v3)));
-//	
+//
 //	}
-//	
-	
+//
+
 	public void testHull(){
-		
+
 		JConvexHull hull;
 		for(int k = 0;  k < 1000; ++k){
 		hull =new JConvexHull();
-			
+
 		long startTime=System.currentTimeMillis();
 		Random rand=new Random();
 		for (int i=0;i<10000;i++){
@@ -114,17 +114,17 @@ public class TestHull{
 //			z=rand.nextInt(500); //easy test
 			hull.addPoint(new JVertex(x, y, z));
 		}
-		
-			
+
+
 		List<JFace> erg = hull.compute();
 		long endTime=System.currentTimeMillis();
-		
+
 		long delta = endTime-startTime;
 		double time=delta;
 		System.out.println(time);
 		}
 //		convexHull.JConvexHull hull2 = new convexHull.JConvexHull();
-//		
+//
 //		startTime=System.currentTimeMillis();
 //		rand=new Random(0);
 //		for (int i=0;i<100;i++){
@@ -136,17 +136,17 @@ public class TestHull{
 ////			z=rand.nextInt(500); //easy test
 //			hull2.addPoint(new convexHull.JVertex(x, y, z));
 //			}
-//		
-//			
+//
+//
 //			List<convexHull.JFace> erg2 = hull2.computeHull();
 //		endTime=System.currentTimeMillis();
-//		
+//
 //		delta = endTime-startTime;
 //		time=delta/1000;
 //		System.out.println(time);
 //		System.out.println(erg2);
 //		hull.ConvexHull hull3 = new hull.ConvexHull();
-//		
+//
 //		startTime=System.currentTimeMillis();
 //		rand=new Random(0);
 //		for (int i=0;i<1000000;i++){
@@ -158,11 +158,11 @@ public class TestHull{
 ////			z=rand.nextInt(500); //easy test
 //			hull3.addPoint(new j3d.Vertex(x, y, z));
 //			}
-//		
-//			
+//
+//
 //			hull3.compute();
 //		endTime=System.currentTimeMillis();
-//		
+//
 //		delta = endTime-startTime;
 //		time=delta;
 //		System.out.println(time);
@@ -180,7 +180,7 @@ public class TestHull{
 //		}
 //	public void testHull2(){
 //		hull.ConvexHull hull3 = new hull.ConvexHull();
-//		
+//
 //		long startTime=System.currentTimeMillis();
 //		Random rand=new Random(0);
 //		for (int i=0;i<1000000;i++){
@@ -192,16 +192,16 @@ public class TestHull{
 ////			z=rand.nextInt(500); //easy test
 //			hull3.addPoint(new j3d.Vertex(x, y, z));
 //			}
-//		
-//			
+//
+//
 //			hull3.compute();
 //		long endTime=System.currentTimeMillis();
-//		
+//
 //		long delta = endTime-startTime;
 //		double time=delta;
 //		System.out.println(time);
 //		JConvexHull hull=new JConvexHull();
-//			
+//
 //		startTime=System.currentTimeMillis();
 //		 rand=new Random(0);
 //		for (int i=0;i<1000000;i++){
@@ -213,17 +213,17 @@ public class TestHull{
 ////			z=rand.nextInt(500); //easy test
 //			hull.addPoint(new JVertex(x, y, z));
 //			}
-//		
-//			
+//
+//
 //			hull.compute();
 //		 endTime=System.currentTimeMillis();
-//		
+//
 //		delta = endTime-startTime;
 //		time=delta;
 //		System.out.println(time);
-//		
+//
 //		JConvexHull hull2 = new JConvexHull();
-//		
+//
 //		startTime=System.currentTimeMillis();
 //		rand=new Random(0);
 //		for (int i=0;i<1000000;i++){
@@ -235,15 +235,15 @@ public class TestHull{
 ////			z=rand.nextInt(500); //easy test
 //			hull2.addPoint(new JVertex(x, y, z));
 //			}
-//		
-//			
+//
+//
 //			hull2.compute();
 //		endTime=System.currentTimeMillis();
-//		
+//
 //		delta = endTime-startTime;
 //		time=delta;
 //		System.out.println(time);
-//		
+//
 
 ////		JConvexHull hull = new JConvexHull();
 ////		hull.addPoint(0, 0, 0);

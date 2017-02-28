@@ -30,6 +30,7 @@ public class TestJPolygon {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPolygon polygon = new JPolygon(1);
+		polygon.setDraw(true);
 
 		PolygonSimple p = new PolygonSimple();
 		p.add(30, 50);

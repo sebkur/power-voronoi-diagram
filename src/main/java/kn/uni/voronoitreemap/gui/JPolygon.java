@@ -53,6 +53,7 @@ public class JPolygon extends JComponent implements VoroCellObject {
 	private int height=0;
 	private boolean makeFontSmaller=false;
 	
+	private boolean draw = false;
 	
 	public JPolygon(Integer id, String title){
 		this(id);
@@ -191,73 +192,75 @@ public void calculateFittingFont(){
 	
 	@Override
 	public void paintComponent(Graphics g) {
-//		if (polygon!=null){
-//		Graphics2D g2 = (Graphics2D)g;
-//		if (isFinal)
-//		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-//				RenderingHints.VALUE_ANTIALIAS_ON);
-//		 Stroke stroke = new BasicStroke(1.4F);
-//			    g2.setStroke(stroke);
-//		
-//		int length = polygon.getNumPoints();
-//		double[] x = polygon.getXPoints();
-//		double[] y = polygon.getYPoints();
-//		int tx = this.getLocation().x;
-//		int ty = this.getLocation().y;
-//		
-//		/**
-//		 * Fill Polygon
-//		 */
-//		int[] x2=new int[length+1];
-//		int[] y2=new int[length+1];
-//		for (int i = 0; i <= length; i++){
-//			x2[i]=(int) x[i]-tx;
-//			y2[i]=(int) y[i]-ty;
-//		}
-//		g.setColor(new Color(fillColor.getRed(),fillColor.getGreen(),fillColor.getBlue(),80));
-//		g.fillPolygon(x2, y2, length);
-//		
-//		/**
-//		 * Draw Border
-//		 */
-//		if (mouseIn==true){
-//			g.setColor(Color.blue);
-//		}else{
-////			g.setColor(Color.black);
-//			g.setColor(fillColor.darker());
-//		}
-//		
-//		for (int i = 0; i < (length-1); i++){
-//			g.drawLine(x2[i], y2[i], x2[i + 1], y2[i + 1]);
-//		}
-//		g.drawLine(x2[length-1], y2[length-1], x2[0], y2[0]);
-//
-//		
-////		if (mouseIn){
-////			Vector<Double> circle = polygon.getInnerCircle();
-////			g.setColor(Color.blue);
-////			g.drawOval((int)(circle.get(0)-circle.get(2))-getLocation().x, (int)(circle.get(1)-circle.get(2))-getLocation().y, (int)(circle.get(2)*2),(int)(circle.get(2)*2));
-////		}
-//		if (isFinal){
-//		if (textFont!=null){
-//		FontMetrics fontMetrics = getFontMetrics(textFont);
-//   	int w = fontMetrics.stringWidth(text);
-//        int h = fontMetrics.getHeight();
-//		//g.setColor(new Color(237, 240, 249));
-//        if (mouseIn && isLast){
-//        	g.setColor(new Color(175,175,175,200));
-//        }else{
-//        	if (height==2)
-//        	g.setColor(new Color(175,175,175,60));
-//        	else g.setColor(new Color(175,175,175,100));
-//        }
-//       
-//		g.setFont(textFont);
-//       
-//		g.drawString(text, (int)polygon.getCentroid().getX()-tx-(int)(w/2), (int)polygon.getCentroid().getY()-ty+(int)(h/2));
-//		}
-//		}
-//		}
+		if (!draw) {
+			return;
+		}
+		if (polygon!=null){
+			Graphics2D g2 = (Graphics2D)g;
+			if (isFinal)
+				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+						RenderingHints.VALUE_ANTIALIAS_ON);
+			Stroke stroke = new BasicStroke(1.4F);
+			g2.setStroke(stroke);
+
+			int length = polygon.getNumPoints();
+			double[] x = polygon.getXPoints();
+			double[] y = polygon.getYPoints();
+			int tx = this.getLocation().x;
+			int ty = this.getLocation().y;
+
+			/**
+			 * Fill Polygon
+			 */
+			int[] x2=new int[length+1];
+			int[] y2=new int[length+1];
+			for (int i = 0; i <= length; i++){
+				x2[i]=(int) x[i]-tx;
+				y2[i]=(int) y[i]-ty;
+			}
+			g.setColor(new Color(fillColor.getRed(),fillColor.getGreen(),fillColor.getBlue(),80));
+			g.fillPolygon(x2, y2, length);
+
+			/**
+			 * Draw Border
+			 */
+			if (mouseIn==true){
+				g.setColor(Color.blue);
+			}else{
+//				g.setColor(Color.black);
+				g.setColor(fillColor.darker());
+			}
+
+			for (int i = 0; i < (length-1); i++){
+				g.drawLine(x2[i], y2[i], x2[i + 1], y2[i + 1]);
+			}
+			g.drawLine(x2[length-1], y2[length-1], x2[0], y2[0]);
+
+//			if (mouseIn){
+//				Vector<Double> circle = polygon.getInnerCircle();
+//				g.setColor(Color.blue);
+//				g.drawOval((int)(circle.get(0)-circle.get(2))-getLocation().x, (int)(circle.get(1)-circle.get(2))-getLocation().y, (int)(circle.get(2)*2),(int)(circle.get(2)*2));
+//			}
+			if (isFinal){
+				if (textFont!=null){
+					FontMetrics fontMetrics = getFontMetrics(textFont);
+					int w = fontMetrics.stringWidth(text);
+					int h = fontMetrics.getHeight();
+//					g.setColor(new Color(237, 240, 249));
+					if (mouseIn && isLast){
+						g.setColor(new Color(175,175,175,200));
+					}else{
+						if (height==2)
+							g.setColor(new Color(175,175,175,60));
+						else g.setColor(new Color(175,175,175,100));
+					}
+
+					g.setFont(textFont);
+
+					g.drawString(text, (int)polygon.getCentroid().getX()-tx-(int)(w/2), (int)polygon.getCentroid().getY()-ty+(int)(h/2));
+				}
+			}
+		}
 	}
 	@Override
 	public boolean contains(int x, int y) {
@@ -327,4 +330,13 @@ public void calculateFittingFont(){
 		this.polygon=polygon;
 		
 	}
+
+	public boolean isDraw() {
+		return draw;
+	}
+
+	public void setDraw(boolean draw) {
+		this.draw = draw;
+	}
+
 }

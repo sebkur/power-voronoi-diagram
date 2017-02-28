@@ -12,18 +12,15 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.debug;
 
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-
-
 /**
  * JFrame with buffered image.
+ * 
  * @author Arlind Nocaj
- *
  */
 public class ImageFrame extends JFrame{
 

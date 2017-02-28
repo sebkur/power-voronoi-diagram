@@ -12,7 +12,6 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.diagram;
 
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
@@ -31,13 +30,11 @@ import kn.uni.voronoitreemap.j2d.Point2D;
 import kn.uni.voronoitreemap.j2d.PolygonSimple;
 import kn.uni.voronoitreemap.j2d.Site;
 
-
 /**
  * Computes the PowerDiagram by using the convex hull of the transformed half
  * planes of the sites.
  * 
  * @author Arlind Nocaj
- * 
  */
 public class PowerDiagram {
 

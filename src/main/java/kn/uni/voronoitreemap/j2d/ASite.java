@@ -20,12 +20,10 @@ import kn.uni.voronoitreemap.convexHull.JVertex;
 import kn.uni.voronoitreemap.debug.Colors;
 import kn.uni.voronoitreemap.extension.VoroCellObject;
 
-
 /**
  * A site is a 2 dimensional point which has a weight.
  * 
  * @author Arlind Nocaj
- *
  */
 public class ASite extends JVertex implements Comparable<Site>, ISite {
 

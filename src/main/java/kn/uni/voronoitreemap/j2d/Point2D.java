@@ -14,8 +14,8 @@ package kn.uni.voronoitreemap.j2d;
 
 /**
  * Two-dimensional point, which also has functions as a two-dimensional vectors
+ * 
  * @author Arlind Nocaj
- *
  */
 public class Point2D {
 

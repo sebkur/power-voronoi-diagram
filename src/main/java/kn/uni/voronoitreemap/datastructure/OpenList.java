@@ -12,7 +12,6 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.datastructure;
 
-
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -21,12 +20,13 @@ import java.util.Random;
 import kn.uni.voronoitreemap.j2d.PolygonSimple;
 import kn.uni.voronoitreemap.j2d.Site;
 
-
 /**
  * Direct accessable array list for faster iteration.
- * @author Arlind Nocaj	
+ * 
+ * @author Arlind Nocaj
  *
- * @param <E> type of Elements
+ * @param <E>
+ *            type of Elements
  */
 public class OpenList implements Iterable<Site>{
 

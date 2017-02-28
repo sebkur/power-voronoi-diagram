@@ -15,7 +15,6 @@ package kn.uni.voronoitreemap.j3d;
 import kn.uni.voronoitreemap.convexHull.JFace;
 import kn.uni.voronoitreemap.j2d.Point2D;
 
-
 public class Plane3D {
 
 	/**
@@ -25,7 +24,6 @@ public class Plane3D {
 	final public double b;
 	final public double c;
 	final public double d;
-
 
 	/**
 	 * Computation of the plane from three points,

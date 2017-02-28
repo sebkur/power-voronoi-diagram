@@ -12,7 +12,6 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.j2d;
 
-
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
@@ -27,11 +26,11 @@ import kn.uni.voronoitreemap.convexClip.CVertex;
 import kn.uni.voronoitreemap.convexClip.CVertexList;
 import kn.uni.voronoitreemap.helper.Geometry;
 
-
 /**
- * Implements a simple polygon with one continous region, by using two double arrays.
+ * Implements a simple polygon with one continous region, by using two double
+ * arrays.
+ * 
  * @author Arlind Nocaj
- *
  */
 public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 

@@ -14,11 +14,10 @@ package kn.uni.voronoitreemap.helper;
 
 import kn.uni.voronoitreemap.j2d.Point2D;
 
-
 /**
  * Helper class for sum small computations.
+ * 
  * @author Nocaj
- *
  */
 public class Geometry {
 

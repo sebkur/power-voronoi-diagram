@@ -12,7 +12,6 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.gui;
 
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,12 +32,10 @@ import kn.uni.voronoitreemap.extension.VoroCellObject;
 import kn.uni.voronoitreemap.j2d.Point2D;
 import kn.uni.voronoitreemap.j2d.PolygonSimple;
 
-
-
 /**
  * Polygon Class to show the polygon as a component.
+ * 
  * @author Nocaj
- *
  */
 public class JPolygon extends JComponent implements VoroCellObject {
 

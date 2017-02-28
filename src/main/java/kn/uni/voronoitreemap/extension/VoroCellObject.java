@@ -16,8 +16,8 @@ import kn.uni.voronoitreemap.j2d.PolygonSimple;
 
 /**
  * Provides callback method for notification.
+ * 
  * @author Arlind Nocaj
- *
  */
 public interface VoroCellObject {
 

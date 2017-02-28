@@ -16,8 +16,8 @@ import java.awt.Color;
 
 /**
  * Just some colors which are used for debugging.
+ * 
  * @author Arlind Nocaj
- *
  */
 public class Colors {
 

@@ -12,15 +12,12 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.helper;
 
-
-
 import java.awt.Color;
-
 
 /**
  * Color Interpolator, e.g. for Fading and Highlighting
+ * 
  * @author Nocaj
- *
  */
 public class InterpolColor {
 

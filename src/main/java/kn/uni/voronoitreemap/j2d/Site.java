@@ -19,8 +19,8 @@ import kn.uni.voronoitreemap.debug.Colors;
 
 /**
  * Extended Version of a site, which has relative Positions
+ * 
  * @author Arlind Nocaj
- *
  */
 public class Site extends ASite {
 	double deltaX;

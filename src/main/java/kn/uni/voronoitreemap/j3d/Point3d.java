@@ -13,19 +13,19 @@
 package kn.uni.voronoitreemap.j3d;
 
 public class Point3d {
-public final double x;
-public final double y;
-public final double z;
 
-/**
- * 3D Point class, for compatibility.
- * @param a
- * @param b
- * @param c
- */
-public Point3d(double a,double b,double c){
-	x=a;y=b;z=c;
-}
+	public final double x;
+	public final double y;
+	public final double z;
 
+	/**
+	 * 3D Point class, for compatibility.
+	 * @param a
+	 * @param b
+	 * @param c
+	 */
+	public Point3d(double a,double b,double c){
+		x=a;y=b;z=c;
+	}
 
 }

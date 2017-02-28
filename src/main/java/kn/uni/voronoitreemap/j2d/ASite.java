@@ -17,7 +17,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import kn.uni.voronoitreemap.convexHull.JVertex;
-import kn.uni.voronoitreemap.debuge.Colors;
+import kn.uni.voronoitreemap.debug.Colors;
 import kn.uni.voronoitreemap.extension.VoroCellObject;
 
 

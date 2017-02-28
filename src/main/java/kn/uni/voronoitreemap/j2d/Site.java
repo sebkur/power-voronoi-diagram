@@ -15,7 +15,7 @@ package kn.uni.voronoitreemap.j2d;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import kn.uni.voronoitreemap.debuge.Colors;
+import kn.uni.voronoitreemap.debug.Colors;
 
 /**
  * Extended Version of a site, which has relative Positions

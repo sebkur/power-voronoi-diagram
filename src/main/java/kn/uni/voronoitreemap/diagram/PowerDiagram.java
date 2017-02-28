@@ -26,7 +26,7 @@ import kn.uni.voronoitreemap.convexHull.JConvexHull;
 import kn.uni.voronoitreemap.convexHull.JFace;
 import kn.uni.voronoitreemap.convexHull.JVertex;
 import kn.uni.voronoitreemap.datastructure.OpenList;
-import kn.uni.voronoitreemap.debuge.ImageFrame;
+import kn.uni.voronoitreemap.debug.ImageFrame;
 import kn.uni.voronoitreemap.j2d.Point2D;
 import kn.uni.voronoitreemap.j2d.PolygonSimple;
 import kn.uni.voronoitreemap.j2d.Site;

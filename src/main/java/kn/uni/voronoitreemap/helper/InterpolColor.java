@@ -23,6 +23,7 @@ import java.awt.Color;
  *
  */
 public class InterpolColor {
+
 	double minValue;
 	double maxValue;
 	double leftH;
@@ -82,7 +83,7 @@ public class InterpolColor {
 
 		return new Color(Color.HSBtoRGB((float) h, (float) s, (float) v));
 	}
-	
+
 	/**
 	 * key value and the alpha value for this color, which is from 0 to 255
 	 * @param key
@@ -98,8 +99,8 @@ public class InterpolColor {
 		double h = leftH + anteil * divH;
 		double s = leftS + anteil * divS;
 		double v = leftV + anteil * divV;
-	Color c = new Color(Color.HSBtoRGB((float) h, (float) s, (float) v));
-	
+		Color c = new Color(Color.HSBtoRGB((float) h, (float) s, (float) v));
+
 		return new Color(c.getRed(),c.getGreen(),c.getBlue(),alpha);
 	}
 

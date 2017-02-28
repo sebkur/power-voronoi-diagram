@@ -32,48 +32,48 @@ public class Site extends ASite {
 	public boolean isDummy;
 	private Object data;
 	private double lastIncrease;
-	
+
 	/**
-	  * 
-	  * @param x x-coordinate
-	  * @param y y-coordinate
-	  */
-	 public Site(double x, double y){
+	 * 
+	 * @param x x-coordinate
+	 * @param y y-coordinate
+	 */
+	public Site(double x, double y){
 		super(x,y);
-	 }
-	 
-	 public Object getData(){
-		 return data;
-	 }
-	 
-	 /**
-	  * 
-	  * @param x x-coordinate
-	  * @param y y-coordinate
-	  * @param weight the weight of the site, where weight=radius*radius which is used for weighting
-	  */
-	 public Site(double x, double y, double weight){
+	}
+
+	public Object getData(){
+		return data;
+	}
+
+	/**
+	 * 
+	 * @param x x-coordinate
+	 * @param y y-coordinate
+	 * @param weight the weight of the site, where weight=radius*radius which is used for weighting
+	 */
+	public Site(double x, double y, double weight){
 		super(x,y,weight);
-	 }
-	 
-	 public Site(double x, double y, double weight, double percentage){
-		 super(x,y,weight,percentage); 
-	 }
-	 
-	 public Site clone(){
-		 Site site=new Site(x, y, weight);
-		 site.isDummy=this.isDummy;
-		 site.originalObject=this.originalObject;
-		 site.percentage=this.percentage;
-		 
-		 
-			return site;
-	 }
-	 public Site cloneZeroWeight(){
+	}
+
+	public Site(double x, double y, double weight, double percentage){
+		super(x,y,weight,percentage);
+	}
+
+	public Site clone(){
+		Site site=new Site(x, y, weight);
+		site.isDummy=this.isDummy;
+		site.originalObject=this.originalObject;
+		site.percentage=this.percentage;
+
+		return site;
+	}
+	public Site cloneZeroWeight(){
 			Site site=new Site(x, y, 0);
 			return site;
-		}
-	 @Override
+	}
+
+	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString();
@@ -92,25 +92,25 @@ public class Site extends ASite {
 	}
 
 	public void paintLastIncrease(Graphics2D g, double radSize){
-		
-		
+
 		int radius = (int) ((lastIncrease-1)*radSize);
-		
+
 		if(radius>=0)
 		g.setColor(new Color(0,0,128,128));
 		else g.setColor(new Color(0,255,0,128));
 		radius=Math.abs(radius);
 		radius=Math.min((int)radSize, radius);
-		g.fillOval((int)this.getX()-radius, (int)this.getY()-radius, 2*radius, 2*radius);		
+		g.fillOval((int)this.getX()-radius, (int)this.getY()-radius, 2*radius, 2*radius);
 		g.setColor(Color.BLUE);
 		g.drawOval((int)this.getX()-radius, (int)this.getY()-radius, 2*radius, 2*radius);
 		g.setColor(Color.black);
 		int width=1;
 		g.fillRect((int)this.getX()-width, (int)this.getY()-width, 2*width,2*width );
-		
+
 	}
-	
+
 	public double getLastIncrease() {
 		return lastIncrease;
 	}
+
 }

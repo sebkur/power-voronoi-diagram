@@ -55,9 +55,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	protected double[] x; /** x-coordinates */
 	protected double[] y; /** y-coordinates */
 	public int length = 0;
-	
-	
-	
+
 	public PolygonSimple() {
 		x = new double[16];
 		y = new double[16];
@@ -76,7 +74,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			y = new double[16];
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param xPoints x-coordinate of the polygon points
@@ -91,7 +89,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		this.y = Arrays.copyOf(yPoints, length);
 		this.length = length;
 	}
-	
+
 	/**
 	 * 
 	 * @param xPoints x-coordinate of the polygon points
@@ -106,9 +104,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		this.y = Arrays.copyOf(yPoints, length);
 		this.length = length;
 	}
-	
-	
-	
+
 	/**
 	 * Replaces the pointers of the coordinate arrays to show to the given coordinate arrays.
 	 */
@@ -120,7 +116,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		this.y = simple.y;
 		length = simple.length;
 	}
-	
+
 	/**
 	 * tests whether the given point is contained in the polygon (linear time).
 	 */
@@ -142,9 +138,10 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		}
 		return contains;
 	}
-/**
- * {@link #contains(double, double, double, double)}
- */
+
+	/**
+	 * {@link #contains(double, double, double, double)}
+	 */
 	@Override
 	public boolean contains(Rectangle2D r) {
 		return contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
@@ -156,7 +153,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	public boolean contains(Point2D p) {
 		return contains(p.getX(), p.getY());
 	}
-	
+
 	/**
 	 * {@link #contains(double, double)}
 	 */
@@ -164,7 +161,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	public boolean contains(java.awt.geom.Point2D p) {
 		return contains(p.getX(), p.getY());
 	}
-	
+
 	/**
 	 * tests whether each corner point of the given rectangle is contained in the polygon.
 	 */
@@ -189,7 +186,6 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		}
 		return bounds;
 	}
-
 
 	/**
 	 * Returns the path iterator for the shape(rather slow compared to using the point arrays directly).
@@ -310,14 +306,14 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			return (index == 0 ? SEG_MOVETO : SEG_LINETO);
 		}
 	}
-	
+
 	/**
 	 * tests whether the given rectangle will intersect to the bounds of the polygon.
 	 */
 	@Override
 	public boolean intersects(Rectangle2D r) {
 		if (bounds==null){
-		getBounds();
+			getBounds();
 		}
 		return bounds.intersects(r);
 	}
@@ -369,7 +365,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	public int getNumPoints(){
 		return length;
 	}
-	
+
 	/**
 	 * Adds a point to the polygon. Extends the corresponding array if necessary.
 	 */
@@ -381,12 +377,10 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			System.arraycopy(this.y, 0, newY, 0, length);
 			this.x = newX;
 			this.y = newY;
-
 		}
 		this.x[length] = x;
 		this.y[length] = y;
 		length++;
-
 	}
 
 	/**
@@ -408,7 +402,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	 * @param ty translation on y
 	 */
 	public void translate(double tx, double ty) {
-		
+
 		for (int i = 0; i < length; i++) {
 			x[i] = x[i] + tx;
 			y[i] = y[i] + ty;
@@ -431,7 +425,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		add(p.x, p.y);
 	}
 
-	
+
 	/**
 	 * Uses the linear time algorithm of O'Rourke to compute the intersection of
 	 * two convex polygons.
@@ -445,10 +439,10 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			return null;
 		//check if bounding box corners are in polygon: then poly is contained completely inside the outer polygon
 		if (this.contains(poly.getBounds2D()))
-			return poly;		
+			return poly;
 
 		//bounding boxes intersect 
-	
+
 		// to vertexList
 		cVertexList list1 = this.getVertexList();
 		cVertexList list2 = poly.getVertexList();
@@ -485,7 +479,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		//no intersection between the two polygons, so check if one is inside the other
 		if(contains(poly.x[0],poly.y[0]))
 			return poly;
-		
+
 		// no intersection between the polygons at all
 		return null;
 	}
@@ -501,7 +495,6 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 					System.out.println(p);
 					inside=false;
 					return p;
-					
 				}
 			}
 			return null;
@@ -514,7 +507,6 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			list.InsertBeforeHead(vertex);
 		}
 		return list;
-
 	}
 
 	/**
@@ -535,7 +527,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		this.area = Math.abs(area) * 0.5;
 		return this.area;
 	}
-	
+
 	/**
 	 * For the given point, the minimal distance to the segments of the polygon
 	 * is computed.
@@ -555,7 +547,6 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			}
 		}
 		return result;
-
 	}
 
 	/**
@@ -615,13 +606,13 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		// */
 		// double[] xnew = new double[x.length];
 		// double[] ynew=new double[y.length];
-		//	
+		//
 		// Point2D p0=null;
 		// Point2D p1=new Point2D.Double(x[length-1], y[length-1]);
 		// Point2D p2=new Point2D.Double(x[0],y[0]);
 		// double borderWidth=10;
 		// for (int i=1;i<=length;i++){
-		//			
+		//
 		// p0=p1;
 		// p1=p2;
 		// if (i==length){
@@ -629,34 +620,35 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		// }else{
 		// p2=new Point2D.Double(x[i], y[i]);
 		// }
-		//			
+		//
 		// double endPointX =(p0.getX()+p2.getX())/2;
 		// double endPointY=(p0.getY()+p2.getY())/2;
 		// double deltaX=endPointX-p1.getX();
 		// double deltaY=endPointY-p1.getY();
-		//			
+		//
 		// double euclidLength = Math.sqrt(deltaX*deltaX+deltaY*deltaY);
-		//			
-		//			
+		//
+		//
 		// deltaX=deltaX/euclidLength;
 		// deltaY=deltaY/euclidLength;
-		//			
+		//
 		// deltaX=deltaX*borderWidth;
 		// deltaY=deltaY*borderWidth;
-		//			
+		//
 		// xnew[i-1]=p1.getX()+deltaX;
 		// ynew[i-1]=p1.getY()+deltaY;
 		// // }
-		//			
-		//		
+		//
+		//
 		// }
 		// // xnew[length]=xnew[0];
 		// // ynew[length]=ynew[0];
-		//		
+		//
 		// x=xnew;
 		// y=ynew;
 
 	}
+
 	/**
 	 * We get a vector which describes where the point should be relative to the
 	 * center. We change the length of the vector so that the point fits in the
@@ -815,9 +807,9 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			return null;
 		else
 			return intersections[0];
-		
+
 	}
-	
+
 	/**
 	 * intersection of two lines formed by the given points:
 	 * http://paulbourke.net/geometry/lineline2d/
@@ -830,7 +822,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	 */
 	private Point2D getIntersection(Point2D p1, Point2D p2, Point2D p3,
 			Point2D p4) {
-	
+
 		// Bounding Box test
 		double x1 = 0;
 		double x2 = 0;
@@ -926,7 +918,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	 */
 	private static Point2D getIntersectionOfSegmentAndLine(Point2D p1,
 			Point2D p2, Point2D p3, Point2D p4) {
-		
+
 		double denominator = (p4.getY() - p3.getY()) * (p2.getX() - p1.getX())
 				- (p4.getX() - p3.getX()) * (p2.getY() - p1.getY());
 		if (denominator == 0) {
@@ -949,7 +941,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 		}
 
 	}
-	
+
 	/**
 	 * Array with x-values of the polygon points.
 	 * @return 
@@ -965,7 +957,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 	public double[] getYPoints() {
 		return y;
 	}
-	
+
 	/**
 	 * If the polygon is modified by e.g. shrinking, this method returns the original polygon. If the polyogn was not modified, it can return null.
 	 * @return
@@ -980,42 +972,38 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>{
 			int i=0;
 			@Override
 			public boolean hasNext() {
-			return i<length;
+				return i<length;
 			}
 
 			@Override
 			public Point2D next() {
 				Point2D p = new Point2D(x[i],y[i]);
-				i++;				
+				i++;
 				return p; 
 			}
 
 			@Override
 			public void remove() {
-				
+
 			}
-			
-			
+
 		};
 	}
-	
-	
 
 	public int[] getXpointsClosed(){
 		return getPointsClosed(x);
 	}
-	
+
 	public int[] getYpointsClosed(){
 		return getPointsClosed(y);
 	}
-	
-	private int[] getPointsClosed(double[] values){		
+
+	private int[] getPointsClosed(double[] values){
 		int[] x=new int[length+1];
 		for (int i = 0; i < length; i++) 
-			x[i]=(int)values[i];		
+			x[i]=(int)values[i];
 		x[length]=x[0];
 		return x;
 	}
 
-	
 }

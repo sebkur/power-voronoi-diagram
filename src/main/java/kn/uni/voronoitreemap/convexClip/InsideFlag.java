@@ -11,11 +11,12 @@
  * Arlind Nocaj, Ulrik Brandes, "Computing Voronoi Treemaps: Faster, Simpler, and Resolution-independent", Computer Graphics Forum, vol. 31, no. 3, June 2012, pp. 855-864
  ******************************************************************************/
 package kn.uni.voronoitreemap.convexClip;
+
 /**
  * Flag whether p is inside q or q is inside p
+ * 
  * @author Hildenbrand, Nocaj
- *
  */
 public enum InsideFlag {
-		PIN,QIN,UNKNOWN
+	PIN, QIN, UNKNOWN
 }

@@ -15,23 +15,28 @@ package kn.uni.voronoitreemap.convexClip;
 import kn.uni.voronoitreemap.j2d.Point2D;
 
 /**
- * Result wrapper for intersection with information (= code) of intersection type
+ * Result wrapper for intersection with information (= code) of intersection
+ * type
+ * 
  * @author Hildenbrand, Nocaj
- *
  */
 public class InfoPoint {
+
 	Point2D erg;
 	Point2D snd;
 	char code;
+
 	public InfoPoint(Point2D erg, char code){
 		this.erg = erg;
 		this.code = code;
 	}
+
 	public InfoPoint(Point2D erg, Point2D snd, char code){
 		this.erg = erg;
 		this.code = code;
 		this.snd = snd;
 	}
+
 	public String toString(){
 		String ergs, snds = "";
 		if(erg == null){
@@ -44,4 +49,5 @@ public class InfoPoint {
 		}
 		return "c: " + code + " " + ergs + " " + snds; 
 	}
+
 }

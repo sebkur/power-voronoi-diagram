@@ -14,11 +14,12 @@ package kn.uni.voronoitreemap.convexClip;
 
 import kn.uni.voronoitreemap.j2d.Point2D;
 
-
 public class CVertexList {
+
 	private double epsilon = 0.00000001;
 	public int n;
 	public CVertex head;
+
 	public void InsertBeforeHead(CVertex vertex) {
 		if(head == null){
 			head = vertex;
@@ -34,8 +35,8 @@ public class CVertexList {
 				++n;
 			}
 		}
-
 	}
+
 	private double abs(double a, double b){
 		double i = b - a;
 		if(i > 0){
@@ -44,6 +45,7 @@ public class CVertexList {
 			return -i;
 		}
 	}
+
 	private boolean checkForIdentiy(CVertex vertex) {
 		Point2D c = vertex.v;
 		Point2D comp = head.prev.v;
@@ -53,6 +55,7 @@ public class CVertexList {
 			return true;
 		return false;
 	}
+
 	public CVertexList copyList() {
 		CVertex temp1 = head, temp2;
 		CVertexList erg = new CVertexList();
@@ -64,6 +67,7 @@ public class CVertexList {
 		}while(temp1 != head);
 		return erg;
 	}
+
 	public String toString(){
 		if (n == 0){
 			return "";
@@ -76,21 +80,22 @@ public class CVertexList {
 		}while(curr != head);
 		return erg;
 	}
-	public void ReverseList()
-	  {
-	    CVertexList listcopy = copyList();
-	    CVertex temp1, temp2;
-	    head = null;
-	    n = 0;
 
-	    //Fill this list in proper order:
-	    temp1 = listcopy.head;
-	    do {
-	      temp2 = new CVertex();
-	      temp2.v = temp1.v;
-	      InsertBeforeHead( temp2 );
-	      temp1 = temp1.prev;
-	    } while (temp1 != listcopy.head );
-	  //  System.out.println("Reversing list...");
-	  }
+	public void ReverseList() {
+		CVertexList listcopy = copyList();
+		CVertex temp1, temp2;
+		head = null;
+		n = 0;
+
+		// Fill this list in proper order:
+		temp1 = listcopy.head;
+		do {
+			temp2 = new CVertex();
+			temp2.v = temp1.v;
+			InsertBeforeHead( temp2 );
+			temp1 = temp1.prev;
+		} while (temp1 != listcopy.head );
+		//  System.out.println("Reversing list...");
+	}
+
 }

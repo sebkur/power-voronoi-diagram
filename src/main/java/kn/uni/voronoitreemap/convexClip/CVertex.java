@@ -15,25 +15,32 @@ package kn.uni.voronoitreemap.convexClip;
 import kn.uni.voronoitreemap.j2d.Point2D;
 
 /**
- * Container of the VertexList, with prev/next pointer and Point2D as information
+ * Container of the VertexList, with prev/next pointer and Point2D as
+ * information
+ * 
  * @author Hildenbrand, Nocaj
- *
  */
 public class CVertex {
-		public Point2D v;
-		public CVertex prev, next;
-		public CVertex(double x, double y){
-			v = new Point2D(x,y);
+
+	public Point2D v;
+	public CVertex prev, next;
+
+	public CVertex(double x, double y){
+		v = new Point2D(x,y);
+	}
+
+	public CVertex() {
+	}
+
+	public CVertex(Point2D erg) {
+		v = new Point2D(erg.x, erg.y);
+	}
+
+	public String toString(){
+		if(v != null){
+			return v.toString();
 		}
-		public CVertex() {
-		}
-		public CVertex(Point2D erg) {
-			v = new Point2D(erg.x, erg.y);
-		}
-		public String toString(){
-			if(v != null){
-				return v.toString();
-			}
-			return "";
-		}
+		return "";
+	}
+
 }

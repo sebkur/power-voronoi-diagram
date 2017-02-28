@@ -14,17 +14,18 @@ package kn.uni.voronoitreemap.convexClip;
 
 import kn.uni.voronoitreemap.j2d.Point2D;
 
-/**
+/** 
+ * ConvexClip used for computing intersection of two convex polygons in O(n+m)
  * 
  * @author Hildenbrand, Nocaj
- * ConvexClip used for computing intersection of two convex polygons in O(n+m)
- *
  */
 public class ConvexClip {
+
 	/**
 	 * Vertex List of the final intersection with the result of the computation 
 	 */
 	public CVertexList inters;
+
 	/**
 	 * 
 	 * @param list1 first polygon for the intersection
@@ -40,7 +41,7 @@ public class ConvexClip {
 				System.out.println("Polygons are not Convex...");
 				throw new RuntimeException("Polygons are not Convex...");
 			}
-		}		
+		}
 		if(!isConvex(q)){ //Check for convexity
 			q.ReverseList();//If list is not oriented counterclockwise
 			if(!isConvex(q)){
@@ -51,6 +52,7 @@ public class ConvexClip {
 		inters = new CVertexList(); //result list
 		ConvexIntersection(p,q,p.n,q.n);
 	}
+
 	/**
 	 * Using two counterclockwise oriented cVertexLists to compute the intersection of the corresponding polygons
 	 * @param p first counterclockwise oriented polygon
@@ -144,6 +146,7 @@ public class ConvexClip {
 		 */
 		}while(((ap < n) || (aq < m)) && (ap < 2*n) && (aq < 2*m)); 
 	}
+
 	/**
 	 * computes the dot Product
 	 * @param vP
@@ -153,6 +156,7 @@ public class ConvexClip {
 	private double dot(Point2D vP, Point2D vQ) {
 		return vP.x*vQ.x + vP.y*vQ.y;
 	}
+
 	/**
 	 * Checks whether p2 is convex and counterclockwise oriented
 	 * @param p2 VertexList 
@@ -172,6 +176,7 @@ public class ConvexClip {
 		}
 		return true;
 	}
+
 	/**
 	 * Computes the sign of the area of the triangle a,b,c 
 	 * @param a 
@@ -186,6 +191,7 @@ public class ConvexClip {
 		else if( area < -0.000005) return -1;
 		else return 0;
 	}
+
 	/**
 	 * checks if point c is between a and b or not 
 	 * @param a
@@ -199,6 +205,7 @@ public class ConvexClip {
 		else
 			return (c.y >= a.y && c.y <= b.y) || (c.y <= a.y && c.y >= b.y);
 	}
+
 	/**
 	 * computes the intersection of the egdes between ab and cd
 	 * @param a
@@ -241,4 +248,5 @@ public class ConvexClip {
 		}
 		return new InfoPoint(null,'n');
 	}
+
 }

@@ -40,8 +40,8 @@ import kn.uni.voronoitreemap.j2d.PolygonSimple;
  * @author Nocaj
  *
  */
-
 public class JPolygon extends JComponent implements VoroCellObject {
+
 	String text;
 	private Font textFont;
 	PolygonSimple polygon;
@@ -71,50 +71,49 @@ public class JPolygon extends JComponent implements VoroCellObject {
 		setPolygon(polygon);
 	}
 	
-public void calculateFittingFont(){
-	if (polygon==null || text==null) return;
+	public void calculateFittingFont(){
+		if (polygon==null || text==null) return;
 		textFont=null;
 		new Thread(){
-		public void run(){
-			Font font = new Font("Serif", Font.BOLD, 5);
-		int fontSize = 5;
-		int w=0;
-		int h=0;
-		Point2D centroid =polygon.getCentroid();
-		Point2D p1=centroid;
-		Point2D p2=centroid;
-		Point2D p3=centroid;
-		Point2D p4=centroid;
-       do{
-    	   fontSize+=2;
-    	   font = new Font("Serif", Font.PLAIN, fontSize);
-        	FontMetrics fontMetrics = getFontMetrics(font);
-            
-        	w = fontMetrics.stringWidth(text);
-            h = fontMetrics.getHeight();
-          
-            p1 = new Point2D(centroid.getX()-w/2,centroid.getY()-h/2);
-            p2 = new Point2D(centroid.getX()-w/2,centroid.getY()+h/2);
-            p3 = new Point2D(centroid.getX()+w/2,centroid.getY()-h/2);
-            p4 = new Point2D(centroid.getX()+w/2,centroid.getY()+h/2);
-             
-        }while(polygon.contains(p1)&& polygon.contains(p2) && polygon.contains(p3) && polygon.contains(p4));
-		if (fontSize-4>0){
-			if (makeFontSmaller){
-				textFont=new Font("Serif", Font.BOLD, (int)((fontSize)*0.6));
+			public void run(){
+				Font font = new Font("Serif", Font.BOLD, 5);
+				int fontSize = 5;
+				int w=0;
+				int h=0;
+				Point2D centroid =polygon.getCentroid();
+				Point2D p1=centroid;
+				Point2D p2=centroid;
+				Point2D p3=centroid;
+				Point2D p4=centroid;
+				do{
+					fontSize+=2;
+					font = new Font("Serif", Font.PLAIN, fontSize);
+					FontMetrics fontMetrics = getFontMetrics(font);
+
+					w = fontMetrics.stringWidth(text);
+					h = fontMetrics.getHeight();
+
+					p1 = new Point2D(centroid.getX()-w/2,centroid.getY()-h/2);
+					p2 = new Point2D(centroid.getX()-w/2,centroid.getY()+h/2);
+					p3 = new Point2D(centroid.getX()+w/2,centroid.getY()-h/2);
+					p4 = new Point2D(centroid.getX()+w/2,centroid.getY()+h/2);
+
+				}while(polygon.contains(p1)&& polygon.contains(p2) && polygon.contains(p3) && polygon.contains(p4));
+
+				if (fontSize-4>0){
+					if (makeFontSmaller){
+						textFont=new Font("Serif", Font.BOLD, (int)((fontSize)*0.6));
+					}
+					else {
+						if (text.length()<=4 && height==3){
+							//small words gett smaller so that they do not look too important
+							textFont=new Font("Serif", Font.BOLD, (int)(fontSize*0.6));
+						}else{
+							textFont=new Font("Serif", Font.BOLD, fontSize-4);
+						}
+					}
+				}
 			}
-			else {
-				if (text.length()<=4 && height==3){
-					//small words gett smaller so that they do not look too important
-					textFont=new Font("Serif", Font.BOLD, (int)(fontSize*0.6));
-				}else{
-				textFont=new Font("Serif", Font.BOLD, fontSize-4);
-				}
-				}
-			
-			
-		}
-		}
 		}.start();
 	}
 	
@@ -122,6 +121,7 @@ public void calculateFittingFont(){
 	public PolygonSimple getPolygon(){
 		return polygon;
 	}
+
 	private void initListeners() {
 		this.addMouseListener(new MouseListener() {
 			
@@ -152,15 +152,15 @@ public void calculateFittingFont(){
 			}
 		});
 	}
-	
-	
+
+
 	protected void doMousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e);
 	}
+
 	protected void doMouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	protected void doMouseClicked(MouseEvent e) {
@@ -178,7 +178,7 @@ public void calculateFittingFont(){
 		mouseIn=false;
 		repaint();
 	}
-	
+
 	public void setPolygon(PolygonSimple p){
 		this.polygon=p;
 		if (polygon!=null){
@@ -189,7 +189,7 @@ public void calculateFittingFont(){
 		this.repaint();
 		}
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		if (!draw) {
@@ -262,6 +262,7 @@ public void calculateFittingFont(){
 			}
 		}
 	}
+
 	@Override
 	public boolean contains(int x, int y) {
 //	return false;
@@ -270,7 +271,7 @@ public void calculateFittingFont(){
 			return polygon.contains(x+this.getLocation().x,y+ getLocation().y);
 		}else return false;
 	}
-	
+
 	@Override
 	public boolean contains(Point p) {
 //		return false;
@@ -307,28 +308,30 @@ public void calculateFittingFont(){
 		this.setPreferredSize(new Dimension(bounds.width, bounds.height));
 //		repaint();
 	}
+
 	public void setIsLast(boolean isLast) {
 		this.isLast = isLast;
 	}
+
 	public boolean getisLast() {
 		return isLast;
 	}
+
 	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;
 	}
-	
-	
+
 	public Color getFillColor() {
 		return fillColor;
 	}
-	
+
 	public void setMakeFontSmaller(boolean b) {
 		makeFontSmaller=b;
 	}
+
 	@Override
 	public void setVoroPolygon(PolygonSimple polygon) {
 		this.polygon=polygon;
-		
 	}
 
 	public boolean isDraw() {

@@ -12,6 +12,8 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.gui;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import kn.uni.voronoitreemap.j2d.PolygonSimple;
@@ -31,6 +33,7 @@ public class TestJPolygon {
 
 		JPolygon polygon = new JPolygon(1);
 		polygon.setDraw(true);
+		polygon.setFillColor(Color.RED);
 
 		PolygonSimple p = new PolygonSimple();
 		p.add(30, 50);

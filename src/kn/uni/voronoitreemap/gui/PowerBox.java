@@ -43,11 +43,12 @@ import kn.uni.voronoitreemap.j2d.Site;
  * @author Arlind Nocaj
  */
 public class PowerBox extends JPanel {
+
 	OpenList sites=new OpenList();
 	PolygonSimple clipPoly=new PolygonSimple();
-	
+
 	HashMap<Double, HashSet<Site>> vertices=new HashMap<Double, HashSet<Site>>();
-	public static PowerBox powerBox=null;
+
 	JPanel panel=new JPanel();
 	public PowerBox() {
 		super();
@@ -55,7 +56,6 @@ public class PowerBox extends JPanel {
 		clipPoly.add(50,800);
 		clipPoly.add(800,800);
 		clipPoly.add(800,50);
-		this.powerBox=this;
 		addMouseListener(mouseAdapter);
 		addMouseMotionListener(mouseAdapter);
 	}
@@ -87,14 +87,14 @@ public class PowerBox extends JPanel {
 				}
 			}
 			if (changedWeight) {
-				PowerBox.powerBox.computeDiagram();
-				PowerBox.powerBox.repaint();
+				computeDiagram();
+				repaint();
 				return;
 			}
 
 			addSite(e.getPoint());
 
-			PowerBox.powerBox.computeDiagram();
+			computeDiagram();
 			setPreferredSize(getSize());
 			repaint();
 		}

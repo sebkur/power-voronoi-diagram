@@ -12,17 +12,20 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.convexHull;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Class for computing the convex hull of given vertices with a randomized incremental algorithm in O(n*log(n)) after book of Mark de Berg/Marc van Kreveld
- * /Mark Overmars/Otfried Schwarzkopf, Computational geometry:algorithms and applications
- *@author Nocaj, Hildenbrand
+ * Class for computing the convex hull of given vertices with a randomized
+ * incremental algorithm in O(n*log(n)) after book of Mark de Berg/Marc van
+ * Kreveld/Mark Overmars/Otfried Schwarzkopf, Computational geometry:algorithms
+ * and applications
+ * 
+ * @author Nocaj, Hildenbrand
  */
 public class JConvexHull {
+
 	//List of all vertices
 	private List<JVertex> points;
 	//List of current facets of the hull
@@ -48,17 +51,20 @@ public class JConvexHull {
 		visible = new ArrayList<JFace>();
 		current = 0;
 	}
+
 	public void addPoint(JVertex v){
-	JVertex tempVertex = new JVertex(v.x, v.y, v.z);
-	tempVertex.originalObject=v;
-	tempVertex.setIndex(points.size());
+		JVertex tempVertex = new JVertex(v.x, v.y, v.z);
+		tempVertex.originalObject=v;
+		tempVertex.setIndex(points.size());
 		points.add(tempVertex);
 	}
+
 	public void addPoint(double x, double y, double z){
 		JVertex v = new JVertex(x,y,z);
 		v.setIndex(points.size());
 		points.add(v);
 	}
+
 	/**
 	 * Computation method for the convex hull, after the algorithm in the Book of  Mark de Berg and the others.
 	 * @return returns computed Hull as list of facets
@@ -123,9 +129,6 @@ public class JConvexHull {
 		return facets;
 	}
 
-	
-	
-	
 	/**
 	 * Conflicts of the new JFace can be only the conflicts of the incident JFaces of the horizon edge
 	 * @param old1 incident facet of the horizon edge
@@ -191,11 +194,10 @@ public class JConvexHull {
 	    facets.set(index, last);
 	}
 
-	
+
 	/**
 	 * Prepares the convex hull computation
 	 * Builds the tetrahedron, fills the conflict graph and builds permutation for the points list
-	 * 
 	 */
 	private void prep() {
 		if(points.size() <= 3) { //A tetrahedron needs at least 4 points
@@ -281,6 +283,7 @@ public class JConvexHull {
 			}
 		}		
 	}
+
 	/**
 	 * Creates the permutation of the vertices with the Fisher-Yates Shuffle.
 	 */
@@ -297,33 +300,40 @@ public class JConvexHull {
 		}
 		
 	}
+
 	private void addFacet(JFace f0) {
 		f0.setIndex(facets.size());
 		facets.add(f0);	
 	}
-	
+
 	private void addConflict(JFace f0, JVertex v) {
 		JGraphEdge e = new JGraphEdge(f0,v);
 		f0.getList().add(e);
 		v.getList().add(e);		
 	}
-	
+
 	public int getVertexCount() {
 		return points.size();
 	}
+
 	public JVertex getVertex(int i) {
 		return points.get(i);
 	}
+
 	public int getFacetCount() {
 		return facets.size();
 	}
+
 	public JFace getFacet(int i) {
 		return facets.get(i);
 	}
+
 	private boolean isPermutate() {
 		return permutate;
 	}
+
 	private void setPermutate(boolean permutate) {
 		this.permutate = permutate;
 	}
+
 }

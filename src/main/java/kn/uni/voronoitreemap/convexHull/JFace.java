@@ -12,19 +12,20 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.convexHull;
 
-
-
 import kn.uni.voronoitreemap.j2d.Point2D;
 import kn.uni.voronoitreemap.j3d.Plane3D;
-import kn.uni.voronoitreemap.j3d.Point3d;
 
 /**
- * Facet class connected over double-connected edge list. Contains incident vertices and edges.
+ * Facet class connected over double-connected edge list. Contains incident
+ * vertices and edges.
+ * 
  * @author Nocaj, Hildenbrand
  */
 public class JFace {
+
 	private JConflictList list;
 	private boolean marked;
+
 	/**
 	 * Usefull
 	 */
@@ -38,9 +39,11 @@ public class JFace {
 	public int getIndex() {
 		return index;
 	}
+
 	public void setIndex(int index) {
 		this.index = index;
 	}
+
 	private Point2D dualPoint;  
 	public JFace(JVertex a, JVertex b, JVertex c) {
 		list = new JConflictList(true);
@@ -55,6 +58,7 @@ public class JFace {
 	    this.normal.normalize();
 	    createEdges();
 	}
+
 	/**
 	 * Creates the Face with a,b,c and orients with the 4th point (which is behind the facet).
 	 * 
@@ -63,6 +67,7 @@ public class JFace {
 		this(a,b,c);
 		orient(orient);
 	}
+
 	public void orient(JVertex orient) {
 		if(!behind(orient)){
 			JVertex temp = v[1];
@@ -73,6 +78,7 @@ public class JFace {
 		}
 		
 	}
+
 	private void createEdges() {
 		e[0] = new HEdge(v[0],v[1], this);
 		e[1] = new HEdge(v[1],v[2], this);
@@ -88,6 +94,7 @@ public class JFace {
 	public JConflictList getList() {
 		return list;
 	}
+
 	public void setList(JConflictList list) {
 		this.list = list;
 	}
@@ -103,8 +110,7 @@ public class JFace {
 	}
 
 	public boolean isVisibleFromBelow() {
-	return  (normal.z < -1.4259414393190911E-9);
-		
+		return (normal.z < -1.4259414393190911E-9);
 	}
 
 	public int getEdgeCount() {
@@ -114,12 +120,15 @@ public class JFace {
 	public HEdge getEdge(int index) {
 		return this.e[index];
 	}
+
 	public JVector getNormal() {
 		return normal;
 	}
+
 	public void setNormal(JVector normal) {
 		this.normal = normal;
 	}
+
 	/**
 	 * Links the given face f0 with the edge between v0 and v1 with the current face
 	 * 
@@ -131,14 +140,14 @@ public class JFace {
 		HEdge edge = getEdge(v0,v1);
 		twin.setTwin(edge);
 		edge.setTwin(twin);
-		
 	}
+
 	public void link(HEdge e){
 		HEdge edge = getEdge(e.getOrigin(),e.getDest());
 		e.setTwin(edge);
 		edge.setTwin(e);
-		
 	}
+
 	private HEdge getEdge(JVertex v0, JVertex v1) {
 		for(int i = 0; i < 3; i++){
 			if(e[i].isEqual(v0, v1))
@@ -146,39 +155,42 @@ public class JFace {
 		}
 		return null;
 	}
+
 	public Point2D getDualPoint(){
-		 
 		if (this.dualPoint==null){
-			  Plane3D plane3d=new Plane3D(this);
-			  dualPoint= plane3d.getDualPointMappedToPlane();
-		   }
+			Plane3D plane3d=new Plane3D(this);
+			dualPoint= plane3d.getDualPointMappedToPlane();
+		}
 		return dualPoint;
-	   }
-	
+	}
+
 	/**
 	 * Is the given vertex in front of or behind this face?
 	 */
 	public boolean behind(JVertex test) {
 		 return (normal.dot(test) < normal.dot(v[0])) ;
 	}
-	
+
 	public boolean conflict(JVertex test){
 		return (normal.dot(test) > normal.dot(v[0]) + epsilon);
 	}
-	
+
 	public int getVertexCount() {
 		return v.length;
 	}
+
 	public void setMarked(boolean marked) {
 		this.marked = marked;
 	}
+
 	public boolean isMarked() {
 		return marked;
 	}
+
 	public void removeConflict() {
 		list.removeAll();
-		
 	}
+
 	public HEdge getHorizon() {
 		for(int i = 0; i < 3; i++){
 			if(e[i].getTwin() != null && e[i].getTwin().isHorizon())
@@ -186,5 +198,5 @@ public class JFace {
 		}
 		return null;
 	}
-	
+
 }

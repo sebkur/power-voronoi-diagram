@@ -13,16 +13,20 @@
 package kn.uni.voronoitreemap.convexHull;
 
 import java.util.List;
+
 /**
- * Data structure to save the Conflict Graph of vertices and JFaces.
- * For every vertex is saved, which faces are in conflict  and for every JFace is saved, which vertices are in conflict.
- * The JConflictList supports constant-time add and remove methods.
+ * Data structure to save the Conflict Graph of vertices and JFaces. For every
+ * vertex is saved, which faces are in conflict and for every JFace is saved,
+ * which vertices are in conflict. The JConflictList supports constant-time add
+ * and remove methods.
  *
- *@author HildenBrand, Nocaj
+ * @author HildenBrand, Nocaj
  */
 public class JConflictList {
+
 	private boolean face;
 	protected JGraphEdge head;
+
 	/*
 	 * Whether the ConflictList is for a JFace or a vertex
 	 */
@@ -49,6 +53,7 @@ public class JConflictList {
 	public boolean empty() {
 		return head == null;
 	}
+
 	/*
 	 * fills visible List with all visible JFaces of the vertex and also marks the JFaces
 	 */
@@ -65,6 +70,7 @@ public class JConflictList {
 		}while(curr != null);
 		
 	}
+
 	/*
 	 * Remove all vertices from the JFace or all JFaces from the vertex
 	 */
@@ -111,7 +117,7 @@ public class JConflictList {
 		}
 		
 	}
-	
+
 	public List<JVertex> getVertices(List<JVertex> l1) {
 		JGraphEdge curr = head;
 		while(curr != null){

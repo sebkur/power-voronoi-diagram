@@ -13,16 +13,16 @@
 package kn.uni.voronoitreemap.convexHull;
 
 import java.util.List;
+
 /**
- * Class for representing an Edge in the JConvexHull.
- * Contains the origin and destination vertices, the twin edge, the incident JFace and the next and previous edge in the incident JFace
+ * Class for representing an Edge in the JConvexHull. Contains the origin and
+ * destination vertices, the twin edge, the incident JFace and the next and
+ * previous edge in the incident JFace
  *
  * @author Nocaj, Hildenbrand
  */
-
-
-
 public class HEdge {
+
 	private JVertex origin;
 	private JVertex dest;
 	private HEdge twin;
@@ -30,54 +30,68 @@ public class HEdge {
 	private HEdge next;
 	private HEdge prev;
 	
-	
 	public HEdge(JVertex origin, JVertex dest, JFace iFace) {
 		this.origin = origin;
 		this.dest = dest;
 		this.iFace = iFace;
 	}
+
 	public void setDest(JVertex dest) {
 		this.dest = dest;
 	}
+
 	public boolean isEqual(JVertex origin, JVertex dest){
 		return (this.origin.equals(origin) && this.dest.equals(dest)) || (this.origin.equals(dest) && this.dest.equals(origin));
 	}
+
 	public JVertex getOrigin() {
 		return origin;
 	}
+
 	public void setOrigin(JVertex origin) {
 		this.origin = origin;
 	}
+
 	public HEdge getTwin() {
 		return twin;
 	}
+
 	public void setTwin(HEdge twin) {
 		this.twin = twin;
 	}
+
 	public JFace getiFace() {
 		return iFace;
 	}
+
 	public void setiFace(JFace iFace) {
 		this.iFace = iFace;
 	}
+
 	public HEdge getNext() {
 		return next;
 	}
+
 	public void setNext(HEdge next) {
 		this.next = next;
 	}
+
 	public HEdge getPrev() {
 		return prev;
 	}
+
 	public void setPrev(HEdge prev) {
 		this.prev = prev;
 	}
+
 	public String toString() {
 		return origin.toString() + "->" + dest.toString();
 	}
+
 	public JVertex getDest() {
 		return dest;
 	}
+
 	public boolean isHorizon() {
 		return twin != null && twin.getiFace().isMarked() && !iFace.isMarked();
 	}

@@ -13,8 +13,11 @@
 package kn.uni.voronoitreemap.convexHull;
 
 public class NotEnoughPointsException extends RuntimeException {
+
 	public NotEnoughPointsException(String str) {
 		super(str);
 	}
+
 	public NotEnoughPointsException() {}
+
 }

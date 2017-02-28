@@ -12,13 +12,13 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.convexHull;
 
-
 /**
  * 3-dimensional Vector with some helpfull functions, e.g., normalizing ...
+ * 
  * @author Arlind Nocaj
- *
  */
 public class JVector {
+
 	public double x;
 	public double y;
 	public double z;
@@ -77,4 +77,5 @@ public class JVector {
 	public String toString(){
 		return "X: "+x+"\t Y: "+y+"\t Z: "+z;
 	}
+
 }

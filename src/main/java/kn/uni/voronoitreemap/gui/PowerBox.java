@@ -12,9 +12,7 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -25,7 +23,6 @@ import java.awt.geom.Point2D.Double;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import kn.uni.voronoitreemap.datastructure.OpenList;
@@ -149,24 +146,6 @@ public class PowerBox extends JPanel {
 		diagram.computeDiagram();
 		setPreferredSize(getSize());
 		repaint();
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		PowerBox powerBox = new PowerBox();
-
-		Container contentPane = frame.getContentPane();
-		contentPane.setLayout(new BorderLayout());
-		contentPane.setBackground(Color.BLACK);
-		contentPane.add(powerBox);
-
-		frame.setVisible(true);
-		frame.setSize(500, 400);
 	}
 	
 	@Override

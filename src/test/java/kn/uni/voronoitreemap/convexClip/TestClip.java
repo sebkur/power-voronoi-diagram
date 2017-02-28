@@ -12,7 +12,11 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.convexClip;
 
+import org.junit.Test;
+
 public class TestClip{
+
+	@Test
 	public void test6(){
 		System.out.println("Neuer Test1");
 		CVertexList l1 = new CVertexList();
@@ -123,6 +127,8 @@ public class TestClip{
 //		test.Start(l1, l2);
 //		System.out.println(test.inters.toString());
 //	}
+
+	@Test
 	public void testClipping1(){
 		System.out.println("Test: 1");
 		CVertexList l1 = new CVertexList();
@@ -139,6 +145,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping2(){
 		System.out.println("Test: 2");
 		CVertexList l1 = new CVertexList();
@@ -155,6 +163,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping3(){
 		System.out.println("Test: 3");
 		CVertexList l1 = new CVertexList();
@@ -171,6 +181,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping4(){
 		System.out.println("Test: 4");
 		CVertexList l1 = new CVertexList();
@@ -187,6 +199,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping5(){
 		System.out.println("Test: 5");
 		CVertexList l1 = new CVertexList();
@@ -203,6 +217,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping6(){
 		System.out.println("Test: 6");
 		CVertexList l1 = new CVertexList();
@@ -219,6 +235,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping7(){
 		System.out.println("Test: 7");
 		CVertexList l1 = new CVertexList();
@@ -234,6 +252,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping8(){
 		System.out.println("Test: 8");
 		CVertexList l1 = new CVertexList();
@@ -251,6 +271,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping9(){
 		System.out.println("Test: 9");
 		CVertexList l1 = new CVertexList();
@@ -265,6 +287,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping10(){
 		System.out.println("Test: 10");
 		CVertexList l1 = new CVertexList();
@@ -284,6 +308,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping11(){
 		System.out.println("Test: 11");
 		CVertexList l1 = new CVertexList();
@@ -300,6 +326,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping12(){
 		System.out.println("Test: 12");
 		CVertexList l1 = new CVertexList();
@@ -315,6 +343,8 @@ public class TestClip{
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
+
+	@Test
 	public void testClipping13(){
 		System.out.println("Test: 13");
 		CVertexList l1 = new CVertexList();

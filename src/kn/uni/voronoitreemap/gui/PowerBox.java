@@ -12,18 +12,15 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.gui;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D.Double;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -45,7 +42,6 @@ import kn.uni.voronoitreemap.j2d.Site;
  *
  */
 public class PowerBox extends JFrame {
-	ArrayList<JSite> points=new ArrayList<JSite>();
 	OpenList sites=new OpenList();
 	PolygonSimple clipPoly=new PolygonSimple();
 	
@@ -64,45 +60,101 @@ public class PowerBox extends JFrame {
 		getContentPane().add(panel);
 		panel.setVisible(true);
 		panel.setLayout(null);
-		panel.addMouseListener(new MouseAdapter() {
-	
-			@Override
-			synchronized public void mouseClicked(MouseEvent e) {
-				
-				Point p = e.getPoint();
-				double weight=30;
-				Site site = new Site(p.getX(), p.getY(),weight);
-				sites.add(site);
-				JSite jsite=new JSite(site);
-				
-				panel.add(jsite);
-				jsite.setVisible(true);
-				points.add(jsite);
-				if (points.size()>1){
-//					computeDiagram();
-//					vertices = diagram.getVertices();
-					//lines = diagram.getLines();
-				}	
-			    PowerBox.powerBox.computeDiagram();
-				setPreferredSize(getSize());
-				repaint();
-			}
-		});
+		panel.addMouseListener(mouseAdapter);
+		panel.addMouseMotionListener(mouseAdapter);
 		setVisible(true);
 		setSize(500, 400);
 	}
 
+	private MouseAdapter mouseAdapter = new MouseAdapter() {
+
+		private Site dragSite = null;
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+
+			Site site = getSite(e.getX(), e.getY());
+
+			boolean changedWeight = false;
+			if (site != null) {
+				int modifiers = e.getModifiers();
+				if ((modifiers & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
+					System.out.println("Left button pressed.");
+					site.setWeight(Math.pow((Math.sqrt(site.getWeight()) + 10), 2));
+					changedWeight = true;
+				}
+				if ((modifiers & InputEvent.BUTTON2_MASK) == InputEvent.BUTTON2_MASK) {
+					System.out.println("Middle button pressed.");
+				}
+				if ((modifiers & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
+					System.out.println("Right button pressed.");
+					site.setWeight(Math.pow((Math.sqrt(site.getWeight()) - 10), 2));
+					changedWeight = true;
+				}
+			}
+			if (changedWeight) {
+				PowerBox.powerBox.computeDiagram();
+				PowerBox.powerBox.repaint();
+				return;
+			}
+
+			addSite(e.getPoint());
+
+			PowerBox.powerBox.computeDiagram();
+			setPreferredSize(getSize());
+			repaint();
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			dragSite = getSite(e.getX(), e.getY());
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			dragSite = null;
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			if (dragSite == null) {
+				return;
+			}
+			Point point = e.getPoint();
+			dragSite.setXY(point.getX(), point.getY());
+			computeDiagram();
+			invalidate();
+		}
+
+	};
+
+	protected void addSite(Point p) {
+		double weight = 30;
+		Site site = new Site(p.getX(), p.getY(), weight);
+		sites.add(site);
+	}
+
+	/**
+	 * Determine a Site close to the specified location.
+	 * 
+	 * @return a close Site, or null if none is found within 10 pixels distance.
+	 */
+	protected Site getSite(int x, int y) {
+		for (Site site : sites) {
+			double distance = new kn.uni.voronoitreemap.j2d.Point2D(x, y).distance(site.getX(), site.getY());
+			if (distance < 10) {
+				return site;
+			}
+		}
+		return null;
+	}
+
 	public void computeDiagram() {
-		
 
 		PowerDiagram diagram = new PowerDiagram(sites, clipPoly);
 		diagram.computeDiagram();
-		for(JSite component:points){
-			
-			component.setPolygon(component.getSite().getPolygon());
-		}		
 		setPreferredSize(getSize());
-		pack();	
+		pack();
 		repaint();
 	}
 

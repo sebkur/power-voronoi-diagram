@@ -1,6 +1,8 @@
 package kn.uni.voronoitreemap.gui;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 
 /**
  * A GUI that shows a {@link PowerBox}.
@@ -22,6 +24,17 @@ public class PowerBoxGui
 
 		frame.setVisible(true);
 		frame.setSize(800, 600);
+
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+
+		JMenu menuFile = new JMenu("File");
+		menuFile.add("Clear");
+		menuFile.add("Load");
+		menuFile.add("Save");
+		menuFile.add("Quit");
+
+		menuBar.add(menuFile);
 	}
 
 }

@@ -32,7 +32,7 @@ public class OpenList implements Iterable<Site>{
 
 	public Site[] array;
 	public int size=0;
-	
+
 	private static Random rand=new Random(1985);
 
 	public OpenList(){
@@ -44,8 +44,8 @@ public class OpenList implements Iterable<Site>{
 	}
 
 	private void increaseCapacity(){
-			int newCapacity = (array.length * 3)/2 + 1;
-			array = Arrays.copyOf(array, newCapacity);
+		int newCapacity = (array.length * 3)/2 + 1;
+		array = Arrays.copyOf(array, newCapacity);
 	}
 
 	public boolean add(Site e) {
@@ -59,7 +59,7 @@ public class OpenList implements Iterable<Site>{
 
 //	public void add(int index, E element) {
 //		// TODO Auto-generated method stub
-//		
+//
 //	}
 
 	public void clear() {
@@ -79,7 +79,7 @@ public class OpenList implements Iterable<Site>{
 
 	public Site set(int index, Site element) {
 		if (index<size){
-		array[index]=element;
+			array[index]=element;
 		}
 		return element;
 	}
@@ -108,7 +108,6 @@ public class OpenList implements Iterable<Site>{
 	}
 
 	public void permutate(){
-
 		for(int i = 0; i < size; ++i){
 			int ra = rand.nextInt(size);
 			Site temp = array[ra];

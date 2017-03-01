@@ -51,6 +51,8 @@ public class PowerBox extends JPanel
 	private Color colorSitesWithoutCell = Color.RED;
 	// Outer square for sites
 	private Color colorSites = Color.BLUE;
+	// Circles for sites
+	private Color colorCircles = Color.BLACK;
 	// Cell centroid markers
 	private Color colorCentroids = Color.BLUE;
 	// Cell edges
@@ -222,25 +224,6 @@ public class PowerBox extends JPanel
 				antialiasing ? RenderingHints.VALUE_ANTIALIAS_ON
 						: RenderingHints.VALUE_ANTIALIAS_OFF);
 
-		// Draw sites
-		g2.setColor(colorSitesWithCell);
-		for (int z = 0; z < size; z++) {
-			Site s = array[z];
-			double posX = s.getX();
-			double posY = s.getY();
-			double radius = Math.sqrt(s.getWeight());
-			// Draw a circle that reflects the weight
-			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
-					(int) (2 * radius), (int) (2 * radius));
-			// and a square around the site
-			int r2 = sizeInnerSquares;
-			Color normal = g.getColor();
-			if (s.getPolygon() == null) {
-				g.setColor(colorSitesWithoutCell);
-			}
-			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
-			g.setColor(normal);
-		}
 //		if (vertices!=null){
 //		for (Point2D p:vertices.keySet()){
 //			g.setColor(Color.green);
@@ -289,19 +272,30 @@ public class PowerBox extends JPanel
 		}
 
 		// Draw sites
-		g.setColor(colorSites);
 		for (int z = 0; z < size; z++) {
 			Site s = array[z];
 			double posX = s.getX();
 			double posY = s.getY();
-			double radius = Math.sqrt(s.getWeight());
 
-			// Draw a circle that reflects the weight
-			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
-					(int) (2 * radius), (int) (2 * radius));
-			// and a square around the site
+			// Draw an inner square around the site...
+			int r1 = sizeInnerSquares;
+			if (s.getPolygon() != null) {
+				g.setColor(colorSitesWithCell);
+			} else {
+				g.setColor(colorSitesWithoutCell);
+			}
+			g.drawRect((int) posX - r1, (int) posY - r1, 2 * r1, 2 * r1);
+
+			// ...and outer square...
+			g.setColor(colorSites);
 			int r2 = sizeOuterSquares;
 			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
+
+			// ...and a circle that reflects the weight
+			g.setColor(colorCircles);
+			double radius = Math.sqrt(s.getWeight());
+			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
+					(int) (2 * radius), (int) (2 * radius));
 		}
 
 		this.validate();

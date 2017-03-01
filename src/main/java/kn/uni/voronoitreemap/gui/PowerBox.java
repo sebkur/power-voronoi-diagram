@@ -119,18 +119,16 @@ public class PowerBox extends JPanel
 				int modifiers = e.getModifiers();
 				if ((modifiers
 						& InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-					System.out.println("Left button pressed.");
 					site.setWeight(
 							Math.pow((Math.sqrt(site.getWeight()) + 10), 2));
 					changedWeight = true;
 				}
 				if ((modifiers
 						& InputEvent.BUTTON2_MASK) == InputEvent.BUTTON2_MASK) {
-					System.out.println("Middle button pressed.");
+					// We could do something on middle click here
 				}
 				if ((modifiers
 						& InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
-					System.out.println("Right button pressed.");
 					site.setWeight(
 							Math.pow((Math.sqrt(site.getWeight()) - 10), 2));
 					changedWeight = true;

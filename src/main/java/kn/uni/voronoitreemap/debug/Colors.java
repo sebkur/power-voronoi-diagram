@@ -19,10 +19,11 @@ import java.awt.Color;
  * 
  * @author Arlind Nocaj
  */
-public class Colors {
+public class Colors
+{
 
-	public static Color circleFill=new Color(255,0,0);
-	public static Color circleBorder=new Color(0,255,0);
-	public static Color bisectors=new Color(0,0,255);
+	public static Color circleFill = new Color(255, 0, 0);
+	public static Color circleBorder = new Color(0, 255, 0);
+	public static Color bisectors = new Color(0, 0, 255);
 
 }

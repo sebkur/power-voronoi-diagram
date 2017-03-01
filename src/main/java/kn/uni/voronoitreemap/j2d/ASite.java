@@ -25,11 +25,12 @@ import kn.uni.voronoitreemap.extension.VoroCellObject;
  * 
  * @author Arlind Nocaj
  */
-public class ASite extends JVertex implements Comparable<Site>, ISite {
+public class ASite extends JVertex implements Comparable<Site>, ISite
+{
 
 	protected static final double nearlyZero = 1E-10;
-	protected double weight=nearlyZero;
-	protected double percentage=nearlyZero;
+	protected double weight = nearlyZero;
+	protected double percentage = nearlyZero;
 
 	protected PolygonSimple polygon;
 	public PolygonSimple nonClippedPolyon;
@@ -39,199 +40,271 @@ public class ASite extends JVertex implements Comparable<Site>, ISite {
 	/**
 	 * Preflow Extrapolation
 	 */
-	public Point2D preflowVector=new Point2D();
+	public Point2D preflowVector = new Point2D();
 	private ArrayList<Site> oldNeighbors;
 
-	 /* 
-	  * return the dual point of the plane which is projected, see Aurenhammer,1987, Power Diagrams
-	  */
-	 private static double projectZ(double x,double y,double weight){
-		 return x*x+y*y-weight;
-	 }
+	/*
+	 * return the dual point of the plane which is projected, see
+	 * Aurenhammer,1987, Power Diagrams
+	 */
+	private static double projectZ(double x, double y, double weight)
+	{
+		return x * x + y * y - weight;
+	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#getPolygon()
 	 */
-	public PolygonSimple getPolygon(){
-		 return polygon;
-	 }
-
-	public String toString(){
-		return "("+ getX()+"\t,"+getY()+","+weight+","+percentage+")+z: "+z;
+	public PolygonSimple getPolygon()
+	{
+		return polygon;
 	}
 
-	/* (non-Javadoc)
+	public String toString()
+	{
+		return "(" + getX() + "\t," + getY() + "," + weight + "," + percentage
+				+ ")+z: " + z;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setPolygon(j2d.NPoly)
 	 */
-	public void setPolygon(PolygonSimple poly){
-		polygon=poly;
+	public void setPolygon(PolygonSimple poly)
+	{
+		polygon = poly;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setNeighbours(java.util.ArrayList)
 	 */
-	public void setNeighbours(ArrayList<Site> list){
+	public void setNeighbours(ArrayList<Site> list)
+	{
 		this.setOldNeighbors(neighbours);
-		neighbours=list;
+		neighbours = list;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#getNeighbours()
 	 */
-	public ArrayList<Site> getNeighbours(){
-		 return neighbours;
-	 }
-
-	 /**
-	  * 
-	  * @param x x-coordinate
-	  * @param y y-coordinate
-	  */
-	 public ASite(double x, double y){
-		 super(x,y,projectZ(x, y, nearlyZero));
-		 this.weight=nearlyZero;
-	 }
-
-	 /**
-	  * 
-	  * @param x x-coordinate
-	  * @param y y-coordinate
-	  * @param weight the weight of the site, where weight=radius*radius which is used for weighting
-	  */
-	public ASite(double x, double y, double weight){
-		super(x,y,projectZ(x, y, weight));
-		this.weight=weight;
+	public ArrayList<Site> getNeighbours()
+	{
+		return neighbours;
 	}
 
-	public ASite(double x, double y, double weight, double percentage){
-		super(x,y,projectZ(x, y, weight));
-		this.weight=weight;
-		this.percentage=percentage;
+	/**
+	 * 
+	 * @param x
+	 *            x-coordinate
+	 * @param y
+	 *            y-coordinate
+	 */
+	public ASite(double x, double y)
+	{
+		super(x, y, projectZ(x, y, nearlyZero));
+		this.weight = nearlyZero;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * 
+	 * @param x
+	 *            x-coordinate
+	 * @param y
+	 *            y-coordinate
+	 * @param weight
+	 *            the weight of the site, where weight=radius*radius which is
+	 *            used for weighting
+	 */
+	public ASite(double x, double y, double weight)
+	{
+		super(x, y, projectZ(x, y, weight));
+		this.weight = weight;
+	}
+
+	public ASite(double x, double y, double weight, double percentage)
+	{
+		super(x, y, projectZ(x, y, weight));
+		this.weight = weight;
+		this.percentage = percentage;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#getWeight()
 	 */
-	public double getWeight(){
+	public double getWeight()
+	{
 		return weight;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setWeight(double)
 	 */
-	public void setWeight(double weight){
-		this.weight=weight;
+	public void setWeight(double weight)
+	{
+		this.weight = weight;
 		project();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setXY(double, double)
 	 */
-	public void setXY(double x, double y){
-		this.x=x;
-		this.y=y;
+	public void setXY(double x, double y)
+	{
+		this.x = x;
+		this.y = y;
 		project();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setXYW(double, double, double)
 	 */
-	public void setXYW(double x,double y, double weight){
-		this.x=x;
-		this.y=y;
-		this.weight=weight;
-		z=projectZ(x, y, weight);
-	}
-	private void project() {
-		z=projectZ(x, y, weight);
+	public void setXYW(double x, double y, double weight)
+	{
+		this.x = x;
+		this.y = y;
+		this.weight = weight;
+		z = projectZ(x, y, weight);
 	}
 
-	/* (non-Javadoc)
+	private void project()
+	{
+		z = projectZ(x, y, weight);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setX(double)
 	 */
-	public void setX(double x) {
+	public void setX(double x)
+	{
 		this.x = x;
 		project();
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setY(double)
 	 */
-	public void setY(double y) {
+	public void setY(double y)
+	{
 		this.y = y;
 		project();
 	}
 
 	/**
-	 * The sites are first ordered according to the x-axis and then according to the y axis
+	 * The sites are first ordered according to the x-axis and then according to
+	 * the y axis
 	 */
 	@Override
-	public int compareTo(Site b) {
-		if (this.x<b.x) return -1;
-		if (this.x>b.x) return 1;
-		if (this.x==b.x){
-			if (this.y<b.y) return -1;
-			if (this.y>b.y) return 1;
-			if (this.y==b.y)return 0;
+	public int compareTo(Site b)
+	{
+		if (this.x < b.x)
+			return -1;
+		if (this.x > b.x)
+			return 1;
+		if (this.x == b.x) {
+			if (this.y < b.y)
+				return -1;
+			if (this.y > b.y)
+				return 1;
+			if (this.y == b.y)
+				return 0;
 		}
 		return 0;
 	}
 
-	public void paint(Graphics2D g){
+	public void paint(Graphics2D g)
+	{
 
-		int radius = (int)Math.sqrt(this.getWeight());
-	//	g.fillOval((int)this.getX()-radius, (int)this.getY()-radius, 2*radius, 2*radius);
+		int radius = (int) Math.sqrt(this.getWeight());
+		// g.fillOval((int)this.getX()-radius, (int)this.getY()-radius,
+		// 2*radius, 2*radius);
 		g.setColor(Colors.circleBorder);
-		g.drawOval((int)this.getX()-radius, (int)this.getY()-radius, 2*radius, 2*radius);
+		g.drawOval((int) this.getX() - radius, (int) this.getY() - radius,
+				2 * radius, 2 * radius);
 		g.setColor(Color.yellow);
-		int width=1;
-		g.fillRect((int)this.getX()-width, (int)this.getY()-width, 2*width,2*width );
+		int width = 1;
+		g.fillRect((int) this.getX() - width, (int) this.getY() - width,
+				2 * width, 2 * width);
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#setPercentage(double)
 	 */
-	public void setPercentage(double percentage) {
+	public void setPercentage(double percentage)
+	{
 		this.percentage = percentage;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#getPercentage()
 	 */
-	public double getPercentage() {
+	public double getPercentage()
+	{
 		return percentage;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see j2d.iSite#getPoint()
 	 */
-	public Point2D getPoint(){
-		return new Point2D(getX(),getY());
+	public Point2D getPoint()
+	{
+		return new Point2D(getX(), getY());
 	}
 
 	/**
 	 * Euclid
+	 * 
 	 * @param point
 	 * @return
 	 */
-	public double distance(Site point) {
-		double dx = x-point.getX();
-		double dy = y-point.getY();
-		return Math.sqrt(dx*dx+dy*dy);
+	public double distance(Site point)
+	{
+		double dx = x - point.getX();
+		double dy = y - point.getY();
+		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-	public double distanceCircles(Site point){
-		double dx = x-point.getX();
-		double dy = y-point.getY();
+	public double distanceCircles(Site point)
+	{
+		double dx = x - point.getX();
+		double dy = y - point.getY();
 		double radius1 = Math.sqrt(weight);
-		double radius2=Math.sqrt(point.weight);
-		return Math.sqrt(dx*dx+dy*dy)-radius1-radius2;
+		double radius2 = Math.sqrt(point.weight);
+		return Math.sqrt(dx * dx + dy * dy) - radius1 - radius2;
 	}
 
-	public ArrayList<Site> getOldNeighbors() {
+	public ArrayList<Site> getOldNeighbors()
+	{
 		return oldNeighbors;
 	}
 
-	private void setOldNeighbors(ArrayList<Site> oldNeighbors) {
+	private void setOldNeighbors(ArrayList<Site> oldNeighbors)
+	{
 		this.oldNeighbors = oldNeighbors;
 	}
 

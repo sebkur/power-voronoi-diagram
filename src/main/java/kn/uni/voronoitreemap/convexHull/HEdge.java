@@ -21,7 +21,8 @@ import java.util.List;
  *
  * @author Nocaj, Hildenbrand
  */
-public class HEdge {
+public class HEdge
+{
 
 	private JVertex origin;
 	private JVertex dest;
@@ -29,86 +30,104 @@ public class HEdge {
 	private JFace iFace;
 	private HEdge next;
 	private HEdge prev;
-	
-	public HEdge(JVertex origin, JVertex dest, JFace iFace) {
+
+	public HEdge(JVertex origin, JVertex dest, JFace iFace)
+	{
 		this.origin = origin;
 		this.dest = dest;
 		this.iFace = iFace;
 	}
 
-	public void setDest(JVertex dest) {
+	public void setDest(JVertex dest)
+	{
 		this.dest = dest;
 	}
 
-	public boolean isEqual(JVertex origin, JVertex dest){
-		return (this.origin.equals(origin) && this.dest.equals(dest)) || (this.origin.equals(dest) && this.dest.equals(origin));
+	public boolean isEqual(JVertex origin, JVertex dest)
+	{
+		return (this.origin.equals(origin) && this.dest.equals(dest))
+				|| (this.origin.equals(dest) && this.dest.equals(origin));
 	}
 
-	public JVertex getOrigin() {
+	public JVertex getOrigin()
+	{
 		return origin;
 	}
 
-	public void setOrigin(JVertex origin) {
+	public void setOrigin(JVertex origin)
+	{
 		this.origin = origin;
 	}
 
-	public HEdge getTwin() {
+	public HEdge getTwin()
+	{
 		return twin;
 	}
 
-	public void setTwin(HEdge twin) {
+	public void setTwin(HEdge twin)
+	{
 		this.twin = twin;
 	}
 
-	public JFace getiFace() {
+	public JFace getiFace()
+	{
 		return iFace;
 	}
 
-	public void setiFace(JFace iFace) {
+	public void setiFace(JFace iFace)
+	{
 		this.iFace = iFace;
 	}
 
-	public HEdge getNext() {
+	public HEdge getNext()
+	{
 		return next;
 	}
 
-	public void setNext(HEdge next) {
+	public void setNext(HEdge next)
+	{
 		this.next = next;
 	}
 
-	public HEdge getPrev() {
+	public HEdge getPrev()
+	{
 		return prev;
 	}
 
-	public void setPrev(HEdge prev) {
+	public void setPrev(HEdge prev)
+	{
 		this.prev = prev;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		return origin.toString() + "->" + dest.toString();
 	}
 
-	public JVertex getDest() {
+	public JVertex getDest()
+	{
 		return dest;
 	}
 
-	public boolean isHorizon() {
+	public boolean isHorizon()
+	{
 		return twin != null && twin.getiFace().isMarked() && !iFace.isMarked();
 	}
-	
-	public void findHorizon(List<HEdge> horizon) {
-	      if (isHorizon()) {
-	          if (horizon.size() > 0 && this == horizon.get(0)) {
-	             return;
-	          } else {
-	             horizon.add(this);
-	             next.findHorizon(horizon);
-	          }
-	       } else {
-	          if (twin != null) {
-	             twin.getNext().findHorizon(horizon);
-	          }
-	       }
+
+	public void findHorizon(List<HEdge> horizon)
+	{
+		if (isHorizon()) {
+			if (horizon.size() > 0 && this == horizon.get(0)) {
+				return;
+			} else {
+				horizon.add(this);
+				next.findHorizon(horizon);
+			}
+		} else {
+			if (twin != null) {
+				twin.getNext().findHorizon(horizon);
+			}
+		}
 	}
-	
+
 }

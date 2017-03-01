@@ -20,24 +20,29 @@ import kn.uni.voronoitreemap.j2d.Point2D;
  * 
  * @author Hildenbrand, Nocaj
  */
-public class CVertex {
+public class CVertex
+{
 
 	public Point2D v;
 	public CVertex prev, next;
 
-	public CVertex(double x, double y){
-		v = new Point2D(x,y);
+	public CVertex(double x, double y)
+	{
+		v = new Point2D(x, y);
 	}
 
-	public CVertex() {
+	public CVertex()
+	{
 	}
 
-	public CVertex(Point2D erg) {
+	public CVertex(Point2D erg)
+	{
 		v = new Point2D(erg.x, erg.y);
 	}
 
-	public String toString(){
-		if(v != null){
+	public String toString()
+	{
+		if (v != null) {
 			return v.toString();
 		}
 		return "";

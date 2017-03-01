@@ -17,7 +17,8 @@ package kn.uni.voronoitreemap.convexHull;
  * 
  * @author Hildenbrand, Nocaj
  */
-public class JGraphEdge {
+public class JGraphEdge
+{
 
 	protected JFace face;
 	protected JVertex vert;
@@ -27,7 +28,8 @@ public class JGraphEdge {
 	protected JGraphEdge nextv;
 	protected JGraphEdge prevv;
 
-	public JGraphEdge(JFace face, JVertex vert){
+	public JGraphEdge(JFace face, JVertex vert)
+	{
 		this.face = face;
 		this.vert = vert;
 	}

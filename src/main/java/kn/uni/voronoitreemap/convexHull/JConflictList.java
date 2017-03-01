@@ -22,7 +22,8 @@ import java.util.List;
  *
  * @author HildenBrand, Nocaj
  */
-public class JConflictList {
+public class JConflictList
+{
 
 	private boolean face;
 	protected JGraphEdge head;
@@ -30,19 +31,21 @@ public class JConflictList {
 	/*
 	 * Whether the ConflictList is for a JFace or a vertex
 	 */
-	public JConflictList(boolean face) {
+	public JConflictList(boolean face)
+	{
 		this.face = face;
 	}
 
-	public void add(JGraphEdge e) {
-		if(head == null){
+	public void add(JGraphEdge e)
+	{
+		if (head == null) {
 			head = e;
-		}else{
-			if(face){//Is FaceList
+		} else {
+			if (face) {// Is FaceList
 				head.prevv = e;
 				e.nextv = head;
 				head = e;
-			}else{//Is VertexList
+			} else {// Is VertexList
 				head.prevf = e;
 				e.nextf = head;
 				head = e;
@@ -50,77 +53,82 @@ public class JConflictList {
 		}
 	}
 
-	public boolean empty() {
+	public boolean empty()
+	{
 		return head == null;
 	}
 
 	/*
-	 * fills visible List with all visible JFaces of the vertex and also marks the JFaces
+	 * fills visible List with all visible JFaces of the vertex and also marks
+	 * the JFaces
 	 */
-	public void fill(List<JFace> visible) {
-		if(face){
+	public void fill(List<JFace> visible)
+	{
+		if (face) {
 			System.out.println("can't fill facet");
 			return;
 		}
 		JGraphEdge curr = head;
-		do{
+		do {
 			visible.add(curr.face);
 			curr.face.setMarked(true);
 			curr = curr.nextf;
-		}while(curr != null);
-		
+		} while (curr != null);
+
 	}
 
 	/*
 	 * Remove all vertices from the JFace or all JFaces from the vertex
 	 */
-	public void removeAll() {
-		if(face){//Remove all vertices from JFace
+	public void removeAll()
+	{
+		if (face) {// Remove all vertices from JFace
 			JGraphEdge curr = head;
-			do{
-				if(curr.prevf == null){//Node is head
-					if(curr.nextf == null){
+			do {
+				if (curr.prevf == null) {// Node is head
+					if (curr.nextf == null) {
 						curr.vert.getList().head = null;
-					}else{
+					} else {
 						curr.nextf.prevf = null;
 						curr.vert.getList().head = curr.nextf;
 					}
-				}else{//Node is not head
-					if(curr.nextf != null)
+				} else {// Node is not head
+					if (curr.nextf != null)
 						curr.nextf.prevf = curr.prevf;
 					curr.prevf.nextf = curr.nextf;
 				}
 				curr = curr.nextv;
-				if(curr != null)
+				if (curr != null)
 					curr.prevv = null;
-			}while(curr != null);
-		}else{//Remove all JFaces from vertex
+			} while (curr != null);
+		} else {// Remove all JFaces from vertex
 			JGraphEdge curr = head;
-			do{
-				if(curr.prevv == null){ //Node is head
-					if(curr.nextv == null){
+			do {
+				if (curr.prevv == null) { // Node is head
+					if (curr.nextv == null) {
 						curr.face.getList().head = null;
-					}else{
+					} else {
 						curr.nextv.prevv = null;
 						curr.face.getList().head = curr.nextv;
 					}
-				}else{//Node is not head
-					if(curr.nextv != null){
+				} else {// Node is not head
+					if (curr.nextv != null) {
 						curr.nextv.prevv = curr.prevv;
 					}
 					curr.prevv.nextv = curr.nextv;
 				}
 				curr = curr.nextf;
-				if(curr != null)
+				if (curr != null)
 					curr.prevf = null;
-			}while(curr != null);
+			} while (curr != null);
 		}
-		
+
 	}
 
-	public List<JVertex> getVertices(List<JVertex> l1) {
+	public List<JVertex> getVertices(List<JVertex> l1)
+	{
 		JGraphEdge curr = head;
-		while(curr != null){
+		while (curr != null) {
 			l1.add(curr.vert);
 			curr = curr.nextv;
 		}

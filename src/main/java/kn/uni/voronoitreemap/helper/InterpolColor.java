@@ -19,13 +19,14 @@ import java.awt.Color;
  * 
  * @author Nocaj
  */
-public class InterpolColor {
+public class InterpolColor
+{
 
 	double minValue;
 	double maxValue;
 	double leftH;
 	double leftS;
-        double text;
+	double text;
 	double leftV;
 	double rightH;
 	double rightS;
@@ -33,7 +34,8 @@ public class InterpolColor {
 
 	public InterpolColor(double minValue, double maxValue, double leftH,
 			double leftS, double leftV, double rightH, double rightS,
-			double rightV) {
+			double rightV)
+	{
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		this.leftH = leftH;
@@ -44,32 +46,38 @@ public class InterpolColor {
 		this.rightV = rightV;
 	}
 
-	public InterpolColor() {
+	public InterpolColor()
+	{
 		this(0.0f, 100.0f, 0.0f, 1.0f, 0.001f, 0f, 1f, 1f);
 	}
 
-	public void leftHSV(double leftH, double leftS, double leftV) {
+	public void leftHSV(double leftH, double leftS, double leftV)
+	{
 		this.leftH = leftH;
 		this.leftS = leftS;
 		this.leftV = leftV;
 	}
 
-	public void rightHSV(double rightH, double rightS, double rightV) {
+	public void rightHSV(double rightH, double rightS, double rightV)
+	{
 		this.rightH = rightH;
 		this.rightS = rightS;
 		this.rightV = rightV;
 	}
 
-	public void setMinValue(double minValue) {
+	public void setMinValue(double minValue)
+	{
 		this.minValue = minValue;
 	}
 
-	public void setMaxValue(double maxValue) {
+	public void setMaxValue(double maxValue)
+	{
 		this.maxValue = maxValue;
 	}
 
-	public Color getColorLinear(double key) {
-	final double anteil = (key - minValue) / (maxValue - minValue);
+	public Color getColorLinear(double key)
+	{
+		final double anteil = (key - minValue) / (maxValue - minValue);
 
 		double divH = rightH - leftH;
 		double divS = rightS - leftS;
@@ -83,11 +91,13 @@ public class InterpolColor {
 
 	/**
 	 * key value and the alpha value for this color, which is from 0 to 255
+	 * 
 	 * @param key
 	 * @param alpha
 	 * @return
 	 */
-	public Color getColorLinear(double key,int alpha) {
+	public Color getColorLinear(double key, int alpha)
+	{
 		double anteil = (key - minValue) / (maxValue - minValue);
 
 		double divH = rightH - leftH;
@@ -98,13 +108,14 @@ public class InterpolColor {
 		double v = leftV + anteil * divV;
 		Color c = new Color(Color.HSBtoRGB((float) h, (float) s, (float) v));
 
-		return new Color(c.getRed(),c.getGreen(),c.getBlue(),alpha);
+		return new Color(c.getRed(), c.getGreen(), c.getBlue(), alpha);
 	}
 
-	public Color getColorLog(double key) {
+	public Color getColorLog(double key)
+	{
 
-		double anteil = (double) ((Math.log(key - minValue)) / (Math
-				.log(maxValue - minValue)));
+		double anteil = (double) ((Math.log(key - minValue))
+				/ (Math.log(maxValue - minValue)));
 
 		double divH = rightH - leftH;
 		double divS = rightS - leftS;

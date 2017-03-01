@@ -11,6 +11,7 @@
  * Arlind Nocaj, Ulrik Brandes, "Computing Voronoi Treemaps: Faster, Simpler, and Resolution-independent", Computer Graphics Forum, vol. 31, no. 3, June 2012, pp. 855-864
  ******************************************************************************/
 package kn.uni.voronoitreemap.convexHull;
+
 import kn.uni.voronoitreemap.j3d.Point3D;
 
 /**
@@ -19,7 +20,8 @@ import kn.uni.voronoitreemap.j3d.Point3D;
  * @author Arlind Nocaj
  */
 
-public class JVertex {
+public class JVertex
+{
 
 	public double x;
 	public double y;
@@ -31,7 +33,8 @@ public class JVertex {
 
 	public Object originalObject;
 
-	public JVertex(double x, double y, double z) {
+	public JVertex(double x, double y, double z)
+	{
 		list = new JConflictList(false);
 		index = -1;
 		this.x = x;
@@ -39,108 +42,128 @@ public class JVertex {
 		this.z = z;
 	}
 
-	public JConflictList getList() {
+	public JConflictList getList()
+	{
 		return list;
 	}
 
-	public void setList(JConflictList list) {
+	public void setList(JConflictList list)
+	{
 		this.list = list;
 	}
 
-	public int getIndex() {
+	public int getIndex()
+	{
 		return index;
 	}
 
-	public void setIndex(int index) {
+	public void setIndex(int index)
+	{
 		this.index = index;
 	}
 
-	public boolean equals(Object o) {
-		if(!(o instanceof JVertex))
+	public boolean equals(Object o)
+	{
+		if (!(o instanceof JVertex))
 			return false;
 		else {
 			JVertex obj = (JVertex) o;
-			if(obj.x == x && obj.y == y && obj.z == z)
+			if (obj.x == x && obj.y == y && obj.z == z)
 				return true;
-			else return false;
+			else
+				return false;
 		}
 	}
 
 	/**
 	 * 
-	 * @param v Vertex compared to Object
+	 * @param v
+	 *            Vertex compared to Object
 	 * @return Whether given Vertex and the Object are linearly dependent
 	 */
-	public boolean linearDependent(JVertex v) {
-		if(x == 0 && v.x == 0) {
-			if(y == 0 && v.y == 0) {
-				if(z == 0 && v.z == 0) {
+	public boolean linearDependent(JVertex v)
+	{
+		if (x == 0 && v.x == 0) {
+			if (y == 0 && v.y == 0) {
+				if (z == 0 && v.z == 0) {
 					return true;
 				}
-				if(z == 0 || v.y == 0) {
+				if (z == 0 || v.y == 0) {
 					return false;
 				}
 				return true;
 			}
-			if(y == 0 || v.y == 0) {
+			if (y == 0 || v.y == 0) {
 				return false;
 			}
-			if(z/y >= v.z/v.y -epsilon  && z/y <= v.z/v.y +epsilon)
+			if (z / y >= v.z / v.y - epsilon && z / y <= v.z / v.y + epsilon)
 				return true;
-			else 
+			else
 				return false;
 		}
-		if(x == 0 || v.x == 0) {
+		if (x == 0 || v.x == 0) {
 			return false;
 		}
-		if(y/x <= v.y/v.x+epsilon && y/x >= v.y/v.x-epsilon &&  z/x >= v.y/v.x -epsilon  && z/x <= v.z/v.x +epsilon)
+		if (y / x <= v.y / v.x + epsilon && y / x >= v.y / v.x - epsilon
+				&& z / x >= v.y / v.x - epsilon && z / x <= v.z / v.x + epsilon)
 			return true;
-		else 
+		else
 			return false;
 	}
 
-	public void negate(){
+	public void negate()
+	{
 		x *= -1;
 		y *= -1;
 		z *= -1;
 	}
 
-	public JVertex subtract(JVertex v) {
-		return new JVertex(v.x-x, v.y-y, v.z -z);
+	public JVertex subtract(JVertex v)
+	{
+		return new JVertex(v.x - x, v.y - y, v.z - z);
 	}
 
-	public JVertex crossProduct(JVertex v) {
-		return new JVertex(y*v.z-z*v.y, z*v.x- x*v.z, x*v.y - y*v.x);
+	public JVertex crossProduct(JVertex v)
+	{
+		return new JVertex(y * v.z - z * v.y, z * v.x - x * v.z,
+				x * v.y - y * v.x);
 	}
 
-	public String toString() {
-		return "" + x +"/" + y + "/" +z;
+	public String toString()
+	{
+		return "" + x + "/" + y + "/" + z;
 	}
 
-	public void setHandled(boolean b) {
-		this.handled=b;
+	public void setHandled(boolean b)
+	{
+		this.handled = b;
 	}
 
-	public boolean isHandled() {
+	public boolean isHandled()
+	{
 		return handled;
 	}
 
-	public Point3D toPoint3D(){
-		return new Point3D(x,y,z);
+	public Point3D toPoint3D()
+	{
+		return new Point3D(x, y, z);
 	}
 
-	public double getX(){
+	public double getX()
+	{
 		return x;
 	}
 
-	public double getY(){
+	public double getY()
+	{
 		return y;
 	}
 
-	public void clear(){
+	public void clear()
+	{
 		list = new JConflictList(false);
 		index = -1;
-		handled=false;
+		handled = false;
 	}
 
 }

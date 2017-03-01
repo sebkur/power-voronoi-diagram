@@ -39,20 +39,23 @@ import kn.uni.voronoitreemap.j2d.Site;
  * 
  * @author Arlind Nocaj
  */
-public class PowerBox extends JPanel {
+public class PowerBox extends JPanel
+{
 
-	OpenList sites=new OpenList();
-	PolygonSimple clipPoly=new PolygonSimple();
+	OpenList sites = new OpenList();
+	PolygonSimple clipPoly = new PolygonSimple();
 
-	HashMap<Double, HashSet<Site>> vertices=new HashMap<Double, HashSet<Site>>();
+	HashMap<Double, HashSet<Site>> vertices = new HashMap<Double, HashSet<Site>>();
 
-	JPanel panel=new JPanel();
-	public PowerBox() {
+	JPanel panel = new JPanel();
+
+	public PowerBox()
+	{
 		super();
-		clipPoly.add(50,50);
-		clipPoly.add(50,800);
-		clipPoly.add(800,800);
-		clipPoly.add(800,50);
+		clipPoly.add(50, 50);
+		clipPoly.add(50, 800);
+		clipPoly.add(800, 800);
+		clipPoly.add(800, 50);
 		addMouseListener(mouseAdapter);
 		addMouseMotionListener(mouseAdapter);
 	}
@@ -62,24 +65,30 @@ public class PowerBox extends JPanel {
 		private Site dragSite = null;
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(MouseEvent e)
+		{
 
 			Site site = getSite(e.getX(), e.getY());
 
 			boolean changedWeight = false;
 			if (site != null) {
 				int modifiers = e.getModifiers();
-				if ((modifiers & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
+				if ((modifiers
+						& InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
 					System.out.println("Left button pressed.");
-					site.setWeight(Math.pow((Math.sqrt(site.getWeight()) + 10), 2));
+					site.setWeight(
+							Math.pow((Math.sqrt(site.getWeight()) + 10), 2));
 					changedWeight = true;
 				}
-				if ((modifiers & InputEvent.BUTTON2_MASK) == InputEvent.BUTTON2_MASK) {
+				if ((modifiers
+						& InputEvent.BUTTON2_MASK) == InputEvent.BUTTON2_MASK) {
 					System.out.println("Middle button pressed.");
 				}
-				if ((modifiers & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
+				if ((modifiers
+						& InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
 					System.out.println("Right button pressed.");
-					site.setWeight(Math.pow((Math.sqrt(site.getWeight()) - 10), 2));
+					site.setWeight(
+							Math.pow((Math.sqrt(site.getWeight()) - 10), 2));
 					changedWeight = true;
 				}
 			}
@@ -97,17 +106,20 @@ public class PowerBox extends JPanel {
 		}
 
 		@Override
-		public void mousePressed(MouseEvent e) {
+		public void mousePressed(MouseEvent e)
+		{
 			dragSite = getSite(e.getX(), e.getY());
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) {
+		public void mouseReleased(MouseEvent e)
+		{
 			dragSite = null;
 		}
 
 		@Override
-		public void mouseDragged(MouseEvent e) {
+		public void mouseDragged(MouseEvent e)
+		{
 			if (dragSite == null) {
 				return;
 			}
@@ -119,7 +131,8 @@ public class PowerBox extends JPanel {
 
 	};
 
-	protected void addSite(Point p) {
+	protected void addSite(Point p)
+	{
 		double weight = 30;
 		Site site = new Site(p.getX(), p.getY(), weight);
 		sites.add(site);
@@ -130,9 +143,11 @@ public class PowerBox extends JPanel {
 	 * 
 	 * @return a close Site, or null if none is found within 10 pixels distance.
 	 */
-	protected Site getSite(int x, int y) {
+	protected Site getSite(int x, int y)
+	{
 		for (Site site : sites) {
-			double distance = new kn.uni.voronoitreemap.j2d.Point2D(x, y).distance(site.getX(), site.getY());
+			double distance = new kn.uni.voronoitreemap.j2d.Point2D(x, y)
+					.distance(site.getX(), site.getY());
 			if (distance < 10) {
 				return site;
 			}
@@ -140,40 +155,43 @@ public class PowerBox extends JPanel {
 		return null;
 	}
 
-	public void computeDiagram() {
+	public void computeDiagram()
+	{
 
 		PowerDiagram diagram = new PowerDiagram(sites, clipPoly);
 		diagram.computeDiagram();
 		setPreferredSize(getSize());
 		repaint();
 	}
-	
+
 	@Override
-	public void paint(Graphics g2) {
+	public void paint(Graphics g2)
+	{
 		super.paint(g2);
 //		paintComponents(g2);
 
-		Graphics2D g=(Graphics2D)g2;
+		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.red);
 		Site[] array = sites.array;
-		int size=sites.size;
+		int size = sites.size;
 
 		// Draw sites
 		g2.setColor(Color.green);
-		for (int z=0;z<size;z++){
+		for (int z = 0; z < size; z++) {
 			Site s = array[z];
-			double posX=s.getX();
-			double posY=s.getY();
+			double posX = s.getX();
+			double posY = s.getY();
 			double radius = Math.sqrt(s.getWeight());
 			// Draw a circle that reflects the weight
-			g.drawOval((int)posX-(int)radius, (int)posY-(int)radius, (int)(2*radius), (int)(2*radius));
+			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
+					(int) (2 * radius), (int) (2 * radius));
 			// and a square around the site
-			int r2=5;
+			int r2 = 5;
 			Color normal = g.getColor();
-			if(s.getPolygon()==null){
+			if (s.getPolygon() == null) {
 				g.setColor(Color.red);
 			}
-			g.drawRect((int)posX-r2, (int)posY-r2, 2*r2, 2*r2);
+			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
 			g.setColor(normal);
 		}
 //		if (vertices!=null){
@@ -189,44 +207,46 @@ public class PowerBox extends JPanel {
 //			line.paint((Graphics2D)g);
 //		}
 //		}
-		
+
 		// Draw Voronoi cells
 		g.setColor(Color.GRAY.brighter());
-		int i=0;
-		for (int z=0;z<size;z++){
+		int i = 0;
+		for (int z = 0; z < size; z++) {
 			Site s = array[z];
-			if (i!=-2){
+			if (i != -2) {
 				PolygonSimple poly = s.getPolygon();
-				if (poly!=null){
+				if (poly != null) {
 					g.draw(poly);
 				}
 			}
 			i++;
 		}
-		
+
 		// Draw sites and Voronoi cell centroids
 		g.setColor(Color.blue);
-		for (int z=0;z<size;z++){
+		for (int z = 0; z < size; z++) {
 			Site s = array[z];
-			double posX=s.getX();
-			double posY=s.getY();
+			double posX = s.getX();
+			double posY = s.getY();
 			double radius = Math.sqrt(s.getWeight());
 
 			// Draw a circle that reflects the weight
-			g.drawOval((int)posX-(int)radius, (int)posY-(int)radius, (int)(2*radius), (int)(2*radius));
+			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
+					(int) (2 * radius), (int) (2 * radius));
 			// and a square around the site
-			int r2=7;
-			g.drawRect((int)posX-r2, (int)posY-r2, 2*r2, 2*r2);
+			int r2 = 7;
+			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
 
 			PolygonSimple poly = s.getPolygon();
 			// Draw the centroid of the Voronoi cell
-			if (poly!=null){
+			if (poly != null) {
 				Point2D center = poly.getCentroid();
-				r2=5;
-				g.drawRect((int)center.getX()-r2, (int)center.getY()-r2, 2*r2, 2*r2);
+				r2 = 5;
+				g.drawRect((int) center.getX() - r2, (int) center.getY() - r2,
+						2 * r2, 2 * r2);
 			}
 		}
-		
+
 		this.validate();
 	}
 

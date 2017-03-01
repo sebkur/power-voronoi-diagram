@@ -12,7 +12,8 @@
  ******************************************************************************/
 package kn.uni.voronoitreemap.j3d;
 
-public class Point3D {
+public class Point3D
+{
 
 	public final double x;
 	public final double y;
@@ -20,12 +21,16 @@ public class Point3D {
 
 	/**
 	 * 3D Point class, for compatibility.
+	 * 
 	 * @param a
 	 * @param b
 	 * @param c
 	 */
-	public Point3D(double a,double b,double c){
-		x=a;y=b;z=c;
+	public Point3D(double a, double b, double c)
+	{
+		x = a;
+		y = b;
+		z = c;
 	}
 
 }

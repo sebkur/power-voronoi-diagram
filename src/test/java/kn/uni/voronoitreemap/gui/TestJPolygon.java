@@ -24,9 +24,11 @@ import kn.uni.voronoitreemap.j2d.PolygonSimple;
  * @author Arlind Nocaj
  * @author Sebastian Kuerten
  */
-public class TestJPolygon {
+public class TestJPolygon
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		JFrame frame = new JFrame();
 		frame.setBounds(50, 50, 600, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

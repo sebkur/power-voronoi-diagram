@@ -14,49 +14,53 @@ package kn.uni.voronoitreemap.convexClip;
 
 import org.junit.Test;
 
-public class TestClip{
+public class TestClip
+{
 
 	@Test
-	public void test6(){
+	public void test6()
+	{
 		System.out.println("Neuer Test1");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(800.0,50.0));
-		l1.InsertBeforeHead(new CVertex(800.0,800.0));
-		l1.InsertBeforeHead(new CVertex(50.0,800.0));
-		l1.InsertBeforeHead(new CVertex(50.0,50.0));
+		l1.InsertBeforeHead(new CVertex(800.0, 50.0));
+		l1.InsertBeforeHead(new CVertex(800.0, 800.0));
+		l1.InsertBeforeHead(new CVertex(50.0, 800.0));
+		l1.InsertBeforeHead(new CVertex(50.0, 50.0));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(425.0,-894.1825396825396));
-		l2.InsertBeforeHead(new CVertex(-762.2642857142857,425.0));
-		l2.InsertBeforeHead(new CVertex(355.15493430516926,1324.0729356478373));
-		l2.InsertBeforeHead(new CVertex(558.2178966086625,-725.0169566874126));
+		l2.InsertBeforeHead(new CVertex(425.0, -894.1825396825396));
+		l2.InsertBeforeHead(new CVertex(-762.2642857142857, 425.0));
+		l2.InsertBeforeHead(
+				new CVertex(355.15493430516926, 1324.0729356478373));
+		l2.InsertBeforeHead(new CVertex(558.2178966086625, -725.0169566874126));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 		System.out.println("Neuer Test2");
 		l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(800.0,50.0));
-		l1.InsertBeforeHead(new CVertex(800.0,800.0));
-		l1.InsertBeforeHead(new CVertex(50.0,800.0));
-		l1.InsertBeforeHead(new CVertex(50.0,50.0));
+		l1.InsertBeforeHead(new CVertex(800.0, 50.0));
+		l1.InsertBeforeHead(new CVertex(800.0, 800.0));
+		l1.InsertBeforeHead(new CVertex(50.0, 800.0));
+		l1.InsertBeforeHead(new CVertex(50.0, 50.0));
 		l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(558.2178966086625,-725.0169566874126));
-		l2.InsertBeforeHead(new CVertex(355.15493430516926,1324.0729356478373));
-		l2.InsertBeforeHead(new CVertex(425.0,1393.3191738113796));
-		l2.InsertBeforeHead(new CVertex(1695.3001022494886,425.0));
+		l2.InsertBeforeHead(new CVertex(558.2178966086625, -725.0169566874126));
+		l2.InsertBeforeHead(
+				new CVertex(355.15493430516926, 1324.0729356478373));
+		l2.InsertBeforeHead(new CVertex(425.0, 1393.3191738113796));
+		l2.InsertBeforeHead(new CVertex(1695.3001022494886, 425.0));
 		test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 		System.out.println("Neuer Test3");
 		l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(800.0,50.0));
-		l1.InsertBeforeHead(new CVertex(800.0,800.0));
-		l1.InsertBeforeHead(new CVertex(50.0,800.0));
-		l1.InsertBeforeHead(new CVertex(50.0,50.0));
+		l1.InsertBeforeHead(new CVertex(800.0, 50.0));
+		l1.InsertBeforeHead(new CVertex(800.0, 800.0));
+		l1.InsertBeforeHead(new CVertex(50.0, 800.0));
+		l1.InsertBeforeHead(new CVertex(50.0, 50.0));
 		l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(451.91545042778057,347.6713638651233));
-		l2.InsertBeforeHead(new CVertex(1007.617161263345,949.2041436355796));
-		l2.InsertBeforeHead(new CVertex(1695.3001022494886,425.0));
-		l2.InsertBeforeHead(new CVertex(558.2178966086625,-725.0169566874126));
+		l2.InsertBeforeHead(new CVertex(451.91545042778057, 347.6713638651233));
+		l2.InsertBeforeHead(new CVertex(1007.617161263345, 949.2041436355796));
+		l2.InsertBeforeHead(new CVertex(1695.3001022494886, 425.0));
+		l2.InsertBeforeHead(new CVertex(558.2178966086625, -725.0169566874126));
 		test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
@@ -129,233 +133,246 @@ public class TestClip{
 //	}
 
 	@Test
-	public void testClipping1(){
+	public void testClipping1()
+	{
 		System.out.println("Test: 1");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0.5,0.5));
-		l2.InsertBeforeHead(new CVertex(1.0,0.5));
-		l2.InsertBeforeHead(new CVertex(1.0,0.7));
-		l2.InsertBeforeHead(new CVertex(0.5,0.7));
+		l2.InsertBeforeHead(new CVertex(0.5, 0.5));
+		l2.InsertBeforeHead(new CVertex(1.0, 0.5));
+		l2.InsertBeforeHead(new CVertex(1.0, 0.7));
+		l2.InsertBeforeHead(new CVertex(0.5, 0.7));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping2(){
+	public void testClipping2()
+	{
 		System.out.println("Test: 2");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0.5,0.5));
-		l2.InsertBeforeHead(new CVertex(0.5,-0.5));
-		l2.InsertBeforeHead(new CVertex(1,-0.5));
-		l2.InsertBeforeHead(new CVertex(1,0.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 0.5));
+		l2.InsertBeforeHead(new CVertex(0.5, -0.5));
+		l2.InsertBeforeHead(new CVertex(1, -0.5));
+		l2.InsertBeforeHead(new CVertex(1, 0.5));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping3(){
+	public void testClipping3()
+	{
 		System.out.println("Test: 3");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0.5,1));
-		l2.InsertBeforeHead(new CVertex(1.5,1));
-		l2.InsertBeforeHead(new CVertex(1.5,1.5));
-		l2.InsertBeforeHead(new CVertex(0.5,1.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 1));
+		l2.InsertBeforeHead(new CVertex(1.5, 1));
+		l2.InsertBeforeHead(new CVertex(1.5, 1.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 1.5));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping4(){
+	public void testClipping4()
+	{
 		System.out.println("Test: 4");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0,0.5));
-		l2.InsertBeforeHead(new CVertex(0.5,0));
-		l2.InsertBeforeHead(new CVertex(1,0.5));
-		l2.InsertBeforeHead(new CVertex(0.5,1));
+		l2.InsertBeforeHead(new CVertex(0, 0.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 0));
+		l2.InsertBeforeHead(new CVertex(1, 0.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 1));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping5(){
+	public void testClipping5()
+	{
 		System.out.println("Test: 5");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(1,0.5));
-		l2.InsertBeforeHead(new CVertex(1.5,0));
-		l2.InsertBeforeHead(new CVertex(1.5,0.7));
-		l2.InsertBeforeHead(new CVertex(1,0.7));
+		l2.InsertBeforeHead(new CVertex(1, 0.5));
+		l2.InsertBeforeHead(new CVertex(1.5, 0));
+		l2.InsertBeforeHead(new CVertex(1.5, 0.7));
+		l2.InsertBeforeHead(new CVertex(1, 0.7));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping6(){
+	public void testClipping6()
+	{
 		System.out.println("Test: 6");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(1,0.5));
-		l2.InsertBeforeHead(new CVertex(1.5,0));
-		l2.InsertBeforeHead(new CVertex(1.5,0.7));
-		l2.InsertBeforeHead(new CVertex(1,1));
+		l2.InsertBeforeHead(new CVertex(1, 0.5));
+		l2.InsertBeforeHead(new CVertex(1.5, 0));
+		l2.InsertBeforeHead(new CVertex(1.5, 0.7));
+		l2.InsertBeforeHead(new CVertex(1, 1));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping7(){
+	public void testClipping7()
+	{
 		System.out.println("Test: 7");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0.5,0.3));
-		l2.InsertBeforeHead(new CVertex(1,0.5));
-		l2.InsertBeforeHead(new CVertex(0.5,0.7));
+		l2.InsertBeforeHead(new CVertex(0.5, 0.3));
+		l2.InsertBeforeHead(new CVertex(1, 0.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 0.7));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping8(){
+	public void testClipping8()
+	{
 		System.out.println("Test: 8");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0.5,1.5));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0.5, 1.5));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0.5,1));
-		l2.InsertBeforeHead(new CVertex(1.5,1));
-		l2.InsertBeforeHead(new CVertex(1.5,1.5));
-		l2.InsertBeforeHead(new CVertex(0.5,1.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 1));
+		l2.InsertBeforeHead(new CVertex(1.5, 1));
+		l2.InsertBeforeHead(new CVertex(1.5, 1.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 1.5));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping9(){
+	public void testClipping9()
+	{
 		System.out.println("Test: 9");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(-0.5,0.2));
-		l2.InsertBeforeHead(new CVertex(0.5,-0.2));
-		l2.InsertBeforeHead(new CVertex(0,1));
+		l2.InsertBeforeHead(new CVertex(-0.5, 0.2));
+		l2.InsertBeforeHead(new CVertex(0.5, -0.2));
+		l2.InsertBeforeHead(new CVertex(0, 1));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping10(){
+	public void testClipping10()
+	{
 		System.out.println("Test: 10");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1.5,0.2));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(-0.2,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1.5, 0.2));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(-0.2, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(-0.1,0.5));
-		l2.InsertBeforeHead(new CVertex(0.2,0));
-		l2.InsertBeforeHead(new CVertex(1.0,0));
-		l2.InsertBeforeHead(new CVertex(1.3125,0.5));
-		l2.InsertBeforeHead(new CVertex(1,1));
-		l2.InsertBeforeHead(new CVertex(0.5,1));
+		l2.InsertBeforeHead(new CVertex(-0.1, 0.5));
+		l2.InsertBeforeHead(new CVertex(0.2, 0));
+		l2.InsertBeforeHead(new CVertex(1.0, 0));
+		l2.InsertBeforeHead(new CVertex(1.3125, 0.5));
+		l2.InsertBeforeHead(new CVertex(1, 1));
+		l2.InsertBeforeHead(new CVertex(0.5, 1));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping11(){
+	public void testClipping11()
+	{
 		System.out.println("Test: 11");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0.5,1));
-		l2.InsertBeforeHead(new CVertex(0.7,1));
-		l2.InsertBeforeHead(new CVertex(0.7,1.5));
-		l2.InsertBeforeHead(new CVertex(0.5,1.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 1));
+		l2.InsertBeforeHead(new CVertex(0.7, 1));
+		l2.InsertBeforeHead(new CVertex(0.7, 1.5));
+		l2.InsertBeforeHead(new CVertex(0.5, 1.5));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping12(){
+	public void testClipping12()
+	{
 		System.out.println("Test: 12");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(1,0.5));
-		l2.InsertBeforeHead(new CVertex(1.5,0.2));
-		l2.InsertBeforeHead(new CVertex(1.5,0.7));
+		l2.InsertBeforeHead(new CVertex(1, 0.5));
+		l2.InsertBeforeHead(new CVertex(1.5, 0.2));
+		l2.InsertBeforeHead(new CVertex(1.5, 0.7));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());
 	}
 
 	@Test
-	public void testClipping13(){
+	public void testClipping13()
+	{
 		System.out.println("Test: 13");
 		CVertexList l1 = new CVertexList();
-		l1.InsertBeforeHead(new CVertex(0,0));
-		l1.InsertBeforeHead(new CVertex(1,0));
-		l1.InsertBeforeHead(new CVertex(1,1));
-		l1.InsertBeforeHead(new CVertex(0,1));
+		l1.InsertBeforeHead(new CVertex(0, 0));
+		l1.InsertBeforeHead(new CVertex(1, 0));
+		l1.InsertBeforeHead(new CVertex(1, 1));
+		l1.InsertBeforeHead(new CVertex(0, 1));
 		CVertexList l2 = new CVertexList();
-		l2.InsertBeforeHead(new CVertex(0,0));
-		l2.InsertBeforeHead(new CVertex(1,1));
-		l2.InsertBeforeHead(new CVertex(0,1.5));
+		l2.InsertBeforeHead(new CVertex(0, 0));
+		l2.InsertBeforeHead(new CVertex(1, 1));
+		l2.InsertBeforeHead(new CVertex(0, 1.5));
 		ConvexClip test = new ConvexClip();
 		test.Start(l1, l2);
 		System.out.println(test.inters.toString());

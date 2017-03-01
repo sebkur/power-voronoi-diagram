@@ -18,5 +18,9 @@ package kn.uni.voronoitreemap.convexClip;
  * @author Hildenbrand, Nocaj
  */
 public enum InsideFlag {
-	PIN, QIN, UNKNOWN
+
+	PIN,
+	QIN,
+	UNKNOWN
+
 }

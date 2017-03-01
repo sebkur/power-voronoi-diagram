@@ -14,7 +14,8 @@ package kn.uni.voronoitreemap.j2d;
 
 import java.util.ArrayList;
 
-public interface ISite {
+public interface ISite
+{
 
 	public abstract PolygonSimple getPolygon();
 

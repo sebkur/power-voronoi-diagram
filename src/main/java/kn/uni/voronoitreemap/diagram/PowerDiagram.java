@@ -36,7 +36,8 @@ import kn.uni.voronoitreemap.j2d.Site;
  * 
  * @author Arlind Nocaj
  */
-public class PowerDiagram {
+public class PowerDiagram
+{
 
 	public static Random rand = new Random(99);
 	public static final int halfLineScalingFactor = 10000;
@@ -59,12 +60,14 @@ public class PowerDiagram {
 	Site s3;
 	Site s4;
 
-	public PowerDiagram() {
+	public PowerDiagram()
+	{
 		sites = null;
 		clipPoly = null;
 	}
 
-	public PowerDiagram(OpenList sites, PolygonSimple clipPoly) {
+	public PowerDiagram(OpenList sites, PolygonSimple clipPoly)
+	{
 		setSites(sites);
 		setClipPoly(clipPoly);
 	}
@@ -74,12 +77,14 @@ public class PowerDiagram {
 	 * 
 	 * @see diagram.iPowerDiagram#setSites(datastructure.OpenList)
 	 */
-	public void setSites(OpenList sites) {
+	public void setSites(OpenList sites)
+	{
 		this.sites = sites;
 		hull = null;
 	}
 
-	public void setClipPoly(PolygonSimple polygon) {
+	public void setClipPoly(PolygonSimple polygon)
+	{
 		clipPoly = polygon;
 		bb = polygon.getBounds2D();
 		// create sites on a rectangle which is big enough to not create
@@ -102,7 +107,8 @@ public class PowerDiagram {
 
 	}
 
-	public PolygonSimple getClipPoly() {
+	public PolygonSimple getClipPoly()
+	{
 		return clipPoly;
 	}
 
@@ -111,7 +117,8 @@ public class PowerDiagram {
 	 * 
 	 * @see diagram.iPowerDiagram#computeDiagram()
 	 */
-	public void computeDiagram() {
+	public void computeDiagram()
+	{
 
 		if (sites.size > 0) {
 			sites.permutate();
@@ -121,8 +128,8 @@ public class PowerDiagram {
 			int size = sites.size;
 			for (int z = 0; z < size; z++) {
 				Site s = array[z];
-				if (Double.isNaN(s.getWeight())){
-			
+				if (Double.isNaN(s.getWeight())) {
+
 //					s.setWeight(0.001);
 					throw new RuntimeException(
 							"Weight of a Site may not be NaN.");
@@ -154,17 +161,18 @@ public class PowerDiagram {
 		}
 	}
 
-	public void writeHullTestCodeOut(Site s) {
-		System.out.println("hull.addPoint(" + s.x + "," + s.y + "," + s.z
-				+ ");");
+	public void writeHullTestCodeOut(Site s)
+	{
+		System.out
+				.println("hull.addPoint(" + s.x + "," + s.y + "," + s.z + ");");
 	}
-
 
 	/**
 	 * For each site the corresponding polygon and the corresponding neighbours
 	 * are computed and stored in the site.
 	 */
-	private void computeData() {
+	private void computeData()
+	{
 
 		// make all vertices visible. When we finished working on one we make
 		// invisible to not do it several times
@@ -210,8 +218,7 @@ public class PowerDiagram {
 						double dx = 1;
 						double dy = 1;
 						for (JFace face : faces) {
-							Point2D point = face
-									.getDualPoint();
+							Point2D point = face.getDualPoint();
 							double x1 = point.getX();
 							double y1 = point.getY();
 							if (!Double.isNaN(lastX)) {
@@ -237,7 +244,7 @@ public class PowerDiagram {
 
 						if (!site.isDummy) {
 //							try {
-								site.setPolygon(clipPoly.convexClip(poly));
+							site.setPolygon(clipPoly.convexClip(poly));
 
 //							} catch (Exception ex) {
 //
@@ -260,7 +267,8 @@ public class PowerDiagram {
 	 * @param edge
 	 * @return
 	 */
-	private ArrayList<JFace> getFacesOfDestVertex(HEdge edge) {
+	private ArrayList<JFace> getFacesOfDestVertex(HEdge edge)
+	{
 		ArrayList<JFace> faces = new ArrayList<JFace>();
 		HEdge previous = edge;
 		JVertex first = edge.getDest();
@@ -286,30 +294,33 @@ public class PowerDiagram {
 		return faces;
 	}
 
-	
-	public void setAmountPolygons(int amountPolygons) {
+	public void setAmountPolygons(int amountPolygons)
+	{
 		this.amountPolygons = amountPolygons;
 	}
 
-	public int getAmountPolygons() {
+	public int getAmountPolygons()
+	{
 		return amountPolygons;
 	}
 
-	public static void initDebug() {
+	public static void initDebug()
+	{
 //		if (graphics == null) {
-			BufferedImage image = new BufferedImage(2000, 2000,
-					BufferedImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(2000, 2000,
+				BufferedImage.TYPE_INT_RGB);
 
-			frame = new ImageFrame(image);
-			frame.setVisible(true);
-			frame.setBounds(20, 20, 1600, 800);
-			graphics = image.createGraphics();
-			graphics.translate(200, 200);
+		frame = new ImageFrame(image);
+		frame.setVisible(true);
+		frame.setBounds(20, 20, 1600, 800);
+		graphics = image.createGraphics();
+		graphics.translate(200, 200);
 //		}
 	}
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args)
+	{
+
 		PowerDiagram diagram = new PowerDiagram();
 
 		// normal list based on an array
@@ -326,32 +337,35 @@ public class PowerDiagram {
 		rootPolygon.add(width, 0);
 		rootPolygon.add(width, height);
 		rootPolygon.add(0, height);
-		
-		// create 100 points (sites) and set random positions in the rectangle defined above.
+
+		// create 100 points (sites) and set random positions in the rectangle
+		// defined above.
 		for (int i = 0; i < 100; i++) {
 			Site site = new Site(rand.nextInt(width), rand.nextInt(width));
 			// we could also set a different weighting to some sites
 			// site.setWeight(30)
 			sites.add(site);
 		}
-		
+
 		// set the list of points (sites), necessary for the power diagram
 		diagram.setSites(sites);
 		// set the clipping polygon, which limits the power voronoi diagram
 		diagram.setClipPoly(rootPolygon);
-		
+
 		// do the computation
 		diagram.computeDiagram();
-		
-		// for each site we can no get the resulting polygon of its cell. 
-		// note that the cell can also be empty, in this case there is no polygon for the corresponding site.
-		for (int i=0;i<sites.size;i++){
-			Site site=sites.array[i];
-			PolygonSimple polygon=site.getPolygon();
+
+		// for each site we can no get the resulting polygon of its cell.
+		// note that the cell can also be empty, in this case there is no
+		// polygon for the corresponding site.
+		for (int i = 0; i < sites.size; i++) {
+			Site site = sites.array[i];
+			PolygonSimple polygon = site.getPolygon();
 		}
 	}
 
-	public void showDiagram() {
+	public void showDiagram()
+	{
 		initDebug();
 
 		graphics.clearRect(0, 0, 1600, 800);
@@ -392,7 +406,8 @@ public class PowerDiagram {
 
 	}
 
-	public void draw(Site s) {
+	public void draw(Site s)
+	{
 		s.paint(graphics);
 
 		PolygonSimple poly = s.getPolygon();

@@ -15,10 +15,8 @@ package kn.uni.voronoitreemap.convexHull;
 import java.util.List;
 import java.util.Random;
 
-
-
-
-public class TestHull{
+public class TestHull
+{
 
 //	public void testExample3(){
 //		JConvexHull hull=new JConvexHull();
@@ -97,31 +95,30 @@ public class TestHull{
 //	}
 //
 
-	public void testHull(){
-
+	public void testHull()
+	{
 		JConvexHull hull;
-		for(int k = 0;  k < 1000; ++k){
-		hull =new JConvexHull();
+		for (int k = 0; k < 1000; ++k) {
+			hull = new JConvexHull();
 
-		long startTime=System.currentTimeMillis();
-		Random rand=new Random();
-		for (int i=0;i<10000;i++){
-			double x=rand.nextDouble()*5;
-			double y=rand.nextDouble()*5;
-			double weight=rand.nextDouble()*5;
-			weight=weight*weight;
-			double z=x*x+y*y-weight; //harder test
+			long startTime = System.currentTimeMillis();
+			Random rand = new Random();
+			for (int i = 0; i < 10000; i++) {
+				double x = rand.nextDouble() * 5;
+				double y = rand.nextDouble() * 5;
+				double weight = rand.nextDouble() * 5;
+				weight = weight * weight;
+				double z = x * x + y * y - weight; // harder test
 //			z=rand.nextInt(500); //easy test
-			hull.addPoint(new JVertex(x, y, z));
-		}
+				hull.addPoint(new JVertex(x, y, z));
+			}
 
+			List<JFace> erg = hull.compute();
+			long endTime = System.currentTimeMillis();
 
-		List<JFace> erg = hull.compute();
-		long endTime=System.currentTimeMillis();
-
-		long delta = endTime-startTime;
-		double time=delta;
-		System.out.println(time);
+			long delta = endTime - startTime;
+			double time = delta;
+			System.out.println(time);
 		}
 //		convexHull.JConvexHull hull2 = new convexHull.JConvexHull();
 //
@@ -253,5 +250,6 @@ public class TestHull{
 ////		hull.addPoint(-2, 12, 0);
 ////		List<JFace> test = hull.compute();
 ////		System.out.println(test);
-		}
+	}
+
 }

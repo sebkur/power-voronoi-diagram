@@ -17,45 +17,55 @@ package kn.uni.voronoitreemap.convexHull;
  * 
  * @author Arlind Nocaj
  */
-public class JVector {
+public class JVector
+{
 
 	public double x;
 	public double y;
 	public double z;
-	public JVector() {
+
+	public JVector()
+	{
 		x = y = z = 0.0F;
 	}
 
-	public JVector(double x, double y, double z) {
+	public JVector(double x, double y, double z)
+	{
 		this.x = x;
 		this.y = y;
 		this.z = z;
 	}
 
-	public JVector(JVector a) {
+	public JVector(JVector a)
+	{
 		this.x = a.x;
 		this.y = a.y;
 		this.z = a.z;
 	}
 
-	public JVector subtract(JVector b) {
+	public JVector subtract(JVector b)
+	{
 		return new JVector(x - b.x, y - b.y, z - b.z);
 	}
 
-	public JVector cross(JVector b) {
-		return new JVector(y * b.z - z * b.y, z * b.x - x * b.z, x * b.y - y
-				* b.x);
+	public JVector cross(JVector b)
+	{
+		return new JVector(y * b.z - z * b.y, z * b.x - x * b.z,
+				x * b.y - y * b.x);
 	}
 
-	public double dot(JVector b) {
+	public double dot(JVector b)
+	{
 		return x * b.x + y * b.y + z * b.z;
 	}
 
-	public double dot(JVertex b) {
+	public double dot(JVertex b)
+	{
 		return x * b.x + y * b.y + z * b.z;
 	}
 
-	public void normalize() {
+	public void normalize()
+	{
 		double len = length();
 		if (len > 0.0D) {
 			x /= len;
@@ -64,18 +74,21 @@ public class JVector {
 		}
 	}
 
-	public void negate() {
+	public void negate()
+	{
 		x *= -1;
 		y *= -1;
 		z *= -1;
 	}
 
-	public double length() {
+	public double length()
+	{
 		return Math.sqrt(x * x + y * y + z * z);
 	}
-	
-	public String toString(){
-		return "X: "+x+"\t Y: "+y+"\t Z: "+z;
+
+	public String toString()
+	{
+		return "X: " + x + "\t Y: " + y + "\t Z: " + z;
 	}
 
 }

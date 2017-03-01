@@ -19,7 +19,8 @@ import kn.uni.voronoitreemap.j2d.PolygonSimple;
  * 
  * @author Arlind Nocaj
  */
-public interface VoroCellObject {
+public interface VoroCellObject
+{
 
 	public void setVoroPolygon(PolygonSimple polygon);
 

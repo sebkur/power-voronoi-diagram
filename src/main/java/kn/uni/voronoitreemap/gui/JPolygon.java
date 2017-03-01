@@ -37,163 +37,191 @@ import kn.uni.voronoitreemap.j2d.PolygonSimple;
  * 
  * @author Nocaj
  */
-public class JPolygon extends JComponent implements VoroCellObject {
+public class JPolygon extends JComponent implements VoroCellObject
+{
 
 	String text;
 	private Font textFont;
 	PolygonSimple polygon;
-	private boolean mouseIn=false;
+	private boolean mouseIn = false;
 	private boolean isFinal;
 	private Integer id;
-	private boolean isLast=false;
-	private Color fillColor=new Color(255,255,255,0);
-	private int height=0;
-	private boolean makeFontSmaller=false;
-	
+	private boolean isLast = false;
+	private Color fillColor = new Color(255, 255, 255, 0);
+	private int height = 0;
+	private boolean makeFontSmaller = false;
+
 	private boolean draw = false;
-	
-	public JPolygon(Integer id, String title){
+
+	public JPolygon(Integer id, String title)
+	{
 		this(id);
-		this.text=title;
+		this.text = title;
 	}
-	public JPolygon(Integer id){
-		this.id=id;
-		polygon=null;
+
+	public JPolygon(Integer id)
+	{
+		this.id = id;
+		polygon = null;
 		this.setOpaque(false);
 //		initListeners();
 	}
-	
-	public JPolygon(PolygonSimple polygon, Integer id){
+
+	public JPolygon(PolygonSimple polygon, Integer id)
+	{
 		this(id);
 		setPolygon(polygon);
 	}
-	
-	public void calculateFittingFont(){
-		if (polygon==null || text==null) return;
-		textFont=null;
-		new Thread(){
-			public void run(){
+
+	public void calculateFittingFont()
+	{
+		if (polygon == null || text == null)
+			return;
+		textFont = null;
+		new Thread() {
+			public void run()
+			{
 				Font font = new Font("Serif", Font.BOLD, 5);
 				int fontSize = 5;
-				int w=0;
-				int h=0;
-				Point2D centroid =polygon.getCentroid();
-				Point2D p1=centroid;
-				Point2D p2=centroid;
-				Point2D p3=centroid;
-				Point2D p4=centroid;
-				do{
-					fontSize+=2;
+				int w = 0;
+				int h = 0;
+				Point2D centroid = polygon.getCentroid();
+				Point2D p1 = centroid;
+				Point2D p2 = centroid;
+				Point2D p3 = centroid;
+				Point2D p4 = centroid;
+				do {
+					fontSize += 2;
 					font = new Font("Serif", Font.PLAIN, fontSize);
 					FontMetrics fontMetrics = getFontMetrics(font);
 
 					w = fontMetrics.stringWidth(text);
 					h = fontMetrics.getHeight();
 
-					p1 = new Point2D(centroid.getX()-w/2,centroid.getY()-h/2);
-					p2 = new Point2D(centroid.getX()-w/2,centroid.getY()+h/2);
-					p3 = new Point2D(centroid.getX()+w/2,centroid.getY()-h/2);
-					p4 = new Point2D(centroid.getX()+w/2,centroid.getY()+h/2);
+					p1 = new Point2D(centroid.getX() - w / 2,
+							centroid.getY() - h / 2);
+					p2 = new Point2D(centroid.getX() - w / 2,
+							centroid.getY() + h / 2);
+					p3 = new Point2D(centroid.getX() + w / 2,
+							centroid.getY() - h / 2);
+					p4 = new Point2D(centroid.getX() + w / 2,
+							centroid.getY() + h / 2);
 
-				}while(polygon.contains(p1)&& polygon.contains(p2) && polygon.contains(p3) && polygon.contains(p4));
+				} while (polygon.contains(p1) && polygon.contains(p2)
+						&& polygon.contains(p3) && polygon.contains(p4));
 
-				if (fontSize-4>0){
-					if (makeFontSmaller){
-						textFont=new Font("Serif", Font.BOLD, (int)((fontSize)*0.6));
-					}
-					else {
-						if (text.length()<=4 && height==3){
-							//small words gett smaller so that they do not look too important
-							textFont=new Font("Serif", Font.BOLD, (int)(fontSize*0.6));
-						}else{
-							textFont=new Font("Serif", Font.BOLD, fontSize-4);
+				if (fontSize - 4 > 0) {
+					if (makeFontSmaller) {
+						textFont = new Font("Serif", Font.BOLD,
+								(int) ((fontSize) * 0.6));
+					} else {
+						if (text.length() <= 4 && height == 3) {
+							// small words gett smaller so that they do not look
+							// too important
+							textFont = new Font("Serif", Font.BOLD,
+									(int) (fontSize * 0.6));
+						} else {
+							textFont = new Font("Serif", Font.BOLD,
+									fontSize - 4);
 						}
 					}
 				}
 			}
 		}.start();
 	}
-	
 
-	public PolygonSimple getPolygon(){
+	public PolygonSimple getPolygon()
+	{
 		return polygon;
 	}
 
-	private void initListeners() {
+	private void initListeners()
+	{
 		this.addMouseListener(new MouseListener() {
-			
+
 			@Override
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				doMouseReleased(e);
 			}
-			
+
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void mousePressed(MouseEvent e)
+			{
 				// TODO Auto-generated method stub
 				doMousePressed(e);
 			}
-			
+
 			@Override
-			public void mouseExited(MouseEvent e) {
+			public void mouseExited(MouseEvent e)
+			{
 				doMouseExited(e);
 			}
-			
+
 			@Override
-			public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e)
+			{
 				doMouseEntered(e);
 			}
-			
+
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)
+			{
 				doMouseClicked(e);
 			}
 		});
 	}
 
-
-	protected void doMousePressed(MouseEvent e) {
+	protected void doMousePressed(MouseEvent e)
+	{
 		// TODO Auto-generated method stub
 		System.out.println(e);
 	}
 
-	protected void doMouseReleased(MouseEvent e) {
+	protected void doMouseReleased(MouseEvent e)
+	{
 		// TODO Auto-generated method stub
 	}
 
-	protected void doMouseClicked(MouseEvent e) {
-		
+	protected void doMouseClicked(MouseEvent e)
+	{
+
 	}
 
-	protected void doMouseEntered(MouseEvent e) {
+	protected void doMouseEntered(MouseEvent e)
+	{
 		System.out.println(e);
-		mouseIn=true;
+		mouseIn = true;
 		repaint();
 	}
 
-	protected void doMouseExited(MouseEvent e) {
+	protected void doMouseExited(MouseEvent e)
+	{
 		// TODO Auto-generated method stub,
-		mouseIn=false;
+		mouseIn = false;
 		repaint();
 	}
 
-	public void setPolygon(PolygonSimple p){
-		this.polygon=p;
-		if (polygon!=null){
-		Rectangle bounds = p.getBounds();
-		setLocation(bounds.x, bounds.y);
-		this.setSize(bounds.width, bounds.height);
-		this.setPreferredSize(new Dimension(bounds.width, bounds.height));
-		this.repaint();
+	public void setPolygon(PolygonSimple p)
+	{
+		this.polygon = p;
+		if (polygon != null) {
+			Rectangle bounds = p.getBounds();
+			setLocation(bounds.x, bounds.y);
+			this.setSize(bounds.width, bounds.height);
+			this.setPreferredSize(new Dimension(bounds.width, bounds.height));
+			this.repaint();
 		}
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g)
+	{
 		if (!draw) {
 			return;
 		}
-		if (polygon!=null){
-			Graphics2D g2 = (Graphics2D)g;
+		if (polygon != null) {
+			Graphics2D g2 = (Graphics2D) g;
 			if (isFinal)
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 						RenderingHints.VALUE_ANTIALIAS_ON);
@@ -209,87 +237,102 @@ public class JPolygon extends JComponent implements VoroCellObject {
 			/**
 			 * Fill Polygon
 			 */
-			int[] x2=new int[length+1];
-			int[] y2=new int[length+1];
-			for (int i = 0; i <= length; i++){
-				x2[i]=(int) x[i]-tx;
-				y2[i]=(int) y[i]-ty;
+			int[] x2 = new int[length + 1];
+			int[] y2 = new int[length + 1];
+			for (int i = 0; i <= length; i++) {
+				x2[i] = (int) x[i] - tx;
+				y2[i] = (int) y[i] - ty;
 			}
-			g.setColor(new Color(fillColor.getRed(),fillColor.getGreen(),fillColor.getBlue(),80));
+			g.setColor(new Color(fillColor.getRed(), fillColor.getGreen(),
+					fillColor.getBlue(), 80));
 			g.fillPolygon(x2, y2, length);
 
 			/**
 			 * Draw Border
 			 */
-			if (mouseIn==true){
+			if (mouseIn == true) {
 				g.setColor(Color.blue);
-			}else{
+			} else {
 //				g.setColor(Color.black);
 				g.setColor(fillColor.darker());
 			}
 
-			for (int i = 0; i < (length-1); i++){
+			for (int i = 0; i < (length - 1); i++) {
 				g.drawLine(x2[i], y2[i], x2[i + 1], y2[i + 1]);
 			}
-			g.drawLine(x2[length-1], y2[length-1], x2[0], y2[0]);
+			g.drawLine(x2[length - 1], y2[length - 1], x2[0], y2[0]);
 
 //			if (mouseIn){
 //				Vector<Double> circle = polygon.getInnerCircle();
 //				g.setColor(Color.blue);
 //				g.drawOval((int)(circle.get(0)-circle.get(2))-getLocation().x, (int)(circle.get(1)-circle.get(2))-getLocation().y, (int)(circle.get(2)*2),(int)(circle.get(2)*2));
 //			}
-			if (isFinal){
-				if (textFont!=null){
+			if (isFinal) {
+				if (textFont != null) {
 					FontMetrics fontMetrics = getFontMetrics(textFont);
 					int w = fontMetrics.stringWidth(text);
 					int h = fontMetrics.getHeight();
 //					g.setColor(new Color(237, 240, 249));
-					if (mouseIn && isLast){
-						g.setColor(new Color(175,175,175,200));
-					}else{
-						if (height==2)
-							g.setColor(new Color(175,175,175,60));
-						else g.setColor(new Color(175,175,175,100));
+					if (mouseIn && isLast) {
+						g.setColor(new Color(175, 175, 175, 200));
+					} else {
+						if (height == 2)
+							g.setColor(new Color(175, 175, 175, 60));
+						else
+							g.setColor(new Color(175, 175, 175, 100));
 					}
 
 					g.setFont(textFont);
 
-					g.drawString(text, (int)polygon.getCentroid().getX()-tx-(int)(w/2), (int)polygon.getCentroid().getY()-ty+(int)(h/2));
+					g.drawString(text,
+							(int) polygon.getCentroid().getX() - tx
+									- (int) (w / 2),
+							(int) polygon.getCentroid().getY() - ty
+									+ (int) (h / 2));
 				}
 			}
 		}
 	}
 
 	@Override
-	public boolean contains(int x, int y) {
+	public boolean contains(int x, int y)
+	{
 //	return false;
-		if (super.contains(x, y)){
-			if (polygon==null) return true;
-			return polygon.contains(x+this.getLocation().x,y+ getLocation().y);
-		}else return false;
+		if (super.contains(x, y)) {
+			if (polygon == null)
+				return true;
+			return polygon.contains(x + this.getLocation().x,
+					y + getLocation().y);
+		} else
+			return false;
 	}
 
 	@Override
-	public boolean contains(Point p) {
+	public boolean contains(Point p)
+	{
 //		return false;
-		if (super.contains(p)){
-			if (polygon==null) return true;
-			return polygon.contains(p.x+getLocation().x,p.y+getLocation().y);
-		}else return false;
+		if (super.contains(p)) {
+			if (polygon == null)
+				return true;
+			return polygon.contains(p.x + getLocation().x,
+					p.y + getLocation().y);
+		} else
+			return false;
 	}
 
 	@Override
-	public void doFinalWork() {
+	public void doFinalWork()
+	{
 		calculateFittingFont();
-		isFinal=true;
+		isFinal = true;
 //		repaint();
 	}
 
-	
-	public void setVoroPolygon(PolygonSimple p, int height) {
-		p=(PolygonSimple)p.clone();
-		this.height=height;
-		isFinal=false;
+	public void setVoroPolygon(PolygonSimple p, int height)
+	{
+		p = (PolygonSimple) p.clone();
+		this.height = height;
+		isFinal = false;
 		Rectangle bounds = p.getBounds();
 //		if (height==2)
 //		p.shrinkForBorder(0.98);
@@ -298,7 +341,7 @@ public class JPolygon extends JComponent implements VoroCellObject {
 //		else{
 //			p.shrinkForBorder(0.95);
 //		}
-		this.polygon=p;
+		this.polygon = p;
 		setLocation(bounds.x, bounds.y);
 
 		this.setSize(bounds.width, bounds.height);
@@ -306,36 +349,44 @@ public class JPolygon extends JComponent implements VoroCellObject {
 //		repaint();
 	}
 
-	public void setIsLast(boolean isLast) {
+	public void setIsLast(boolean isLast)
+	{
 		this.isLast = isLast;
 	}
 
-	public boolean getisLast() {
+	public boolean getisLast()
+	{
 		return isLast;
 	}
 
-	public void setFillColor(Color fillColor) {
+	public void setFillColor(Color fillColor)
+	{
 		this.fillColor = fillColor;
 	}
 
-	public Color getFillColor() {
+	public Color getFillColor()
+	{
 		return fillColor;
 	}
 
-	public void setMakeFontSmaller(boolean b) {
-		makeFontSmaller=b;
+	public void setMakeFontSmaller(boolean b)
+	{
+		makeFontSmaller = b;
 	}
 
 	@Override
-	public void setVoroPolygon(PolygonSimple polygon) {
-		this.polygon=polygon;
+	public void setVoroPolygon(PolygonSimple polygon)
+	{
+		this.polygon = polygon;
 	}
 
-	public boolean isDraw() {
+	public boolean isDraw()
+	{
 		return draw;
 	}
 
-	public void setDraw(boolean draw) {
+	public void setDraw(boolean draw)
+	{
 		this.draw = draw;
 	}
 

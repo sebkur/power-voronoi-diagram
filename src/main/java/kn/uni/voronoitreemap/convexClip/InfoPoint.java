@@ -20,34 +20,38 @@ import kn.uni.voronoitreemap.j2d.Point2D;
  * 
  * @author Hildenbrand, Nocaj
  */
-public class InfoPoint {
+public class InfoPoint
+{
 
 	Point2D erg;
 	Point2D snd;
 	char code;
 
-	public InfoPoint(Point2D erg, char code){
+	public InfoPoint(Point2D erg, char code)
+	{
 		this.erg = erg;
 		this.code = code;
 	}
 
-	public InfoPoint(Point2D erg, Point2D snd, char code){
+	public InfoPoint(Point2D erg, Point2D snd, char code)
+	{
 		this.erg = erg;
 		this.code = code;
 		this.snd = snd;
 	}
 
-	public String toString(){
+	public String toString()
+	{
 		String ergs, snds = "";
-		if(erg == null){
+		if (erg == null) {
 			ergs = snds = "";
-		}else if( snd == null){
+		} else if (snd == null) {
 			ergs = erg.toString();
-		}else{
+		} else {
 			ergs = erg.toString();
 			snds = snd.toString();
 		}
-		return "c: " + code + " " + ergs + " " + snds; 
+		return "c: " + code + " " + ergs + " " + snds;
 	}
 
 }

@@ -24,9 +24,11 @@ import javax.swing.JFrame;
  * @author Arlind Nocaj
  * @author Sebastian Kuerten
  */
-public class TestPowerBox {
+public class TestPowerBox
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

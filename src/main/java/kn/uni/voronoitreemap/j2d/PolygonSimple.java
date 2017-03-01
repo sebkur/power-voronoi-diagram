@@ -252,6 +252,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>
 		 * @return an integer representing the current winding rule.
 		 * @see PathIterator#WIND_NON_ZERO
 		 */
+		@Override
 		public int getWindingRule()
 		{
 			return WIND_EVEN_ODD;
@@ -263,6 +264,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>
 		 * @return <code>true</code> if there are more points to read;
 		 *         <code>false</code> otherwise.
 		 */
+		@Override
 		public boolean isDone()
 		{
 			return index > poly.getNumPoints();
@@ -273,6 +275,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>
 		 * traversal, to the next segment of the path when there are more points
 		 * in that direction.
 		 */
+		@Override
 		public void next()
 		{
 			index++;
@@ -296,6 +299,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>
 		 * @see PathIterator#SEG_LINETO
 		 * @see PathIterator#SEG_CLOSE
 		 */
+		@Override
 		public int currentSegment(float[] coords)
 		{
 			if (index >= poly.getNumPoints()) {
@@ -327,6 +331,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>
 		 * @see PathIterator#SEG_LINETO
 		 * @see PathIterator#SEG_CLOSE
 		 */
+		@Override
 		public int currentSegment(double[] coords)
 		{
 			if (index >= poly.length) {
@@ -369,6 +374,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>
 	/**
 	 * Returns the bounding rectangle of this polygon.
 	 */
+	@Override
 	public Rectangle getBounds()
 	{
 		bounds = null;

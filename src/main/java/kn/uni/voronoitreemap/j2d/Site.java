@@ -70,6 +70,7 @@ public class Site extends ASite
 		super(x, y, weight, percentage);
 	}
 
+	@Override
 	public Site clone()
 	{
 		Site site = new Site(x, y, weight);

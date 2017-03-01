@@ -62,6 +62,7 @@ public class JVertex
 		this.index = index;
 	}
 
+	@Override
 	public boolean equals(Object o)
 	{
 		if (!(o instanceof JVertex))
@@ -129,6 +130,7 @@ public class JVertex
 				x * v.y - y * v.x);
 	}
 
+	@Override
 	public String toString()
 	{
 		return "" + x + "/" + y + "/" + z;

@@ -40,6 +40,7 @@ public class CVertex
 		v = new Point2D(erg.x, erg.y);
 	}
 
+	@Override
 	public String toString()
 	{
 		if (v != null) {

@@ -86,6 +86,7 @@ public class JVector
 		return Math.sqrt(x * x + y * y + z * z);
 	}
 
+	@Override
 	public String toString()
 	{
 		return "X: " + x + "\t Y: " + y + "\t Z: " + z;

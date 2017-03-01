@@ -79,6 +79,7 @@ public class JPolygon extends JComponent implements VoroCellObject
 			return;
 		textFont = null;
 		new Thread() {
+			@Override
 			public void run()
 			{
 				Font font = new Font("Serif", Font.BOLD, 5);

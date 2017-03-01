@@ -40,6 +40,7 @@ public class InfoPoint
 		this.snd = snd;
 	}
 
+	@Override
 	public String toString()
 	{
 		String ergs, snds = "";

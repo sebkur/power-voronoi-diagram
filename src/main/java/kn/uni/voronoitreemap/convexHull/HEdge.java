@@ -99,6 +99,7 @@ public class HEdge
 		this.prev = prev;
 	}
 
+	@Override
 	public String toString()
 	{
 		return origin.toString() + "->" + dest.toString();

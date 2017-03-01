@@ -107,6 +107,7 @@ public class OpenList implements Iterable<Site>
 		return neu;
 	}
 
+	@Override
 	public OpenList clone()
 	{
 		OpenList neu = new OpenList(size + 1);

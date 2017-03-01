@@ -110,6 +110,7 @@ public class JFace
 		this.list = list;
 	}
 
+	@Override
 	public String toString()
 	{
 //		String str = "[ " + v[0] + ", " + v[1] + ", " + v[2] + " ]";

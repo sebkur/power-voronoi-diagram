@@ -1,10 +1,19 @@
 package kn.uni.voronoitreemap.gui;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 
+import de.topobyte.awt.util.GridBagConstraintsEditor;
 import kn.uni.voronoitreemap.gui.actions.AntialiasingAction;
 import kn.uni.voronoitreemap.gui.actions.CentroidsAction;
 import kn.uni.voronoitreemap.gui.actions.ClearAction;
@@ -20,16 +29,61 @@ import kn.uni.voronoitreemap.gui.actions.SaveAction;
 public class PowerBoxGui
 {
 
+	private static PowerBox powerBox;
+	private static StatusBar statusBar;
+
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame("PowerBox GUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// Main content
-		PowerBox powerBox = new PowerBox();
+		// Layout
+		JPanel content = new JPanel();
+		content.setLayout(new GridBagLayout());
+		frame.setContentPane(content);
+
+		powerBox = new PowerBox();
 		powerBox.setAntialiasing(true);
 
-		frame.setContentPane(powerBox);
+		statusBar = new StatusBar();
+
+		GridBagConstraintsEditor c = new GridBagConstraintsEditor();
+
+		c.fill(GridBagConstraints.BOTH).weight(1, 1).gridPos(0, 0);
+		content.add(powerBox, c.getConstraints());
+
+		c.fill(GridBagConstraints.HORIZONTAL).weightY(0).gridPos(0, 1);
+		content.add(statusBar, c.getConstraints());
+
+		// Status bar
+		powerBox.addComponentListener(new ComponentAdapter() {
+
+			@Override
+			public void componentResized(ComponentEvent e)
+			{
+				statusBar.setBoxSize(powerBox.getWidth(), powerBox.getHeight());
+				statusBar.setDefaultText();
+			}
+
+		});
+
+		powerBox.addMouseMotionListener(new MouseAdapter() {
+
+			@Override
+			public void mouseMoved(MouseEvent e)
+			{
+				statusBar.setMouse(e.getX(), e.getY());
+				statusBar.setDefaultText();
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e)
+			{
+				statusBar.setMouse(e.getX(), e.getY());
+				statusBar.setDefaultText();
+			}
+
+		});
 
 		// Actions
 		ClearAction clear = new ClearAction(powerBox);

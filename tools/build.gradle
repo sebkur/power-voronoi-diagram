@@ -8,6 +8,7 @@ dependencies {
     compile project(':power-voronoi-diagram')
 
     compile 'de.topobyte:swing-utils:0.0.7'
+    compile 'de.topobyte:awt-utils:0.0.3'
     compile 'com.google.guava:guava:19.0'
 
     testCompile 'junit:junit:4.12'

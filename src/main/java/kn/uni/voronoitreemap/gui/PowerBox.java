@@ -53,6 +53,15 @@ public class PowerBox extends JPanel
 	// Cell edges
 	private Color colorEdges = Color.GRAY.brighter();
 
+	// Sizes of site markers
+	private int sizeInnerSquares = 5;
+	private int sizeOuterSquares = 7;
+	// Size of centroid markers
+	private int sizeCentroidSquares = 5;
+
+	// Distance in pixels for detecting clicks on existing sites
+	private double clickTolerance = 10;
+
 	OpenList sites = new OpenList();
 	PolygonSimple clipPoly = new PolygonSimple();
 
@@ -152,14 +161,15 @@ public class PowerBox extends JPanel
 	/**
 	 * Determine a Site close to the specified location.
 	 * 
-	 * @return a close Site, or null if none is found within 10 pixels distance.
+	 * @return a close Site, or null if none is found within
+	 *         <code>clickTolerance</code> pixels distance.
 	 */
 	protected Site getSite(int x, int y)
 	{
 		for (Site site : sites) {
 			double distance = new kn.uni.voronoitreemap.j2d.Point2D(x, y)
 					.distance(site.getX(), site.getY());
-			if (distance < 10) {
+			if (distance < clickTolerance) {
 				return site;
 			}
 		}
@@ -196,7 +206,7 @@ public class PowerBox extends JPanel
 			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
 					(int) (2 * radius), (int) (2 * radius));
 			// and a square around the site
-			int r2 = 5;
+			int r2 = sizeInnerSquares;
 			Color normal = g.getColor();
 			if (s.getPolygon() == null) {
 				g.setColor(colorSitesWithoutCell);
@@ -244,7 +254,7 @@ public class PowerBox extends JPanel
 			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
 					(int) (2 * radius), (int) (2 * radius));
 			// and a square around the site
-			int r2 = 7;
+			int r2 = sizeOuterSquares;
 			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
 
 			PolygonSimple poly = s.getPolygon();
@@ -252,7 +262,7 @@ public class PowerBox extends JPanel
 			if (poly != null) {
 				g.setColor(colorCentroids);
 				Point2D center = poly.getCentroid();
-				r2 = 5;
+				r2 = sizeCentroidSquares;
 				g.drawRect((int) center.getX() - r2, (int) center.getY() - r2,
 						2 * r2, 2 * r2);
 			}

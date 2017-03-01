@@ -1,9 +1,11 @@
 package kn.uni.voronoitreemap.gui;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import kn.uni.voronoitreemap.gui.actions.AntialiasingAction;
 import kn.uni.voronoitreemap.gui.actions.ClearAction;
 import kn.uni.voronoitreemap.gui.actions.QuitAction;
 
@@ -34,7 +36,12 @@ public class PowerBoxGui
 		menuFile.add("Save");
 		menuFile.add(new QuitAction());
 
+		JMenu menuOptions = new JMenu("Options");
+		menuOptions
+				.add(new JCheckBoxMenuItem(new AntialiasingAction(powerBox)));
+
 		menuBar.add(menuFile);
+		menuBar.add(menuOptions);
 
 		frame.setVisible(true);
 		frame.setSize(800, 600);

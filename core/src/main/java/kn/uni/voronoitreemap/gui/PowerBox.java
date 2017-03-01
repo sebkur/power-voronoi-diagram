@@ -23,8 +23,10 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D.Double;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -63,6 +65,8 @@ public class PowerBox extends JPanel
 	private int sizeOuterSquares = 7;
 	// Size of centroid markers
 	private int sizeCentroidSquares = 5;
+
+	private double newSiteWeight = 30;
 
 	// Distance in pixels for detecting clicks on existing sites
 	private double clickTolerance = 10;
@@ -142,7 +146,7 @@ public class PowerBox extends JPanel
 				return;
 			}
 
-			addSite(e.getPoint());
+			addSite(e.getX(), e.getY(), newSiteWeight);
 
 			computeDiagram();
 		}
@@ -173,10 +177,18 @@ public class PowerBox extends JPanel
 
 	};
 
-	public void addSite(Point p)
+	public List<Site> getSitesAsList()
 	{
-		double weight = 30;
-		Site site = new Site(p.getX(), p.getY(), weight);
+		List<Site> list = new ArrayList<>(sites.size);
+		for (Site site : sites) {
+			list.add(site);
+		}
+		return list;
+	}
+
+	public void addSite(double x, double y, double weight)
+	{
+		Site site = new Site(x, y, weight);
 		sites.add(site);
 	}
 

@@ -214,7 +214,6 @@ public class PowerBox extends JPanel
 	public void paint(Graphics g2)
 	{
 		super.paint(g2);
-//		paintComponents(g2);
 
 		Graphics2D g = (Graphics2D) g2;
 		Site[] array = sites.array;

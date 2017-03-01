@@ -125,8 +125,7 @@ public class PowerBox extends JPanel
 				int modifiers = e.getModifiers();
 				if ((modifiers
 						& InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-					site.setWeight(
-							Math.pow((Math.sqrt(site.getWeight()) + 10), 2));
+					increaseWeight(site);
 					changedWeight = true;
 				}
 				if ((modifiers
@@ -135,8 +134,7 @@ public class PowerBox extends JPanel
 				}
 				if ((modifiers
 						& InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
-					site.setWeight(
-							Math.pow((Math.sqrt(site.getWeight()) - 10), 2));
+					decreaseWeight(site);
 					changedWeight = true;
 				}
 			}
@@ -220,6 +218,20 @@ public class PowerBox extends JPanel
 		PowerDiagram diagram = new PowerDiagram(sites, clipPoly);
 		diagram.computeDiagram();
 		repaint();
+	}
+
+	protected void increaseWeight(Site site)
+	{
+		double oldWeight = site.getWeight();
+		double newWeight = Math.pow((Math.sqrt(oldWeight) + 10), 2);
+		site.setWeight(newWeight);
+	}
+
+	protected void decreaseWeight(Site site)
+	{
+		double oldWeight = site.getWeight();
+		double newWeight = Math.pow((Math.sqrt(oldWeight) - 10), 2);
+		site.setWeight(newWeight);
 	}
 
 	@Override

@@ -72,11 +72,6 @@ public class PowerDiagram
 		setClipPoly(clipPoly);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see diagram.iPowerDiagram#setSites(datastructure.OpenList)
-	 */
 	public void setSites(OpenList sites)
 	{
 		this.sites = sites;
@@ -112,14 +107,8 @@ public class PowerDiagram
 		return clipPoly;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see diagram.iPowerDiagram#computeDiagram()
-	 */
 	public void computeDiagram()
 	{
-
 		if (sites.size > 0) {
 			sites.permutate();
 

@@ -37,6 +37,7 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 	protected ArrayList<Site> neighbours;
 
 	public VoroCellObject cellObject;
+
 	/**
 	 * Preflow Extrapolation
 	 */
@@ -52,11 +53,6 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 		return x * x + y * y - weight;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#getPolygon()
-	 */
 	@Override
 	public PolygonSimple getPolygon()
 	{
@@ -70,22 +66,12 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 				+ ")+z: " + z;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setPolygon(j2d.NPoly)
-	 */
 	@Override
 	public void setPolygon(PolygonSimple poly)
 	{
 		polygon = poly;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setNeighbours(java.util.ArrayList)
-	 */
 	@Override
 	public void setNeighbours(ArrayList<Site> list)
 	{
@@ -93,11 +79,6 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 		neighbours = list;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#getNeighbours()
-	 */
 	@Override
 	public ArrayList<Site> getNeighbours()
 	{
@@ -140,22 +121,12 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 		this.percentage = percentage;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#getWeight()
-	 */
 	@Override
 	public double getWeight()
 	{
 		return weight;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setWeight(double)
-	 */
 	@Override
 	public void setWeight(double weight)
 	{
@@ -163,11 +134,6 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 		project();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setXY(double, double)
-	 */
 	@Override
 	public void setXY(double x, double y)
 	{
@@ -176,11 +142,6 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 		project();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setXYW(double, double, double)
-	 */
 	@Override
 	public void setXYW(double x, double y, double weight)
 	{
@@ -195,11 +156,6 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 		z = projectZ(x, y, weight);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setX(double)
-	 */
 	@Override
 	public void setX(double x)
 	{
@@ -207,11 +163,6 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 		project();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setY(double)
-	 */
 	@Override
 	public void setY(double y)
 	{
@@ -257,33 +208,18 @@ public class ASite extends JVertex implements Comparable<Site>, ISite
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#setPercentage(double)
-	 */
 	@Override
 	public void setPercentage(double percentage)
 	{
 		this.percentage = percentage;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#getPercentage()
-	 */
 	@Override
 	public double getPercentage()
 	{
 		return percentage;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see j2d.iSite#getPoint()
-	 */
 	@Override
 	public Point2D getPoint()
 	{

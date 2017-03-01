@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -61,6 +62,8 @@ public class PowerBox extends JPanel
 
 	// Distance in pixels for detecting clicks on existing sites
 	private double clickTolerance = 10;
+
+	private boolean antialiasing = false;
 
 	OpenList sites = new OpenList();
 	PolygonSimple clipPoly = new PolygonSimple();
@@ -195,6 +198,10 @@ public class PowerBox extends JPanel
 		Site[] array = sites.array;
 		int size = sites.size;
 
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				antialiasing ? RenderingHints.VALUE_ANTIALIAS_ON
+						: RenderingHints.VALUE_ANTIALIAS_OFF);
+
 		// Draw sites
 		g2.setColor(colorSitesWithCell);
 		for (int z = 0; z < size; z++) {
@@ -269,6 +276,16 @@ public class PowerBox extends JPanel
 		}
 
 		this.validate();
+	}
+
+	public boolean isAntialiasing()
+	{
+		return antialiasing;
+	}
+
+	public void setAntialiasing(boolean antialiasing)
+	{
+		this.antialiasing = antialiasing;
 	}
 
 }

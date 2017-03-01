@@ -22,6 +22,17 @@ public class SiteIO
 		for (Site site : sites) {
 			writer.write(site);
 		}
+		writer.flush();
+	}
+
+	public static void write(OutputStream output, Iterable<Site> sites)
+			throws IOException
+	{
+		SiteWriter writer = new SiteWriter(output);
+		for (Site site : sites) {
+			writer.write(site);
+		}
+		writer.flush();
 	}
 
 	public static List<Site> read(InputStream input) throws IOException

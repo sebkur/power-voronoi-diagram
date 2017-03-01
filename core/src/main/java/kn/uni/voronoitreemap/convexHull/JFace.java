@@ -28,7 +28,7 @@ public class JFace
 	private boolean marked;
 
 	/**
-	 * Usefull
+	 * Useful
 	 */
 	private JVertex v[]; // List of incident vertices
 	private HEdge e[]; // Boundary edges of the facet

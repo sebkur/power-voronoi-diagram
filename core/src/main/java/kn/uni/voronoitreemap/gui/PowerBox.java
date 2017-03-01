@@ -169,7 +169,7 @@ public class PowerBox extends JPanel
 
 	};
 
-	protected void addSite(Point p)
+	public void addSite(Point p)
 	{
 		double weight = 30;
 		Site site = new Site(p.getX(), p.getY(), weight);
@@ -187,7 +187,7 @@ public class PowerBox extends JPanel
 	 * @return a close Site, or null if none is found within
 	 *         <code>clickTolerance</code> pixels distance.
 	 */
-	protected Site getSite(int x, int y)
+	public Site getSite(int x, int y)
 	{
 		for (Site site : sites) {
 			double distance = new kn.uni.voronoitreemap.j2d.Point2D(x, y)

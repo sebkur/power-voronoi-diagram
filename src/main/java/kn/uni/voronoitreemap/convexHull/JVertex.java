@@ -11,7 +11,7 @@
  * Arlind Nocaj, Ulrik Brandes, "Computing Voronoi Treemaps: Faster, Simpler, and Resolution-independent", Computer Graphics Forum, vol. 31, no. 3, June 2012, pp. 855-864
  ******************************************************************************/
 package kn.uni.voronoitreemap.convexHull;
-import kn.uni.voronoitreemap.j3d.Point3d;
+import kn.uni.voronoitreemap.j3d.Point3D;
 
 /**
  * 3-dimensional Point with some extra fields for ConvexHull computation.
@@ -125,8 +125,8 @@ public class JVertex {
 		return handled;
 	}
 
-	public Point3d toPoint3D(){
-		return new Point3d(x,y,z);
+	public Point3D toPoint3D(){
+		return new Point3D(x,y,z);
 	}
 
 	public double getX(){

@@ -33,7 +33,7 @@ public class Plane3D {
 	 * @param p2
 	 * @param p3
 	 */
-	public Plane3D(Point3d p1, Point3d p2, Point3d p3){
+	public Plane3D(Point3D p1, Point3D p2, Point3D p3){
 		a=p1.y*(p2.z-p3.z)+p2.y*(p3.z-p1.z)+p3.y*(p1.z-p2.z);
 		b=p1.z*(p2.x-p3.x)+p2.z*(p3.x-p1.x)+p3.z*(p1.x-p2.x);
 		c=p1.x*(p2.y-p3.y)+p2.x*(p3.y-p1.y)+p3.x*(p1.y-p2.y);

@@ -13,10 +13,13 @@
 package kn.uni.voronoitreemap.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -63,10 +66,12 @@ public class PowerBox extends JPanel
 	// Distance in pixels for detecting clicks on existing sites
 	private double clickTolerance = 10;
 
+	private int margin = 10;
+
 	private boolean antialiasing = false;
 
 	OpenList sites = new OpenList();
-	PolygonSimple clipPoly = new PolygonSimple();
+	PolygonSimple clipPoly;
 
 	HashMap<Double, HashSet<Site>> vertices = new HashMap<Double, HashSet<Site>>();
 
@@ -74,13 +79,30 @@ public class PowerBox extends JPanel
 
 	public PowerBox()
 	{
-		clipPoly.add(50, 50);
-		clipPoly.add(50, 800);
-		clipPoly.add(800, 800);
-		clipPoly.add(800, 50);
 		addMouseListener(mouseAdapter);
 		addMouseMotionListener(mouseAdapter);
+		addComponentListener(componentAdapter);
 	}
+
+	protected void initClipPoly(int w, int h)
+	{
+		clipPoly = new PolygonSimple();
+		clipPoly.add(margin, margin);
+		clipPoly.add(margin, h - margin);
+		clipPoly.add(w - margin, h - margin);
+		clipPoly.add(w - margin, margin);
+	}
+
+	private ComponentAdapter componentAdapter = new ComponentAdapter() {
+
+		@Override
+		public void componentResized(ComponentEvent e)
+		{
+			initClipPoly(getWidth(), getHeight());
+			computeDiagram();
+		}
+
+	};
 
 	private MouseAdapter mouseAdapter = new MouseAdapter() {
 

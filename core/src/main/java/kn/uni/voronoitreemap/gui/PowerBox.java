@@ -141,8 +141,6 @@ public class PowerBox extends JPanel
 			addSite(e.getPoint());
 
 			computeDiagram();
-			setPreferredSize(getSize());
-			repaint();
 		}
 
 		@Override
@@ -206,7 +204,6 @@ public class PowerBox extends JPanel
 	{
 		PowerDiagram diagram = new PowerDiagram(sites, clipPoly);
 		diagram.computeDiagram();
-		setPreferredSize(getSize());
 		repaint();
 	}
 

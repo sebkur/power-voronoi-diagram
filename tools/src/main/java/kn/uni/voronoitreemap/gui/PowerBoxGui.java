@@ -84,6 +84,16 @@ public class PowerBoxGui
 
 		});
 
+		powerBox.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				updateMouseInfo(e);
+			}
+
+		});
+
 		// Actions
 		ClearAction clear = new ClearAction(powerBox);
 		LoadAction load = new LoadAction(powerBox);

@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import kn.uni.voronoitreemap.gui.actions.ClearAction;
 import kn.uni.voronoitreemap.gui.actions.QuitAction;
 
 /**
@@ -24,19 +25,19 @@ public class PowerBoxGui
 
 		frame.setContentPane(powerBox);
 
-		frame.setVisible(true);
-		frame.setSize(800, 600);
-
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 
 		JMenu menuFile = new JMenu("File");
-		menuFile.add("Clear");
+		menuFile.add(new ClearAction(powerBox));
 		menuFile.add("Load");
 		menuFile.add("Save");
 		menuFile.add(new QuitAction());
 
 		menuBar.add(menuFile);
+
+		frame.setVisible(true);
+		frame.setSize(800, 600);
 	}
 
 }

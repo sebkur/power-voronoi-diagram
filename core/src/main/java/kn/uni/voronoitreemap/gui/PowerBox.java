@@ -178,6 +178,12 @@ public class PowerBox extends JPanel
 		sites.add(site);
 	}
 
+	public void clearSites()
+	{
+		sites.clear();
+		computeDiagram();
+	}
+
 	/**
 	 * Determine a Site close to the specified location.
 	 * 

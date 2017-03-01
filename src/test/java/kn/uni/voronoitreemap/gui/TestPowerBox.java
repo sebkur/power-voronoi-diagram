@@ -33,6 +33,7 @@ public class TestPowerBox
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		PowerBox powerBox = new PowerBox();
+		powerBox.setAntialiasing(true);
 
 		Container contentPane = frame.getContentPane();
 		contentPane.setLayout(new BorderLayout());

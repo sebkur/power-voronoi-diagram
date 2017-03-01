@@ -652,7 +652,7 @@ public class PolygonSimple implements Shape, Cloneable, Iterable<Point2D>
 	 */
 	public void shrinkForBorder(double percentage)
 	{
-		oldPolygon = (PolygonSimple) this.clone();
+		oldPolygon = this.clone();
 		getCentroid();
 		double cx = centroid.getX();
 		double cy = centroid.getY();

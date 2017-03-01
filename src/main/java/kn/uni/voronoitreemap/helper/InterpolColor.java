@@ -113,9 +113,8 @@ public class InterpolColor
 
 	public Color getColorLog(double key)
 	{
-
-		double anteil = (double) ((Math.log(key - minValue))
-				/ (Math.log(maxValue - minValue)));
+		double anteil = Math.log(key - minValue)
+				/ Math.log(maxValue - minValue);
 
 		double divH = rightH - leftH;
 		double divS = rightS - leftS;

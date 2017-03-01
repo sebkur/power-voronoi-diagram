@@ -287,9 +287,9 @@ public class JPolygon extends JComponent implements VoroCellObject
 
 					g.drawString(text,
 							(int) polygon.getCentroid().getX() - tx
-									- (int) (w / 2),
+									- w / 2,
 							(int) polygon.getCentroid().getY() - ty
-									+ (int) (h / 2));
+									+ h / 2);
 				}
 			}
 		}
@@ -331,7 +331,7 @@ public class JPolygon extends JComponent implements VoroCellObject
 
 	public void setVoroPolygon(PolygonSimple p, int height)
 	{
-		p = (PolygonSimple) p.clone();
+		p = p.clone();
 		this.height = height;
 		isFinal = false;
 		Rectangle bounds = p.getBounds();

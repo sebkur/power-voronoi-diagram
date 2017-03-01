@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.topobyte.awt.util.GridBagConstraintsEditor;
+import kn.uni.voronoitreemap.j2d.Site;
 
 /**
  * @author Sebastian Kuerten
@@ -23,6 +24,8 @@ public class StatusBar extends JPanel
 
 	private int mouseX;
 	private int mouseY;
+
+	private Site site;
 
 	public StatusBar()
 	{
@@ -44,8 +47,15 @@ public class StatusBar extends JPanel
 
 	public void setDefaultText()
 	{
-		label.setText(String.format("size: %d x %d mouse: %d, %d", boxWidth,
-				boxHeight, mouseX, mouseY));
+		if (site == null) {
+			label.setText(String.format("size: %d x %d mouse: %d, %d", boxWidth,
+					boxHeight, mouseX, mouseY));
+		} else {
+			label.setText(String.format(
+					"size: %d x %d mouse: %d, %d site: %.2f, %.2f %.2f",
+					boxWidth, boxHeight, mouseX, mouseY, site.getX(),
+					site.getY(), site.getWeight()));
+		}
 	}
 
 	public void setBoxSize(int width, int height)
@@ -58,6 +68,11 @@ public class StatusBar extends JPanel
 	{
 		mouseX = x;
 		mouseY = y;
+	}
+
+	public void setSite(Site site)
+	{
+		this.site = site;
 	}
 
 }

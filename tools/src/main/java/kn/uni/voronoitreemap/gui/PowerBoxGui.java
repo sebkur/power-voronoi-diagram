@@ -20,6 +20,7 @@ import kn.uni.voronoitreemap.gui.actions.ClearAction;
 import kn.uni.voronoitreemap.gui.actions.LoadAction;
 import kn.uni.voronoitreemap.gui.actions.QuitAction;
 import kn.uni.voronoitreemap.gui.actions.SaveAction;
+import kn.uni.voronoitreemap.j2d.Site;
 
 /**
  * A GUI that shows a {@link PowerBox}.
@@ -72,15 +73,13 @@ public class PowerBoxGui
 			@Override
 			public void mouseMoved(MouseEvent e)
 			{
-				statusBar.setMouse(e.getX(), e.getY());
-				statusBar.setDefaultText();
+				updateMouseInfo(e);
 			}
 
 			@Override
 			public void mouseDragged(MouseEvent e)
 			{
-				statusBar.setMouse(e.getX(), e.getY());
-				statusBar.setDefaultText();
+				updateMouseInfo(e);
 			}
 
 		});
@@ -116,6 +115,16 @@ public class PowerBoxGui
 		// Show frame
 		frame.setVisible(true);
 		frame.setSize(800, 600);
+	}
+
+	protected static void updateMouseInfo(MouseEvent e)
+	{
+		statusBar.setMouse(e.getX(), e.getY());
+
+		Site site = powerBox.getSite(e.getX(), e.getY());
+		statusBar.setSite(site);
+
+		statusBar.setDefaultText();
 	}
 
 }

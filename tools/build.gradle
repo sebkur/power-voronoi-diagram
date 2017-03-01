@@ -1,4 +1,13 @@
+repositories {
+    maven {
+        url 'http://mvn.topobyte.de'
+    }
+}
+
 dependencies {
     compile project(':power-voronoi-diagram')
+
+    compile 'de.topobyte:swing-utils:0.0.7'
+
     testCompile 'junit:junit:4.12'
 }

@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import kn.uni.voronoitreemap.gui.actions.QuitAction;
+
 /**
  * A GUI that shows a {@link PowerBox}.
  * 
@@ -32,7 +34,7 @@ public class PowerBoxGui
 		menuFile.add("Clear");
 		menuFile.add("Load");
 		menuFile.add("Save");
-		menuFile.add("Quit");
+		menuFile.add(new QuitAction());
 
 		menuBar.add(menuFile);
 	}

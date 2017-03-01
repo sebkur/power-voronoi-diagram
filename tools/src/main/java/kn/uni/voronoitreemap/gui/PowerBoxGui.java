@@ -23,28 +23,39 @@ public class PowerBoxGui
 		JFrame frame = new JFrame("PowerBox GUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		// Main content
 		PowerBox powerBox = new PowerBox();
 		powerBox.setAntialiasing(true);
 
 		frame.setContentPane(powerBox);
 
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		// Actions
+		ClearAction clear = new ClearAction(powerBox);
+		QuitAction quit = new QuitAction();
 
+		AntialiasingAction antialiasing = new AntialiasingAction(powerBox);
+		CentroidsAction centroids = new CentroidsAction(powerBox);
+
+		// Menu bar menus
 		JMenu menuFile = new JMenu("File");
-		menuFile.add(new ClearAction(powerBox));
+		JMenu menuOptions = new JMenu("Options");
+
+		menuFile.add(clear);
 		menuFile.add("Load");
 		menuFile.add("Save");
-		menuFile.add(new QuitAction());
+		menuFile.add(quit);
 
-		JMenu menuOptions = new JMenu("Options");
-		menuOptions
-				.add(new JCheckBoxMenuItem(new AntialiasingAction(powerBox)));
-		menuOptions.add(new JCheckBoxMenuItem(new CentroidsAction(powerBox)));
+		menuOptions.add(new JCheckBoxMenuItem(antialiasing));
+		menuOptions.add(new JCheckBoxMenuItem(centroids));
+
+		// Menu bar
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
 
 		menuBar.add(menuFile);
 		menuBar.add(menuOptions);
 
+		// Show frame
 		frame.setVisible(true);
 		frame.setSize(800, 600);
 	}

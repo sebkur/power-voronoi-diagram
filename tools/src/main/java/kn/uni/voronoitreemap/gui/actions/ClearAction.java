@@ -21,6 +21,7 @@ public class ClearAction extends PowerBoxAction
 	public void actionPerformed(ActionEvent e)
 	{
 		powerBox.clearSites();
+		powerBox.computeDiagram();
 	}
 
 }

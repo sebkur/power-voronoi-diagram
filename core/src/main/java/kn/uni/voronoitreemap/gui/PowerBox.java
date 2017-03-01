@@ -179,7 +179,6 @@ public class PowerBox extends JPanel
 	public void clearSites()
 	{
 		sites.clear();
-		computeDiagram();
 	}
 
 	/**

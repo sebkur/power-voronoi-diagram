@@ -8,7 +8,9 @@ import javax.swing.JMenuBar;
 import kn.uni.voronoitreemap.gui.actions.AntialiasingAction;
 import kn.uni.voronoitreemap.gui.actions.CentroidsAction;
 import kn.uni.voronoitreemap.gui.actions.ClearAction;
+import kn.uni.voronoitreemap.gui.actions.LoadAction;
 import kn.uni.voronoitreemap.gui.actions.QuitAction;
+import kn.uni.voronoitreemap.gui.actions.SaveAction;
 
 /**
  * A GUI that shows a {@link PowerBox}.
@@ -31,6 +33,8 @@ public class PowerBoxGui
 
 		// Actions
 		ClearAction clear = new ClearAction(powerBox);
+		LoadAction load = new LoadAction(powerBox);
+		SaveAction save = new SaveAction(powerBox);
 		QuitAction quit = new QuitAction();
 
 		AntialiasingAction antialiasing = new AntialiasingAction(powerBox);
@@ -41,8 +45,8 @@ public class PowerBoxGui
 		JMenu menuOptions = new JMenu("Options");
 
 		menuFile.add(clear);
-		menuFile.add("Load");
-		menuFile.add("Save");
+		menuFile.add(load);
+		menuFile.add(save);
 		menuFile.add(quit);
 
 		menuOptions.add(new JCheckBoxMenuItem(antialiasing));

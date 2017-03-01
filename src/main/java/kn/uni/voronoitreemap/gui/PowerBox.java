@@ -74,7 +74,6 @@ public class PowerBox extends JPanel
 
 	public PowerBox()
 	{
-		super();
 		clipPoly.add(50, 50);
 		clipPoly.add(50, 800);
 		clipPoly.add(800, 800);
@@ -181,7 +180,6 @@ public class PowerBox extends JPanel
 
 	public void computeDiagram()
 	{
-
 		PowerDiagram diagram = new PowerDiagram(sites, clipPoly);
 		diagram.computeDiagram();
 		setPreferredSize(getSize());

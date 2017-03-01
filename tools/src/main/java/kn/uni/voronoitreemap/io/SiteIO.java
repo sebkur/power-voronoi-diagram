@@ -24,7 +24,7 @@ public class SiteIO
 		}
 	}
 
-	public static List<Site> read(InputStream input)
+	public static List<Site> read(InputStream input) throws IOException
 	{
 		SiteReader reader = new SiteReader(input);
 		List<Site> result = reader.read();

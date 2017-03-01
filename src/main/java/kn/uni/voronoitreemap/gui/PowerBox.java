@@ -42,6 +42,17 @@ import kn.uni.voronoitreemap.j2d.Site;
 public class PowerBox extends JPanel
 {
 
+	// Inner square for sites with cell
+	private Color colorSitesWithCell = Color.GREEN;
+	// Inner square for sites without cell
+	private Color colorSitesWithoutCell = Color.RED;
+	// Outer square for sites
+	private Color colorSites = Color.BLUE;
+	// Cell centroid markers
+	private Color colorCentroids = Color.BLUE;
+	// Cell edges
+	private Color colorEdges = Color.GRAY.brighter();
+
 	OpenList sites = new OpenList();
 	PolygonSimple clipPoly = new PolygonSimple();
 
@@ -171,12 +182,11 @@ public class PowerBox extends JPanel
 //		paintComponents(g2);
 
 		Graphics2D g = (Graphics2D) g2;
-		g.setColor(Color.red);
 		Site[] array = sites.array;
 		int size = sites.size;
 
 		// Draw sites
-		g2.setColor(Color.green);
+		g2.setColor(colorSitesWithCell);
 		for (int z = 0; z < size; z++) {
 			Site s = array[z];
 			double posX = s.getX();
@@ -189,7 +199,7 @@ public class PowerBox extends JPanel
 			int r2 = 5;
 			Color normal = g.getColor();
 			if (s.getPolygon() == null) {
-				g.setColor(Color.red);
+				g.setColor(colorSitesWithoutCell);
 			}
 			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
 			g.setColor(normal);
@@ -209,7 +219,7 @@ public class PowerBox extends JPanel
 //		}
 
 		// Draw Voronoi cells
-		g.setColor(Color.GRAY.brighter());
+		g.setColor(colorEdges);
 		int i = 0;
 		for (int z = 0; z < size; z++) {
 			Site s = array[z];
@@ -223,8 +233,8 @@ public class PowerBox extends JPanel
 		}
 
 		// Draw sites and Voronoi cell centroids
-		g.setColor(Color.blue);
 		for (int z = 0; z < size; z++) {
+			g.setColor(colorSites);
 			Site s = array[z];
 			double posX = s.getX();
 			double posY = s.getY();
@@ -240,6 +250,7 @@ public class PowerBox extends JPanel
 			PolygonSimple poly = s.getPolygon();
 			// Draw the centroid of the Voronoi cell
 			if (poly != null) {
+				g.setColor(colorCentroids);
 				Point2D center = poly.getCentroid();
 				r2 = 5;
 				g.drawRect((int) center.getX() - r2, (int) center.getY() - r2,

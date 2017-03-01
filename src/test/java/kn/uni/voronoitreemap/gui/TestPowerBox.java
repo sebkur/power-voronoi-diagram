@@ -29,7 +29,7 @@ public class TestPowerBox
 
 	public static void main(String[] args)
 	{
-		JFrame frame = new JFrame();
+		JFrame frame = new JFrame("Test for PowerBox");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		PowerBox powerBox = new PowerBox();

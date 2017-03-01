@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$(dirname $0)
+CMD="$DIR/power-voronoi.sh"
+CLASS="kn.uni.voronoitreemap.gui.PowerBoxGui"
+
+exec "$CMD" "$CLASS" "$@"

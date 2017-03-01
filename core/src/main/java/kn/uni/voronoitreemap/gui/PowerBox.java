@@ -69,6 +69,8 @@ public class PowerBox extends JPanel
 
 	private boolean antialiasing = false;
 
+	private boolean showCentroids = true;
+
 	OpenList sites = new OpenList();
 	PolygonSimple clipPoly;
 
@@ -284,7 +286,7 @@ public class PowerBox extends JPanel
 
 			PolygonSimple poly = s.getPolygon();
 			// Draw the centroid of the Voronoi cell
-			if (poly != null) {
+			if (poly != null && showCentroids) {
 				g.setColor(colorCentroids);
 				Point2D center = poly.getCentroid();
 				r2 = sizeCentroidSquares;
@@ -304,6 +306,16 @@ public class PowerBox extends JPanel
 	public void setAntialiasing(boolean antialiasing)
 	{
 		this.antialiasing = antialiasing;
+	}
+
+	public boolean isShowCentroids()
+	{
+		return showCentroids;
+	}
+
+	public void setShowCentroids(boolean showCentroids)
+	{
+		this.showCentroids = showCentroids;
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import kn.uni.voronoitreemap.gui.actions.AntialiasingAction;
+import kn.uni.voronoitreemap.gui.actions.CentroidsAction;
 import kn.uni.voronoitreemap.gui.actions.ClearAction;
 import kn.uni.voronoitreemap.gui.actions.QuitAction;
 
@@ -39,6 +40,7 @@ public class PowerBoxGui
 		JMenu menuOptions = new JMenu("Options");
 		menuOptions
 				.add(new JCheckBoxMenuItem(new AntialiasingAction(powerBox)));
+		menuOptions.add(new JCheckBoxMenuItem(new CentroidsAction(powerBox)));
 
 		menuBar.add(menuFile);
 		menuBar.add(menuOptions);

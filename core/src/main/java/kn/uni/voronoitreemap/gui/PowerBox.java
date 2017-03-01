@@ -269,9 +269,28 @@ public class PowerBox extends JPanel
 			i++;
 		}
 
-		// Draw sites and Voronoi cell centroids
+		// Draw Voronoi cell centroids
+		if (showCentroids) {
+			g.setColor(colorCentroids);
+			for (int z = 0; z < size; z++) {
+				Site s = array[z];
+
+				PolygonSimple poly = s.getPolygon();
+				if (poly == null) {
+					continue;
+				}
+
+				// Draw the centroid of the Voronoi cell
+				Point2D center = poly.getCentroid();
+				int r2 = sizeCentroidSquares;
+				g.drawRect((int) center.getX() - r2, (int) center.getY() - r2,
+						2 * r2, 2 * r2);
+			}
+		}
+
+		// Draw sites
+		g.setColor(colorSites);
 		for (int z = 0; z < size; z++) {
-			g.setColor(colorSites);
 			Site s = array[z];
 			double posX = s.getX();
 			double posY = s.getY();
@@ -283,16 +302,6 @@ public class PowerBox extends JPanel
 			// and a square around the site
 			int r2 = sizeOuterSquares;
 			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
-
-			PolygonSimple poly = s.getPolygon();
-			// Draw the centroid of the Voronoi cell
-			if (poly != null && showCentroids) {
-				g.setColor(colorCentroids);
-				Point2D center = poly.getCentroid();
-				r2 = sizeCentroidSquares;
-				g.drawRect((int) center.getX() - r2, (int) center.getY() - r2,
-						2 * r2, 2 * r2);
-			}
 		}
 
 		this.validate();

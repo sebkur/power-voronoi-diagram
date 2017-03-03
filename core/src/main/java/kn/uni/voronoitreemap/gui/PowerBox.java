@@ -75,6 +75,8 @@ public class PowerBox extends JPanel
 
 	private boolean antialiasing = false;
 
+	private boolean showSites = true;
+	private boolean showWeights = true;
 	private boolean showCentroids = true;
 
 	OpenList sites = new OpenList();
@@ -301,24 +303,28 @@ public class PowerBox extends JPanel
 			double posY = s.getY();
 
 			// Draw an inner square around the site...
-			int r1 = sizeInnerSquares;
-			if (s.getPolygon() != null) {
-				g.setColor(colorSitesWithCell);
-			} else {
-				g.setColor(colorSitesWithoutCell);
-			}
-			g.drawRect((int) posX - r1, (int) posY - r1, 2 * r1, 2 * r1);
+			if (showSites) {
+				int r1 = sizeInnerSquares;
+				if (s.getPolygon() != null) {
+					g.setColor(colorSitesWithCell);
+				} else {
+					g.setColor(colorSitesWithoutCell);
+				}
+				g.drawRect((int) posX - r1, (int) posY - r1, 2 * r1, 2 * r1);
 
-			// ...and outer square...
-			g.setColor(colorSites);
-			int r2 = sizeOuterSquares;
-			g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
+				// ...and outer square...
+				g.setColor(colorSites);
+				int r2 = sizeOuterSquares;
+				g.drawRect((int) posX - r2, (int) posY - r2, 2 * r2, 2 * r2);
+			}
 
 			// ...and a circle that reflects the weight
-			g.setColor(colorCircles);
-			double radius = Math.sqrt(s.getWeight());
-			g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
-					(int) (2 * radius), (int) (2 * radius));
+			if (showWeights) {
+				g.setColor(colorCircles);
+				double radius = Math.sqrt(s.getWeight());
+				g.drawOval((int) posX - (int) radius, (int) posY - (int) radius,
+						(int) (2 * radius), (int) (2 * radius));
+			}
 		}
 
 		this.validate();
@@ -332,6 +338,26 @@ public class PowerBox extends JPanel
 	public void setAntialiasing(boolean antialiasing)
 	{
 		this.antialiasing = antialiasing;
+	}
+
+	public boolean isShowSites()
+	{
+		return showSites;
+	}
+
+	public void setShowSites(boolean showSites)
+	{
+		this.showSites = showSites;
+	}
+
+	public boolean isShowWeights()
+	{
+		return showWeights;
+	}
+
+	public void setShowWeights(boolean showWeights)
+	{
+		this.showWeights = showWeights;
 	}
 
 	public boolean isShowCentroids()

@@ -20,6 +20,8 @@ import kn.uni.voronoitreemap.gui.actions.ClearAction;
 import kn.uni.voronoitreemap.gui.actions.LoadAction;
 import kn.uni.voronoitreemap.gui.actions.QuitAction;
 import kn.uni.voronoitreemap.gui.actions.SaveAction;
+import kn.uni.voronoitreemap.gui.actions.ShowSitesAction;
+import kn.uni.voronoitreemap.gui.actions.ShowWeightsAction;
 import kn.uni.voronoitreemap.j2d.Site;
 
 /**
@@ -102,6 +104,8 @@ public class PowerBoxGui
 
 		AntialiasingAction antialiasing = new AntialiasingAction(powerBox);
 		CentroidsAction centroids = new CentroidsAction(powerBox);
+		ShowSitesAction showSites = new ShowSitesAction(powerBox);
+		ShowWeightsAction showWeights = new ShowWeightsAction(powerBox);
 
 		// Menu bar menus
 		JMenu menuFile = new JMenu("File");
@@ -113,6 +117,8 @@ public class PowerBoxGui
 		menuFile.add(quit);
 
 		menuOptions.add(new JCheckBoxMenuItem(antialiasing));
+		menuOptions.add(new JCheckBoxMenuItem(showSites));
+		menuOptions.add(new JCheckBoxMenuItem(showWeights));
 		menuOptions.add(new JCheckBoxMenuItem(centroids));
 
 		// Menu bar

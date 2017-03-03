@@ -15,11 +15,11 @@ import javax.swing.JPanel;
 
 import de.topobyte.awt.util.GridBagConstraintsEditor;
 import kn.uni.voronoitreemap.gui.actions.AntialiasingAction;
-import kn.uni.voronoitreemap.gui.actions.CentroidsAction;
 import kn.uni.voronoitreemap.gui.actions.ClearAction;
 import kn.uni.voronoitreemap.gui.actions.LoadAction;
 import kn.uni.voronoitreemap.gui.actions.QuitAction;
 import kn.uni.voronoitreemap.gui.actions.SaveAction;
+import kn.uni.voronoitreemap.gui.actions.ShowCentroidsAction;
 import kn.uni.voronoitreemap.gui.actions.ShowSitesAction;
 import kn.uni.voronoitreemap.gui.actions.ShowWeightsAction;
 import kn.uni.voronoitreemap.j2d.Site;
@@ -103,7 +103,7 @@ public class PowerBoxGui
 		QuitAction quit = new QuitAction();
 
 		AntialiasingAction antialiasing = new AntialiasingAction(powerBox);
-		CentroidsAction centroids = new CentroidsAction(powerBox);
+		ShowCentroidsAction showCentroids = new ShowCentroidsAction(powerBox);
 		ShowSitesAction showSites = new ShowSitesAction(powerBox);
 		ShowWeightsAction showWeights = new ShowWeightsAction(powerBox);
 
@@ -119,7 +119,7 @@ public class PowerBoxGui
 		menuOptions.add(new JCheckBoxMenuItem(antialiasing));
 		menuOptions.add(new JCheckBoxMenuItem(showSites));
 		menuOptions.add(new JCheckBoxMenuItem(showWeights));
-		menuOptions.add(new JCheckBoxMenuItem(centroids));
+		menuOptions.add(new JCheckBoxMenuItem(showCentroids));
 
 		// Menu bar
 		JMenuBar menuBar = new JMenuBar();

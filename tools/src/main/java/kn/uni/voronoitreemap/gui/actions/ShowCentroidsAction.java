@@ -5,12 +5,12 @@ import kn.uni.voronoitreemap.gui.PowerBox;
 /**
  * @author Sebastian Kuerten
  */
-public class CentroidsAction extends PowerBoxActionBoolean
+public class ShowCentroidsAction extends PowerBoxActionBoolean
 {
 
 	private static final long serialVersionUID = 1L;
 
-	public CentroidsAction(PowerBox powerBox)
+	public ShowCentroidsAction(PowerBox powerBox)
 	{
 		super(powerBox, "Centroids", "Show cell centroids");
 	}
